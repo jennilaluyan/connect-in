@@ -1,1 +1,255 @@
-@import "tailwindcss";
+/*@import "tailwindcss";*/
+
+/* Global style */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  margin: 30px 100px;
+  background-color: #f0f5f4;
+}
+
+/* Navbar */
+.navbar {
+  justify-items: center;
+  justify-content: center;
+  gap: 250px;
+  display: flex;
+  align-items: center;
+}
+
+/* Logo */
+.logo {
+  font-size: 36px;
+  font-weight: 600;
+  font-family: "Rubik", sans-serif;
+}
+
+/* Menu */
+.nav-menu {
+  display: flex;
+  gap: 50px;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.nav-menu a {
+  color: #181818;
+  text-decoration: none;
+}
+
+.nav-menu a:hover {
+  color: grey;
+}
+
+/* Buttons */
+.nav-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.btn {
+  width: 120px;
+  height: 50px;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 20px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-masuk {
+  background-color: #bcfc4d;
+  color: #181818;
+  border: none;
+}
+
+.btn-daftar {
+  border: 2px solid #bcfc4d;
+  background-color: transparent;
+  color: #181818;
+}
+
+.btn:hover {
+  background-color: #95cf32;
+}
+
+/* Hero Section */
+.hero {
+  width: 1350px;
+  height: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #5786f5;
+  border-radius: 50px;
+  margin-top: 60px;
+  padding: 55px 100px;
+  gap: 40px;
+}
+
+.hero-content h1 {
+  font-size: 48px;
+  font-weight: bold;
+  color: #d7ff3c;
+}
+
+.hero-content p {
+  font-size: 24px;
+  margin-top: 30px;
+  line-height: 40px;
+  color: #fff;
+}
+
+.hero-button {
+  margin-top: 50px;
+  padding: 10px;
+  width: 300px;
+  height: 60px;
+  font-size: 20px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  background-color: #d7ff3c;
+  color: #181818;
+  cursor: pointer;
+}
+
+.hero-button:hover {
+  background-color: #b6e130;
+}
+
+.hero-image img {
+  width: 500px;
+  height: 600px;
+  border-radius: 20px;
+}
+
+/* Responsiveness */
+@media (max-width: 1024px) {
+  body {
+    margin: 20px 50px;
+  }
+
+  .navbar {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .nav-menu {
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 10px;
+  }
+
+  .nav-buttons {
+    margin-top: 15px;
+  }
+
+  .hero {
+    text-align: center;
+    width: 100%;
+    height: auto;
+    padding: 30px;
+    gap: 30px;
+    margin-top: 40px;
+  }
+
+  .hero-content {
+    width: 100%;
+  }
+
+  .hero-image img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    margin: 15px 30px;
+  }
+
+  .navbar {
+    gap: 10px;
+  }
+
+  .nav-menu {
+    gap: 12px;
+    font-size: 18px;
+  }
+
+  .nav-buttons {
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .hero-content h1 {
+    font-size: 36px;
+  }
+
+  .hero-content p {
+    font-size: 18px;
+    line-height: 30px;
+  }
+
+  .hero-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    margin: 10px 20px;
+  }
+
+  .navbar {
+    gap: 10px;
+    text-align: center;
+  }
+
+  .logo {
+    font-size: 28px;
+  }
+
+  .nav-menu {
+    gap: 10px;
+    font-size: 16px;
+  }
+
+  .hero {
+    flex-direction: column-reverse;
+    padding: 20px;
+    margin-top: 30px;
+  }
+
+  .hero-content h1 {
+    font-size: 28px;
+  }
+
+  .hero-content p {
+    font-size: 16px;
+    line-height: 28px;
+  }
+
+  .hero-button {
+    font-size: 16px;
+    height: 50px;
+  }
+
+  .hero-image img {
+    max-width: 100%;
+    height: auto;
+  }
+}
