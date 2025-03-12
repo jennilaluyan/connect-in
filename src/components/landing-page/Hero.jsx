@@ -1,6 +1,4 @@
-import React from "react";
-import "../style.css";
-import UNSRAT from "../../src/image/UNSRAT.jpeg";
+import UNSRAT from "../../assets/UNSRAT.jpeg";
 
 const Hero = () => {
   return (

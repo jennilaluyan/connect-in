@@ -1,12 +1,10 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './style.css'
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
+import LandingPage from './components/landing-page/LandingPage'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Navbar />
-    <Hero />
+    <LandingPage />
   </StrictMode>,
 )
