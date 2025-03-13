@@ -13,7 +13,7 @@ const FeaturesSection = () => {
           description="Jalin relasi dengan sesama mahasiswa dan alumni untuk memperluas kesempatan profesional."
         />
         <FeatureCard
-          title="Temukan Peluang Kerja"
+          title="Temukan Peluang Kerja di Sekitar Anda"
           description="Akses berbagai lowongan kerja yang sesuai dengan bidang dan keahlianmu."
           isHighlighted
         />

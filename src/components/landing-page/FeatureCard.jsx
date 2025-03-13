@@ -5,7 +5,7 @@ const FeatureCard = ({ title, description, isHighlighted }) => {
         isHighlighted ? "bg-blue-500 text-white" : "bg-blue-100"
       }`}
     >
-      <h3 className={`text-left text-lg font-bold ${isHighlighted ? "mb-11" : "mb-4"}`}>{title}</h3>
+      <h3 className={`text-left text-lg font-bold mb-6`}>{title}</h3>
       <p className="text-left text-sm">{description}</p>
   </div>
   );
