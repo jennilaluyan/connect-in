@@ -2,7 +2,7 @@ import Navbar from './Navbar';
 import Hero from './Hero';
 import FeaturesSection from './FeaturesSection';
 import TestimonialsSection from './TestimonialSection';
-import HeadingBangunKoneksi from './HeadingBangunKoneksi';
+import BangunKoneksi2 from './BangunKoneksi2';
 import Footer from './Footer';
 
 function LandingPage() {
@@ -12,7 +12,7 @@ function LandingPage() {
             <Hero />
             <FeaturesSection />
             <TestimonialsSection />
-            <HeadingBangunKoneksi />
+            <BangunKoneksi2 /> 
             <Footer />
         </>
     )
