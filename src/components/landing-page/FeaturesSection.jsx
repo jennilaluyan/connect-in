@@ -1,12 +1,14 @@
 import FeatureCard from "./FeatureCard";
 import CallToAction from "./CallToAction";
+import HeadingBangunKoneksi from "./HeadingBangunKoneksi";
 
 const FeaturesSection = () => {
   return (
     <section className="p-8 text-center my-24">
-      <h2 className="text-4xl font-bold mb-6">
-        Bangun Koneksi, Buka Peluang di Connect IN
-      </h2>
+      {/* <HeadingBangunKoneksi /> */}
+      <h2 className="text-2x1 sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">
+          Bangun Koneksi, Buka Peluang di Connect IN
+        </h2>
       <div className="flex flex-col md:flex-row justify-center gap-6 max-w-4xl mx-auto my-28">
         <FeatureCard
           title="Terhubung dengan Alumni & Mahasiswa"
