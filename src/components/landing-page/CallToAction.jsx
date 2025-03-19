@@ -1,28 +1,30 @@
 import { useEffect, useRef } from "react";
 
 const CallToAction = () => {
-  const ctaRef = useRef(null);
+  const ctaRef = useRef(null); // Create a ref to attach to the CTA element
 
   useEffect(() => {
+    // Create an IntersectionObserver to observe when the CTA element is in view
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
+            // Add animation class when the element is in view
             entry.target.classList.add("cta-animate");
-            observer.unobserve(entry.target);
+            observer.unobserve(entry.target); // Stop observing once the animation is triggered
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.5 } // Trigger when 50% of the element is in view
     );
 
     if (ctaRef.current) {
-      observer.observe(ctaRef.current);
+      observer.observe(ctaRef.current); // Start observing the CTA element
     }
 
     return () => {
       if (ctaRef.current) {
-        observer.unobserve(ctaRef.current);
+        observer.unobserve(ctaRef.current); // Clean up the observer on component unmount
       }
     };
   }, []);
@@ -39,7 +41,7 @@ const CallToAction = () => {
       <style jsx>{`
         .cta-animate {
           opacity: 1;
-          transform: translateY(0);
+          transform: translateY(0); // Animation to make the element visible and move it to its original position
         }
       `}</style>
     </div>

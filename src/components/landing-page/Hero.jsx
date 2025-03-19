@@ -8,6 +8,7 @@ const Hero = () => {
     const heroImage = document.querySelector('.hero-image');
     const heroButton = document.querySelector('.hero-button');
     
+    // Sequentially add animation classes with delays
     setTimeout(() => {
       heroContent?.classList.add('animate-in');
       setTimeout(() => {
@@ -38,11 +39,11 @@ const Hero = () => {
         </div>
 
         {/* Hero Image */}
-        <div className="w-full md:w-1/2 mt-8 md:mt-0 hero-image opacity-0 translate-x-8 transition-all duration-700">
+        <div className="w-full md:w-1/2 mt-8 md:mt-0 hero-image">
           <img 
             src={UNSRAT} 
             alt="Universitas Sam Ratulangi" 
-            className="w-full h-auto rounded-lg shadow-lg object-cover hover:shadow-2xl transition-shadow duration-300" 
+            className="w-full max-w-[400px] h-auto mx-auto rounded-lg shadow-lg object-contain md:object-cover hover:shadow-2xl transition-shadow duration-300" 
           />
         </div>
       </div>
@@ -50,7 +51,7 @@ const Hero = () => {
       <style jsx>{`
         .animate-in {
           opacity: 1;
-          transform: translate(0, 0);
+          transform: translate(0, 0); // Animation to make the element visible and move it to its original position
         }
       `}</style>
     </section>

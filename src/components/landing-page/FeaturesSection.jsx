@@ -5,7 +5,7 @@ import HeadingBangunKoneksi from "./HeadingBangunKoneksi";
 const FeaturesSection = () => {
   return (
     <section id="feature-section" className="features p-8 text-center my-24">
-      <HeadingBangunKoneksi />
+      <HeadingBangunKoneksi /> {/* Section heading */}
       <div className="flex flex-col md:flex-row justify-center gap-6 max-w-4xl mx-auto my-28">
         <FeatureCard
           title="Terhubung dengan Alumni & Mahasiswa"
@@ -21,7 +21,7 @@ const FeaturesSection = () => {
           description="Bagikan informasi lowongan kerja dan berkontribusi dalam dunia profesional UNSRAT."
         />
       </div>
-      <CallToAction />
+      <CallToAction /> {/* Call to action button */}
     </section>
   );
 };
