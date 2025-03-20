@@ -1,12 +1,23 @@
 import React from "react";
-import Default from "../../assets/Anonymous.png"
+import { useNavigate } from "react-router-dom";
+import Default from "../../assets/Anonymous.png";
 
 /**
  * JobCard - Responsive card component for displaying job listings
- * Optimized for different screen sizes and touch interfaces
- * param {Object} job - Job data including title, type, salary, location, etc.
+ * Includes navigation to job detail page
+ * @param {Object} job - Job data including title, type, salary, location, etc.
+ * @param {Number} index - Index of the job in the list, used for ID
  */
-const JobCard = ({ job }) => {
+const JobCard = ({ job, index }) => {
+  const navigate = useNavigate();
+
+  // Handle apply button click to navigate to detail page
+  const handleApplyClick = () => {
+    // Using index as job ID for demo purposes
+    // In a real app, you would use a unique job ID from your data
+    navigate(`/job/${index}`);
+  };
+
   return (
     <div className="bg-white rounded-lg shadow overflow-hidden transition-shadow hover:shadow-md">
       {/* Job content */}
@@ -48,7 +59,10 @@ const JobCard = ({ job }) => {
         </div>
         
         {/* Apply button - full width on mobile, auto width on desktop */}
-        <button className="w-full sm:w-auto px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors text-sm">
+        <button 
+          onClick={handleApplyClick}
+          className="w-full sm:w-auto px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors text-sm"
+        >
           Lamar Sekarang
         </button>
       </div>

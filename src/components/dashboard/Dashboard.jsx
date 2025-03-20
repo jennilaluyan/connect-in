@@ -2,92 +2,15 @@ import React, { useState } from "react";
 import DashboardNavbar from "./DashboardNavbar";
 import SearchBar from "./SearchBar";
 import JobCard from "./JobCard";
-import Andi from "../../assets/Andi.png"
-import Hana from "../../assets/Hana.png"
-import Taylor from "../../assets/Taylor.png"
+import { jobsData } from "../../data/jobsData"; // Import from your data file - adjust the path as needed
+import { Link } from "react-router-dom"; // Import Link for navigation
 
 /**
  * Dashboard - Main job listing dashboard component
  * Fully responsive layout with appropriate spacing and grid adjustments
+ * Now using jobsData imported from external file
  */
 const Dashboard = () => {
-  // Sample job data - in a real app, this would come from an API
-  const jobs = [
-    {
-      title: "UI/UX DESIGNER",
-      type: "PART-TIME",
-      salary: "2.5 - 3 Juta",
-      location: "Lab Fatek",
-      postedBy: "Severus Snape",
-      avatarUrl: Andi
-    },
-    {
-      title: "UI/UX DESIGNER",
-      type: "INTERNSHIP",
-      salary: "2.5 - 3 Juta",
-      location: "Lab Fatek",
-      postedBy: "Severus Snape",
-      avatarUrl: Hana
-    },
-    {
-      title: "UI/UX DESIGNER",
-      type: "FULL TIME",
-      salary: "2.5 - 3 Juta",
-      location: "Lab Fatek",
-      postedBy: "Severus Snape",
-      avatarUrl: Taylor
-    },
-    // Additional jobs...
-    {
-      title: "UI/UX DESIGNER",
-      type: "PART-TIME",
-      salary: "2.5 - 3 Juta",
-      location: "Lab Fatek",
-      postedBy: "Severus Snape",
-      avatarUrl: Andi
-    },
-    {
-      title: "UI/UX DESIGNER",
-      type: "PART-TIME",
-      salary: "2.5 - 3 Juta",
-      location: "Lab Fatek",
-      postedBy: "Severus Snape",
-      avatarUrl: Hana
-    },
-    {
-      title: "UI/UX DESIGNER",
-      type: "PART-TIME",
-      salary: "2.5 - 3 Juta",
-      location: "Lab Fatek",
-      postedBy: "Severus Snape",
-      avatarUrl: Taylor
-    },
-    {
-      title: "UI/UX DESIGNER",
-      type: "PART-TIME",
-      salary: "2.5 - 3 Juta",
-      location: "Lab Fatek",
-      postedBy: "Severus Snape",
-      avatarUrl: ""
-    },
-    {
-      title: "UI/UX DESIGNER",
-      type: "PART-TIME",
-      salary: "2.5 - 3 Juta",
-      location: "Lab Fatek",
-      postedBy: "Severus Snape",
-      avatarUrl: ""
-    },
-    {
-      title: "UI/UX DESIGNER",
-      type: "PART-TIME",
-      salary: "2.5 - 3 Juta",
-      location: "Lab Fatek",
-      postedBy: "Severus Snape",
-      avatarUrl: ""
-    }
-  ];
-
   // State for pagination
   const [currentPage, setCurrentPage] = useState(1);
   const jobsPerPage = 9;
@@ -95,10 +18,10 @@ const Dashboard = () => {
   // Calculate current jobs to display
   const indexOfLastJob = currentPage * jobsPerPage;
   const indexOfFirstJob = indexOfLastJob - jobsPerPage;
-  const currentJobs = jobs.slice(indexOfFirstJob, indexOfLastJob);
+  const currentJobs = jobsData.slice(indexOfFirstJob, indexOfLastJob);
   
   // Calculate total pages
-  const totalPages = Math.ceil(jobs.length / jobsPerPage);
+  const totalPages = Math.ceil(jobsData.length / jobsPerPage);
 
   // Handle page changes
   const changePage = (pageNumber) => {
@@ -121,10 +44,23 @@ const Dashboard = () => {
         
         {/* Job listings grid - responsive with different columns based on screen size */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {currentJobs.map((job, index) => (
-            <JobCard key={index} job={job} />
+          {currentJobs.map((job) => (
+            <JobCard 
+              key={job.id} 
+              job={{
+                ...job,
+                avatarUrl: job.avatarImg // Map avatarImg to avatarUrl for compatibility with existing JobCard
+              }} 
+            />
           ))}
         </div>
+        
+        {/* Show message if no jobs are found */}
+        {jobsData.length === 0 && (
+          <div className="flex justify-center items-center h-64">
+            <p className="text-gray-500 text-lg">No jobs found.</p>
+          </div>
+        )}
         
         {/* Pagination controls */}
         {totalPages > 1 && (
