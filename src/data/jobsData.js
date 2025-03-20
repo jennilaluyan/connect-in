@@ -1,3 +1,19 @@
+import Severus from '../assets/Severus.jpg';
+import Barney from '../assets/Barney.jpg';
+import Bruce from '../assets/Bruce.jpg';
+import Claire from '../assets/Claire.jpg';
+import Harry from '../assets/Harry.jpg';
+import Jay from '../assets/Jay.jpg';
+import Leonard from '../assets/Leonard.jpg';
+import Marshall from '../assets/Marshall.jpg';
+import Mitchell from '../assets/Mitchell.jpg';
+import Natasha from '../assets/Natasha.jpg';
+import Phil from '../assets/Phil.jpg';
+import Sheldon from '../assets/Sheldon.jpg';
+import Sherlock from '../assets/Sherlock.jpg';
+import Ted from '../assets/Ted.jpg';
+import Tony from '../assets/Tony.jpg';
+
 export const jobsData = [
     {
       id: 1,
@@ -32,41 +48,40 @@ export const jobsData = [
         "Acara tim rutin untuk meningkatkan kebersamaan dan motivasi",
         "Opsi kerja dari rumah untuk fleksibilitas tambahan"
       ],
-      avatarImg: ""
+      avatarImg: Severus
     },
     {
       id: 2,
-      title: "Frontend Developer",
-      companyName: "TechNova Solutions",
+      title: "AI Research Scientist",
+      companyName: "Stark Industries",
       type: "Full-Time",
-      salary: "Rp6.500.000",
-      location: "Jakarta",
+      salary: "Rp25.000.000",
+      location: "New York",
       postedBy: "Tony Stark",
-      postedDate: "18 Mar 2025",
-      description: "Sebagai Frontend Developer di TechNova Solutions, Anda akan bertanggung jawab atas pengembangan antarmuka pengguna yang responsif dan menarik. Anda akan bekerja sama dengan tim UI/UX untuk menerjemahkan desain menjadi kode yang efisien dan mudah digunakan oleh pengguna. Kami mencari kandidat yang memiliki keterampilan dalam JavaScript modern, React, dan Tailwind CSS untuk menciptakan aplikasi web yang cepat dan inovatif.",
+      postedDate: "5 Apr 2025",
+      description: "Sebagai AI Research Scientist di Stark Industries, Anda akan mengembangkan teknologi kecerdasan buatan mutakhir untuk mendukung inovasi dalam industri teknologi, keamanan, dan eksplorasi masa depan.",
       requirements: [
-        "Gelar Sarjana di bidang Ilmu Komputer atau Teknik Informatika",
-        "Minimal 3 tahun pengalaman dalam pengembangan frontend",
-        "Keahlian dalam React.js dan ekosistemnya",
-        "Pemahaman mendalam tentang HTML, CSS, dan JavaScript",
-        "Pengalaman dengan sistem manajemen versi seperti Git",
-        "Mampu mengoptimalkan performa aplikasi dan aksesibilitas"
+        "Ph.D. dalam Kecerdasan Buatan, Ilmu Komputer, atau bidang terkait",
+        "Minimal 5 tahun pengalaman dalam penelitian AI",
+        "Keahlian dalam machine learning, deep learning, dan neural networks",
+        "Pengalaman dengan Python, TensorFlow, dan PyTorch",
+        "Pemahaman mendalam tentang pemrosesan bahasa alami (NLP) dan computer vision"
       ],
       responsibilities: [
-        "Mengembangkan komponen UI yang dapat digunakan kembali dan skalabel",
-        "Mengoptimalkan aplikasi web untuk kecepatan dan kinerja terbaik",
-        "Berkolaborasi dengan tim desain untuk menerjemahkan kebutuhan pengguna menjadi solusi teknologi",
-        "Menjaga kode tetap bersih, terdokumentasi, dan sesuai standar industri",
-        "Melakukan debugging dan perbaikan bug pada aplikasi"
+        "Meneliti dan mengembangkan model AI canggih",
+        "Menganalisis data besar untuk menciptakan solusi berbasis AI",
+        "Mengoptimalkan algoritma machine learning untuk kecepatan dan akurasi",
+        "Berkolaborasi dengan tim teknik untuk mengimplementasikan AI dalam proyek industri",
+        "Memublikasikan temuan dalam jurnal akademik dan konferensi AI"
       ],
       benefits: [
-        "Opsi kepemilikan saham bagi karyawan berprestasi",
-        "Bonus tahunan berdasarkan kinerja perusahaan",
-        "Kesempatan bekerja di lingkungan startup yang dinamis dan inovatif",
-        "Dukungan untuk pelatihan dan sertifikasi teknologi terbaru",
-        "Program kesejahteraan karyawan seperti gym dan meditasi"
+        "Akses ke laboratorium teknologi tercanggih",
+        "Bonus kinerja dan kepemilikan saham perusahaan",
+        "Kesempatan bekerja dengan tim insinyur terbaik di dunia",
+        "Dukungan penuh untuk penelitian dan inovasi",
+        "Keseimbangan kerja-hidup dengan opsi kerja fleksibel"
       ],
-      avatarImg: ""
+      avatarImg: Tony
     },
     {
       id: 3,
@@ -100,42 +115,43 @@ export const jobsData = [
         "Program mentoring dan pelatihan lanjutan",
         "Dukungan dalam sertifikasi teknologi terbaru"
       ],
-      avatarImg: ""
+      avatarImg: Bruce
     },
     {
-        id: 4,
-        title: "Software Engineer",
-        companyName: "Inovatek Solutions",
-        type: "Full-Time",
-        salary: "Rp8.500.000",
-        location: "Surabaya",
-        postedBy: "Ada Lovelace",
-        postedDate: "10 Mar 2025",
-        description: "Sebagai Software Engineer di Inovatek Solutions, Anda akan bertanggung jawab dalam merancang dan mengembangkan aplikasi perangkat lunak yang scalable dan efisien. Anda akan bekerja dengan tim multidisiplin untuk menciptakan solusi teknologi yang inovatif.",
-        requirements: [
-          "Gelar Sarjana dalam Ilmu Komputer atau bidang terkait",
-          "Minimal 2 tahun pengalaman dalam pengembangan perangkat lunak",
-          "Menguasai salah satu bahasa pemrograman: Python, Java, atau C++",
-          "Pemahaman tentang arsitektur perangkat lunak dan prinsip desain",
-          "Pengalaman dengan cloud computing seperti AWS atau GCP",
-          "Kemampuan komunikasi dan pemecahan masalah yang baik"
-        ],
-        responsibilities: [
-          "Mengembangkan dan menguji kode perangkat lunak yang andal",
-          "Berkolaborasi dengan tim lain untuk memahami kebutuhan pengguna",
-          "Mengoptimalkan performa sistem agar lebih efisien",
-          "Menjaga dokumentasi teknis untuk proyek",
-          "Mengikuti tren teknologi terbaru untuk meningkatkan proses pengembangan"
-        ],
-        benefits: [
-          "Bonus performa tahunan",
-          "Tunjangan transportasi dan makan",
-          "Kesempatan mendapatkan sertifikasi profesional",
-          "Lingkungan kerja yang mendukung inovasi",
-          "Work-life balance dengan kebijakan kerja hybrid"
-        ],
-        avatarImg: ""
-      },
+      id: 4,
+      title: "Software Engineer",
+      companyName: "Dunphy Tech Solutions",
+      type: "Full-Time",
+      salary: "Rp8.000.000",
+      location: "Jakarta",
+      postedBy: "Claire Dunphy",
+      postedDate: "22 Mar 2025",
+      description: "Sebagai Software Engineer di Dunphy Tech Solutions, Anda akan mengembangkan solusi perangkat lunak inovatif untuk berbagai kebutuhan bisnis. Kami mencari seseorang yang memiliki pemahaman mendalam tentang pengembangan perangkat lunak dan mampu bekerja dalam tim yang dinamis.",
+      requirements: [
+        "Gelar Sarjana di bidang Ilmu Komputer atau Teknik Informatika",
+        "Minimal 3 tahun pengalaman dalam pengembangan perangkat lunak",
+        "Keahlian dalam JavaScript, React, dan Node.js",
+        "Pengalaman dengan sistem manajemen versi seperti Git",
+        "Kemampuan analisis dan pemecahan masalah yang baik",
+        "Mampu bekerja dalam lingkungan yang cepat dan kolaboratif"
+      ],
+      responsibilities: [
+        "Mengembangkan dan memelihara aplikasi web yang skalabel",
+        "Berkolaborasi dengan tim desain dan produk untuk menerjemahkan kebutuhan bisnis menjadi solusi teknis",
+        "Mengoptimalkan performa aplikasi dan memastikan keamanan data",
+        "Melakukan debugging dan pemeliharaan kode",
+        "Menjaga dokumentasi kode dan standar pengembangan"
+      ],
+      benefits: [
+        "Bonus kinerja tahunan",
+        "Kesempatan bekerja di lingkungan teknologi yang berkembang pesat",
+        "Dukungan untuk pelatihan dan sertifikasi profesional",
+        "Fleksibilitas kerja dengan opsi remote",
+        "Program kesejahteraan karyawan dan budaya kerja yang positif"
+      ],
+      avatarImg: Claire
+    }
+  ,
       {
         id: 5,
         title: "Data Analyst",
@@ -168,7 +184,7 @@ export const jobsData = [
           "Jam kerja fleksibel dengan opsi remote",
           "Program kesejahteraan karyawan"
         ],
-        avatarImg: ""
+        avatarImg: Sherlock
       },
       {
         id: 6,
@@ -202,109 +218,108 @@ export const jobsData = [
           "Kolaborasi dengan tim global dalam lingkungan dinamis",
           "Kesempatan untuk menghadiri konferensi keamanan internasional"
         ],
-        avatarImg: ""
+        avatarImg: Natasha
     },
     {
-        id: 7,
-        title: "Game Developer",
-        companyName: "PixelForge Studios",
-        type: "Full-Time",
-        salary: "Rp9.000.000",
-        location: "Bandung",
-        postedBy: "Mario Rossi",
-        postedDate: "15 Mar 2025",
-        description: "Sebagai Game Developer di PixelForge Studios, Anda akan bertanggung jawab untuk mengembangkan permainan interaktif dengan pengalaman pengguna yang luar biasa. Kami mencari pengembang yang memiliki keahlian dalam Unity atau Unreal Engine dan memiliki passion dalam dunia game development.",
-        requirements: [
-          "Gelar Sarjana dalam Teknik Informatika, Ilmu Komputer, atau bidang terkait",
-          "Minimal 2 tahun pengalaman dalam pengembangan game",
-          "Menguasai Unity atau Unreal Engine",
-          "Pemahaman tentang C# atau C++ untuk pengembangan game",
-          "Kemampuan dalam optimasi performa game untuk berbagai platform",
-          "Kreativitas dan kemampuan pemecahan masalah dalam desain gameplay"
-        ],
-        responsibilities: [
-          "Mengembangkan dan mengimplementasikan fitur gameplay",
-          "Bekerja sama dengan desainer untuk menciptakan pengalaman bermain yang menarik",
-          "Mengoptimalkan performa game agar berjalan lancar di berbagai perangkat",
-          "Melakukan debugging dan pengujian untuk meningkatkan stabilitas",
-          "Mengikuti tren industri game untuk mengimplementasikan teknologi terbaru"
-        ],
-        benefits: [
-          "Akses ke perangkat dan software pengembangan terbaru",
-          "Bonus proyek berdasarkan keberhasilan game",
-          "Kesempatan bekerja dengan tim kreatif yang inovatif",
-          "Tunjangan untuk pembelian game dan riset industri",
-          "Kesempatan menghadiri konferensi game internasional"
-        ],
-        avatarImg: ""
-      },
+      id: 7,
+      title: "Real Estate Agent",
+      companyName: "Pritchett’s Closets & Blinds",
+      type: "Full-Time",
+      salary: "Rp9.000.000",
+      location: "Jakarta",
+      postedBy: "Phil Dunphy",
+      postedDate: "15 Mar 2025",
+      description: "Sebagai Real Estate Agent di Pritchett’s Closets & Blinds, Anda akan membantu pelanggan menemukan properti impian mereka dengan pendekatan yang inovatif dan menyenangkan. Kami mencari individu yang bersemangat dalam dunia properti dan memiliki keterampilan komunikasi yang luar biasa.",
+      requirements: [
+        "Gelar Sarjana di bidang Manajemen atau Real Estate",
+        "Minimal 2 tahun pengalaman di bidang properti atau penjualan",
+        "Kemampuan negosiasi yang baik",
+        "Kepribadian yang ramah dan persuasif",
+        "Memiliki sertifikasi agen properti adalah nilai tambah",
+        "Dapat bekerja dalam lingkungan yang dinamis"
+      ],
+      responsibilities: [
+        "Menjalin hubungan dengan klien untuk memahami kebutuhan mereka",
+        "Menunjukkan properti kepada calon pembeli",
+        "Menyusun strategi pemasaran yang menarik",
+        "Membantu proses transaksi dan negosiasi",
+        "Mengikuti perkembangan pasar real estate"
+      ],
+      benefits: [
+        "Komisi menarik berdasarkan penjualan",
+        "Pelatihan profesional dari agen properti berpengalaman",
+        "Fleksibilitas kerja dengan sistem hybrid",
+        "Bonus kinerja bulanan",
+        "Kesempatan bertemu dengan klien dari berbagai latar belakang"
+      ],
+      avatarImg: Phil
+    },
       {
         id: 8,
-        title: "Cloud Engineer",
-        companyName: "SkyNet Solutions",
-        type: "Full-Time",
-        salary: "Rp11.000.000",
-        location: "Jakarta",
-        postedBy: "Sarah Connor",
-        postedDate: "17 Mar 2025",
-        description: "Sebagai Cloud Engineer di SkyNet Solutions, Anda akan bertanggung jawab atas perancangan, implementasi, dan pengelolaan infrastruktur cloud perusahaan. Kami mencari profesional yang memiliki pengalaman dengan layanan AWS, Azure, atau GCP.",
+        title: "Event Planner",
+        companyName: "Tucker-Pritchett Events",
+        type: "Contract",
+        salary: "Rp7.500.000",
+        location: "Bali",
+        postedBy: "Mitchell Pritchett",
+        postedDate: "18 Mar 2025",
+        description: "Sebagai Event Planner di Tucker-Pritchett Events, Anda akan bertanggung jawab untuk merancang dan mengelola acara yang unik dan berkesan. Kami mencari seseorang yang memiliki perhatian terhadap detail, kreatif, dan mampu bekerja dalam tekanan.",
         requirements: [
-          "Gelar Sarjana dalam Ilmu Komputer atau bidang terkait",
-          "Minimal 3 tahun pengalaman dalam cloud computing",
-          "Keahlian dalam AWS, Google Cloud Platform, atau Microsoft Azure",
-          "Pemahaman mendalam tentang arsitektur microservices dan containerization",
-          "Pengalaman dalam mengelola infrastruktur dengan Terraform atau Kubernetes",
-          "Sertifikasi cloud (AWS Certified Solutions Architect, Google Cloud Professional Engineer, dll.) menjadi nilai tambah"
+          "Gelar Sarjana di bidang Manajemen Acara atau Komunikasi",
+          "Minimal 3 tahun pengalaman dalam event planning",
+          "Keahlian dalam manajemen proyek dan anggaran",
+          "Kreativitas tinggi dalam merancang konsep acara",
+          "Kemampuan multitasking dan problem-solving",
+          "Mampu bekerja dengan berbagai vendor dan tim"
         ],
         responsibilities: [
-          "Merancang dan mengelola arsitektur cloud yang scalable dan efisien",
-          "Mengotomatiskan deployment dan maintenance infrastruktur",
-          "Memastikan keamanan dan kepatuhan sistem cloud perusahaan",
-          "Berkolaborasi dengan tim pengembang untuk mengoptimalkan lingkungan cloud",
-          "Memonitor performa cloud dan melakukan troubleshooting jika diperlukan"
+          "Merancang konsep acara sesuai dengan kebutuhan klien",
+          "Mengatur logistik dan koordinasi dengan vendor",
+          "Mengelola anggaran dan memastikan efisiensi biaya",
+          "Menjaga komunikasi yang baik dengan klien",
+          "Menangani masalah yang muncul selama acara berlangsung"
         ],
         benefits: [
-          "Gaji kompetitif dengan bonus tahunan",
-          "Program pelatihan dan sertifikasi cloud",
-          "Tunjangan internet untuk mendukung pekerjaan remote",
-          "Lingkungan kerja dengan budaya inovasi tinggi",
-          "Opsi kerja hybrid dengan fleksibilitas lokasi"
+          "Kesempatan menangani acara eksklusif",
+          "Bonus proyek berdasarkan kinerja",
+          "Fleksibilitas dalam bekerja",
+          "Jaringan luas di industri event planning",
+          "Lingkungan kerja yang kreatif dan kolaboratif"
         ],
-        avatarImg: ""
+        avatarImg: Mitchell
       },
       {
         id: 9,
-        title: "Digital Marketing Specialist",
-        companyName: "ViralMinds",
-        type: "Part-Time",
-        salary: "Rp4.500.000",
-        location: "Bali",
-        postedBy: "Harley Quinn",
-        postedDate: "22 Mar 2025",
-        description: "Sebagai Digital Marketing Specialist di ViralMinds, Anda akan bertanggung jawab atas strategi pemasaran digital dan kampanye media sosial untuk meningkatkan visibilitas brand. Kami mencari individu yang kreatif dan berorientasi pada data.",
+        title: "Marketing Specialist",
+        companyName: "Pritchett’s Closets & Blinds",
+        type: "Full-Time",
+        salary: "Rp6.000.000",
+        location: "Los Angeles",
+        postedBy: "Jay Pritchett",
+        postedDate: "25 Mar 2025",
+        description: "Sebagai Marketing Specialist di Pritchett’s Closets & Blinds, Anda akan bertanggung jawab dalam menyusun strategi pemasaran yang efektif untuk meningkatkan penjualan dan brand awareness perusahaan.",
         requirements: [
-          "Gelar Sarjana dalam Pemasaran, Komunikasi, atau bidang terkait",
-          "Pengalaman minimal 2 tahun dalam pemasaran digital",
-          "Keahlian dalam SEO, SEM, dan strategi konten digital",
-          "Pemahaman tentang analitik web menggunakan Google Analytics",
-          "Pengalaman dalam mengelola iklan berbayar di Google Ads dan Meta Ads",
-          "Kemampuan menulis copy kreatif untuk kampanye pemasaran"
+          "Gelar Sarjana di bidang Pemasaran, Komunikasi, atau Bisnis",
+          "Minimal 2 tahun pengalaman dalam pemasaran digital",
+          "Keahlian dalam media sosial, SEO, dan kampanye iklan",
+          "Kemampuan analitis untuk mengevaluasi performa kampanye",
+          "Mampu bekerja dalam tim dan memiliki komunikasi yang baik"
         ],
         responsibilities: [
-          "Mengembangkan dan menjalankan strategi pemasaran digital",
-          "Mengelola dan mengoptimalkan kampanye iklan online",
-          "Menganalisis data performa pemasaran dan membuat laporan",
-          "Berkolaborasi dengan tim kreatif untuk menghasilkan konten berkualitas",
-          "Mengikuti tren terbaru dalam pemasaran digital dan media sosial"
+          "Mengembangkan strategi pemasaran digital",
+          "Menganalisis data pasar dan tren industri",
+          "Berkolaborasi dengan tim desain untuk kampanye promosi",
+          "Mengelola media sosial dan engagement pelanggan",
+          "Menyusun laporan performa pemasaran untuk evaluasi"
         ],
         benefits: [
-          "Jam kerja fleksibel dan opsi remote",
-          "Bonus berdasarkan kinerja kampanye",
-          "Tunjangan alat kerja seperti laptop dan software premium",
-          "Akses ke kursus pemasaran digital terbaru",
-          "Kesempatan berkolaborasi dengan brand internasional"
+          "Bonus kinerja bulanan",
+          "Asuransi kesehatan dan tunjangan",
+          "Lingkungan kerja dinamis dan profesional",
+          "Pelatihan dan pengembangan keterampilan",
+          "Fleksibilitas kerja dengan opsi hybrid"
         ],
-        avatarImg: ""
+        avatarImg: Jay
       },
       {
         id: 10,
@@ -338,7 +353,7 @@ export const jobsData = [
           "Kesempatan untuk menangani proyek besar dan kompleks",
           "Work-life balance yang terjaga"
         ],
-        avatarUrl: ""
+        avatarImg: Marshall
       },
       {
         id: 11,
@@ -372,7 +387,7 @@ export const jobsData = [
           "Peluang untuk bekerja pada proyek skala nasional",
           "Tunjangan untuk pengembangan profesional"
         ],
-        avatarUrl: ""
+        avatarImg: Ted
       },
       {
         id: 12,
@@ -406,7 +421,106 @@ export const jobsData = [
           "Akses ke event eksklusif perusahaan",
           "Peluang untuk berkolaborasi dengan pemimpin industri"
         ],
-        avatarUrl: ""
+        avatarImg: Barney
+    },
+    {
+      id: 13,
+      title: "Experimental Physicist",
+      companyName: "Caltech Research Institute",
+      type: "Full-Time",
+      salary: "Rp18.000.000",
+      location: "Pasadena, California",
+      postedBy: "Leonard Hofstadter",
+      postedDate: "7 Apr 2025",
+      description: "Sebagai Experimental Physicist di Caltech Research Institute, Anda akan melakukan eksperimen dalam bidang fisika kuantum dan material superkonduktor. Posisi ini menawarkan kesempatan untuk bekerja dengan tim ilmuwan kelas dunia dan mengembangkan teknologi masa depan.",
+      requirements: [
+        "Ph.D. dalam Fisika Eksperimental atau bidang terkait",
+        "Minimal 5 tahun pengalaman dalam penelitian eksperimental",
+        "Keahlian dalam spektroskopi, optik kuantum, dan fisika material",
+        "Pengalaman dengan peralatan laboratorium canggih dan analisis data",
+        "Kemampuan menulis laporan penelitian dan publikasi akademik"
+      ],
+      responsibilities: [
+        "Melaksanakan eksperimen di bidang fisika kuantum",
+        "Menganalisis data dan mengembangkan teori berbasis hasil eksperimen",
+        "Berkolaborasi dengan tim penelitian global",
+        "Mempublikasikan hasil penelitian dalam jurnal ilmiah",
+        "Mengembangkan metode baru untuk eksperimen skala atom"
+      ],
+      benefits: [
+        "Pendanaan penuh untuk penelitian",
+        "Akses ke laboratorium mutakhir",
+        "Dukungan penuh untuk konferensi dan seminar ilmiah",
+        "Lingkungan kerja akademik yang inovatif",
+        "Kesempatan bekerja dengan ilmuwan terbaik di dunia"
+      ],
+      avatarImg: Leonard
+    },
+    {
+      id: 14,
+      title: "Theoretical Physicist",
+      companyName: "Caltech Research Institute",
+      type: "Full-Time",
+      salary: "Rp20.000.000",
+      location: "California",
+      postedBy: "Sheldon Cooper",
+      postedDate: "30 Mar 2025",
+      description: "Sebagai Theoretical Physicist di Caltech Research Institute, Anda akan melakukan penelitian tingkat lanjut dalam fisika teoretis dan berkontribusi pada proyek-proyek akademik yang revolusioner.",
+      requirements: [
+        "Ph.D. dalam Fisika Teoretis",
+        "Minimal 5 tahun pengalaman penelitian akademik",
+        "Pemahaman mendalam tentang mekanika kuantum dan relativitas",
+        "Kemampuan analitis dan berpikir kritis tinggi",
+        "Dapat bekerja secara mandiri maupun dalam tim akademik"
+      ],
+      responsibilities: [
+        "Melakukan penelitian dalam fisika kuantum",
+        "Mempublikasikan jurnal akademik dalam bidang fisika",
+        "Berkolaborasi dengan tim ilmuwan internasional",
+        "Menyusun proposal untuk hibah penelitian",
+        "Mengajar dan membimbing mahasiswa doktoral"
+      ],
+      benefits: [
+        "Pendanaan penuh untuk penelitian",
+        "Akses ke laboratorium dan fasilitas canggih",
+        "Kesempatan kolaborasi internasional",
+        "Dukungan untuk konferensi dan seminar akademik",
+        "Lingkungan akademik yang kompetitif dan inovatif"
+      ],
+      avatarImg: Sheldon
+    },
+    {
+      id: 15,
+      title: "Cybersecurity Analyst",
+      companyName: "S.T.A.R. Labs",
+      type: "Full-Time",
+      salary: "Rp10.000.000",
+      location: "Central City",
+      postedBy: "Harrison Wells",
+      postedDate: "1 Apr 2025",
+      description: "Sebagai Cybersecurity Analyst di S.T.A.R. Labs, Anda akan memastikan keamanan data dan sistem laboratorium dari ancaman dunia maya serta mengembangkan protokol keamanan tingkat tinggi.",
+      requirements: [
+        "Gelar Sarjana di bidang Keamanan Siber atau Teknik Informatika",
+        "Minimal 3 tahun pengalaman dalam keamanan sistem",
+        "Keahlian dalam enkripsi, firewall, dan deteksi ancaman",
+        "Pemahaman mendalam tentang penetration testing",
+        "Kemampuan berpikir cepat dan analitis"
+      ],
+      responsibilities: [
+        "Menganalisis ancaman keamanan sistem",
+        "Mengembangkan strategi pertahanan cyber",
+        "Mengawasi dan merespons insiden keamanan",
+        "Mengelola enkripsi dan firewall laboratorium",
+        "Berkolaborasi dengan tim IT untuk meningkatkan keamanan"
+      ],
+      benefits: [
+        "Akses ke teknologi mutakhir",
+        "Bonus kinerja berdasarkan proyek keamanan",
+        "Lingkungan kerja inovatif dan dinamis",
+        "Dukungan untuk sertifikasi keamanan siber",
+        "Program pengembangan profesional"
+      ],
+      avatarImg: Harry
     }    
 ];
   export default jobsData;

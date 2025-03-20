@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 import TestimonialCard from "./TestimonialCard";
-import Andi from "../../assets/Andi.png";
-import Hana from "../../assets/Hana.png";
-import Taylor from "../../assets/Taylor.png";
+import Vito from "../../assets/Vito.jpg";
+import Dortea from "../../assets/Dortea.jpg";
+import Jenni from "../../assets/Jenni.jpg";
 
 const TestimonialsSection = () => {
   const sectionRef = useRef(null);
@@ -46,24 +46,24 @@ const TestimonialsSection = () => {
 
   const testimonials = [
     {
-      image: Andi,
-      name: "Andi",
+      image: Vito,
+      name: "Vito",
       role: "Mahasiswa Teknik Informatika",
       text: "Sebagai mahasiswa, saya lebih mudah menemukan peluang magang yang sesuai dengan jurusan saya. Terima kasih Connect IN!",
       imageRight: true,
       delay: 0,
     },
     {
-      image: Hana,
-      name: "Hana",
+      image: Dortea,
+      name: "Dortea",
       role: "HR PT Semangat Skripsi",
       text: "Senang bisa berbagi pengalaman dan membuka peluang bagi mahasiswa UNSRAT yang ingin magang di perusahaan kami!",
       imageRight: false,
       delay: 200,
     },
     {
-      image: Taylor,
-      name: "Taylor",
+      image: Jenni,
+      name: "Jenni",
       role: "HR PT Skripsi Jaya Jaya",
       text: "Senang bisa berbagi pengalaman dan membuka peluang bagi mahasiswa UNSRAT yang ingin magang di perusahaan kami!",
       imageRight: true,

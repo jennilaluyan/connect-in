@@ -46,7 +46,7 @@ const JobCard = ({ job }) => {
         {/* User info section - centered on mobile, left-aligned on desktop */}
         <div className="flex items-center sm:justify-start justify-center">
           <img
-            src={job.avatarUrl || Default}
+            src={job.avatarImg || Default}
             alt={job.postedBy}
             className="w-8 h-8 rounded-full mr-2 border border-gray-200"
           />
