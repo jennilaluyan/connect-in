@@ -1,11 +1,12 @@
 import { useEffect, useRef } from "react";
 
 const FeatureCard = ({ title, description, isHighlighted, animationDelay = 0 }) => {
-  const cardRef = useRef(null);
+  const cardRef = useRef(null); // Create a ref to attach to the card element
 
   useEffect(() => {
     const card = cardRef.current;
     if (card) {
+      // Add animation class after a delay
       setTimeout(() => {
         card.classList.add("card-animate");
       }, animationDelay);
@@ -24,7 +25,7 @@ const FeatureCard = ({ title, description, isHighlighted, animationDelay = 0 }) 
       <style jsx>{`
         .card-animate {
           transform: translateY(0);
-          opacity: 1;
+          opacity: 1; // Animation to make the element visible and move it to its original position
         }
       `}</style>
     </div>

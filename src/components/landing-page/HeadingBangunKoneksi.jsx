@@ -1,11 +1,12 @@
 import { useEffect, useRef } from "react";
 
 const HeadingBangunKoneksi = () => {
-  const headingRef = useRef(null);
+  const headingRef = useRef(null); // Create a ref to attach to the heading element
 
   useEffect(() => {
     const heading = headingRef.current;
     if (heading) {
+      // Add animation class after a delay
       setTimeout(() => {
         heading.classList.add("heading-animate");
       }, 100);
@@ -21,7 +22,7 @@ const HeadingBangunKoneksi = () => {
       <style jsx>{`
         .heading-animate {
           opacity: 1;
-          transform: translateY(0);
+          transform: translateY(0); // Animation to make the element visible and move it to its original position
         }
       `}</style>
     </h2>
