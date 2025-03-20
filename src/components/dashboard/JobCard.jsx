@@ -6,16 +6,14 @@ import Default from "../../assets/Anonymous.png";
  * JobCard - Responsive card component for displaying job listings
  * Includes navigation to job detail page
  * @param {Object} job - Job data including title, type, salary, location, etc.
- * @param {Number} index - Index of the job in the list, used for ID
  */
-const JobCard = ({ job, index }) => {
+const JobCard = ({ job }) => {
   const navigate = useNavigate();
 
   // Handle apply button click to navigate to detail page
   const handleApplyClick = () => {
-    // Using index as job ID for demo purposes
-    // In a real app, you would use a unique job ID from your data
-    navigate(`/job/${index}`);
+    // Navigate to job detail page using the job's ID
+    navigate(`/job/${job.id}`);
   };
 
   return (
@@ -78,12 +76,14 @@ const JobTypeBadge = ({ type }) => {
   // Determine badge color based on job type
   const getBadgeColor = (type) => {
     switch (type.toUpperCase()) {
-      case "FULL TIME":
+      case "FULL-TIME":
         return "bg-blue-100 text-blue-800";
       case "PART-TIME":
         return "bg-purple-100 text-purple-800";
       case "INTERNSHIP":
         return "bg-indigo-100 text-indigo-800";
+      case "CONTRACT":
+        return "bg-green-100 text-green-800";
       default:
         return "bg-gray-100 text-gray-800";
     }

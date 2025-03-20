@@ -305,6 +305,108 @@ export const jobsData = [
           "Kesempatan berkolaborasi dengan brand internasional"
         ],
         avatarImg: ""
-      }
+      },
+      {
+        id: 10,
+        title: "Legal Consultant",
+        companyName: "Goliath National Bank",
+        type: "Full-Time",
+        salary: "Rp12.000.000",
+        location: "New York",
+        postedBy: "Marshall Eriksen",
+        postedDate: "10 Mar 2025",
+        description: "Sebagai Legal Consultant di Goliath National Bank, Anda akan bertanggung jawab atas kepatuhan hukum dan penyusunan kontrak bisnis. Kami mencari seseorang yang memiliki latar belakang hukum yang kuat dan dapat bekerja dalam lingkungan korporasi yang dinamis.",
+        requirements: [
+          "Gelar Sarjana Hukum dari universitas terkemuka",
+          "Minimal 4 tahun pengalaman dalam hukum bisnis dan keuangan",
+          "Pemahaman tentang regulasi perbankan dan kontrak komersial",
+          "Kemampuan analisis dan negosiasi yang baik",
+          "Sertifikasi advokat adalah nilai tambah",
+          "Mampu bekerja di bawah tekanan dan menangani beberapa kasus secara bersamaan"
+        ],
+        responsibilities: [
+          "Menyusun dan mereview kontrak bisnis",
+          "Memastikan kepatuhan perusahaan terhadap regulasi hukum",
+          "Memberikan saran hukum kepada manajemen",
+          "Membantu dalam penyelesaian sengketa hukum",
+          "Berkolaborasi dengan tim internal dan eksternal dalam isu hukum"
+        ],
+        benefits: [
+          "Gaji kompetitif dengan bonus tahunan",
+          "Asuransi kesehatan dan tunjangan pensiun",
+          "Lingkungan kerja profesional dengan budaya kerja yang suportif",
+          "Kesempatan untuk menangani proyek besar dan kompleks",
+          "Work-life balance yang terjaga"
+        ],
+        avatarUrl: ""
+      },
+      {
+        id: 11,
+        title: "Architect",
+        companyName: "Mosbius Designs",
+        type: "Full-Time",
+        salary: "Rp8.500.000",
+        location: "Jakarta",
+        postedBy: "Ted Mosby",
+        postedDate: "12 Mar 2025",
+        description: "Sebagai arsitek di Mosbius Designs, Anda akan bertanggung jawab atas perancangan dan pengawasan proyek konstruksi. Kami mencari individu yang kreatif, detail-oriented, dan memiliki visi untuk menciptakan desain yang inovatif.",
+        requirements: [
+          "Gelar Sarjana di bidang Arsitektur",
+          "Minimal 3 tahun pengalaman dalam desain arsitektur",
+          "Kemampuan menggunakan AutoCAD, SketchUp, dan Revit",
+          "Pemahaman mendalam tentang peraturan bangunan dan konstruksi",
+          "Kreativitas tinggi dalam desain interior dan eksterior",
+          "Kemampuan presentasi dan komunikasi yang baik"
+        ],
+        responsibilities: [
+          "Merancang dan mengembangkan konsep desain arsitektur",
+          "Membuat gambar teknis dan model 3D",
+          "Berkolaborasi dengan klien dan tim proyek",
+          "Memastikan proyek berjalan sesuai dengan perencanaan",
+          "Mengikuti perkembangan tren arsitektur terbaru"
+        ],
+        benefits: [
+          "Bonus proyek berdasarkan kinerja",
+          "Fasilitas kantor modern dengan lingkungan kerja kolaboratif",
+          "Kesempatan berpartisipasi dalam kompetisi desain arsitektur",
+          "Peluang untuk bekerja pada proyek skala nasional",
+          "Tunjangan untuk pengembangan profesional"
+        ],
+        avatarUrl: ""
+      },
+      {
+        id: 12,
+        title: "Corporate Trainer",
+        companyName: "Barney Stinson Enterprises",
+        type: "Contract",
+        salary: "Rp6.000.000",
+        location: "Surabaya",
+        postedBy: "Barney Stinson",
+        postedDate: "20 Mar 2025",
+        description: "Apakah Anda ingin menjadi bagian dari sesuatu yang *legen—wait for it—dary*? Sebagai Corporate Trainer di Barney Stinson Enterprises, Anda akan melatih profesional muda dalam keterampilan komunikasi, personal branding, dan teknik negosiasi tingkat tinggi.",
+        requirements: [
+          "Gelar Sarjana di bidang Manajemen, Komunikasi, atau Psikologi",
+          "Minimal 2 tahun pengalaman sebagai trainer atau public speaker",
+          "Keahlian dalam komunikasi interpersonal dan presentasi",
+          "Kemampuan untuk memotivasi dan menginspirasi peserta pelatihan",
+          "Percaya diri dalam berbicara di depan umum",
+          "Berpenampilan menarik dan memiliki *suit up* attitude"
+        ],
+        responsibilities: [
+          "Menyusun dan menyampaikan materi pelatihan yang engaging",
+          "Membantu peserta meningkatkan keterampilan komunikasi dan personal branding",
+          "Mengembangkan program pelatihan yang inovatif",
+          "Memberikan evaluasi dan feedback kepada peserta",
+          "Menjadi role model dalam membangun kepercayaan diri"
+        ],
+        benefits: [
+          "Fleksibilitas dalam jam kerja",
+          "Bonus performa berdasarkan hasil pelatihan",
+          "Kesempatan networking dengan profesional elit",
+          "Akses ke event eksklusif perusahaan",
+          "Peluang untuk berkolaborasi dengan pemimpin industri"
+        ],
+        avatarUrl: ""
+    }    
 ];
   export default jobsData;

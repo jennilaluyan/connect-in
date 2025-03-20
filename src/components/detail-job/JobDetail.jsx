@@ -2,6 +2,7 @@ import React from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import Default from "../../assets/Anonymous.png";
 import { jobsData } from "../../data/jobsData";
+import Footer from "../landing-page/Footer";
 
 /**
  * JobDetail - Detailed job information page
@@ -30,6 +31,8 @@ const JobDetail = () => {
             Go Back to Jobs
           </button>
         </div>
+
+        
       </div>
     );
   }
@@ -49,7 +52,7 @@ const JobDetail = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div id='detail-job' className="min-h-screen bg-gray-100">
       {/* Header with back button */}
       <header className="bg-white shadow-sm py-3 border-b border-gray-200">
         <div className="container mx-auto px-4">
@@ -196,6 +199,7 @@ const JobDetail = () => {
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   );
 };
@@ -207,11 +211,9 @@ const JobTypeBadge = ({ type }) => {
   // Determine badge color based on job type
   const getBadgeColor = (type) => {
     switch (type.toUpperCase()) {
-      case "FULL TIME":
       case "FULL-TIME":
         return "bg-blue-100 text-blue-800";
       case "PART-TIME":
-      case "PART TIME":
         return "bg-purple-100 text-purple-800";
       case "INTERNSHIP":
         return "bg-indigo-100 text-indigo-800";

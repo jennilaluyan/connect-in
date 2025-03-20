@@ -46,7 +46,7 @@ body {
     margin-right: -80px;
   }
   .hero,
-  .features, #dashboard {
+  .features, #dashboard, #detail-job {
     margin-left: -80px;
     margin-right: -80px;
   }

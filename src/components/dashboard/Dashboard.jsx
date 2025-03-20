@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DashboardNavbar from "./DashboardNavbar";
 import SearchBar from "./SearchBar";
 import JobCard from "./JobCard";
 import { jobsData } from "../../data/jobsData"; // Import from your data file - adjust the path as needed
-import { Link } from "react-router-dom"; // Import Link for navigation
+import Footer from "../landing-page/Footer";
 
 /**
  * Dashboard - Main job listing dashboard component
@@ -13,15 +13,28 @@ import { Link } from "react-router-dom"; // Import Link for navigation
 const Dashboard = () => {
   // State for pagination
   const [currentPage, setCurrentPage] = useState(1);
+  const [jobs, setJobs] = useState([]);
   const jobsPerPage = 9;
+  
+  // Load jobs data on component mount
+  useEffect(() => {
+    // Make sure jobsData is loaded properly
+    if (Array.isArray(jobsData) && jobsData.length > 0) {
+      setJobs(jobsData);
+    } else {
+      console.error("Job data is not available or not an array:", jobsData);
+      // Fallback to empty array if jobsData is invalid
+      setJobs([]);
+    }
+  }, []);
   
   // Calculate current jobs to display
   const indexOfLastJob = currentPage * jobsPerPage;
   const indexOfFirstJob = indexOfLastJob - jobsPerPage;
-  const currentJobs = jobsData.slice(indexOfFirstJob, indexOfLastJob);
+  const currentJobs = jobs.slice(indexOfFirstJob, indexOfLastJob);
   
   // Calculate total pages
-  const totalPages = Math.ceil(jobsData.length / jobsPerPage);
+  const totalPages = Math.ceil(jobs.length / jobsPerPage);
 
   // Handle page changes
   const changePage = (pageNumber) => {
@@ -29,6 +42,11 @@ const Dashboard = () => {
     // Scroll to top of job listings
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  // For debugging - check if pagination should display
+  console.log("Total jobs:", jobs.length);
+  console.log("Jobs per page:", jobsPerPage);
+  console.log("Total pages:", totalPages);
 
   return (
     <div id="dashboard" className="min-h-screen bg-gray-100">
@@ -56,13 +74,13 @@ const Dashboard = () => {
         </div>
         
         {/* Show message if no jobs are found */}
-        {jobsData.length === 0 && (
+        {jobs.length === 0 && (
           <div className="flex justify-center items-center h-64">
             <p className="text-gray-500 text-lg">No jobs found.</p>
           </div>
         )}
         
-        {/* Pagination controls */}
+        {/* Pagination controls - always displayed if totalPages > 1 */}
         {totalPages > 1 && (
           <div className="mt-8 flex justify-center">
             <nav className="inline-flex rounded-md shadow">
@@ -80,7 +98,7 @@ const Dashboard = () => {
               </button>
               
               {/* Page number buttons - show up to 5 pages with ellipsis */}
-              {[...Array(totalPages)].map((_, i) => {
+              {Array.from({ length: totalPages }, (_, i) => {
                 // Logic to show current page, adjacent pages, first and last page
                 const pageNum = i + 1;
                 const showPageButton = 
@@ -132,6 +150,8 @@ const Dashboard = () => {
           </div>
         )}
       </div>
+
+      <Footer />
     </div>
   );
 };
