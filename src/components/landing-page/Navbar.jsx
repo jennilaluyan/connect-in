@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { Link } from 'react-router-dom'
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false); // State to manage the mobile menu open/close
   const navigate = useNavigate(); // Hook to enable navigation
@@ -34,15 +36,20 @@ const Navbar = () => {
 
           {/* Buttons for Desktop - with animations */}
           <div className="hidden md:flex space-x-4 md:space-x-2 lg:space-x-4">
+            <Link to="src/components/login-page">
+            <button className="px-4 py-2 md:px-3 md:py-1 lg:px-4 lg:py-2 bg-[#BCFC4D] text-black font-semibold rounded-md hover:bg-[#95CF32] transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
             <button 
               onClick={handleMasukClick}
               className="px-4 py-2 md:px-3 md:py-1 lg:px-4 lg:py-2 bg-[#BCFC4D] text-black font-semibold rounded-md hover:bg-[#95CF32] transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
             >
               Masuk
             </button>
+            </Link>
+            <Link to="src/components/register-page">
             <button className="px-4 py-2 md:px-3 md:py-1 lg:px-4 lg:py-2 border-2 border-[#BCFC4D] text-black font-semibold rounded-md hover:bg-[#BCFC4D] transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
               Daftar
             </button>
+            </Link>
           </div>
 
           {/* Hamburger Menu Button with animation */}
@@ -89,15 +96,20 @@ const Navbar = () => {
           Testimoni
         </a>
         <div className="px-6 py-3 space-y-2">
+          <Link to="src/components/login-page">
+          <button className="w-full py-2 bg-[#BCFC4D] text-black font-semibold rounded-md hover:bg-[#95CF32] transition-all duration-300 hover:shadow-md">
           <button 
             onClick={handleMasukClick}
             className="w-full py-2 bg-[#BCFC4D] text-black font-semibold rounded-md hover:bg-[#95CF32] transition-all duration-300 hover:shadow-md"
           >
             Masuk
           </button>
+          </Link>
+          <Link to="src/components/register-page">
           <button className="w-full py-2 border-2 border-[#BCFC4D] text-black font-semibold rounded-md hover:bg-[#BCFC4D] transition-all duration-300 hover:shadow-md">
             Daftar
           </button>
+          </Link>
         </div>
       </div>
     </nav>
