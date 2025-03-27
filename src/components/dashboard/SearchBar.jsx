@@ -1,109 +1,151 @@
 import React, { useState } from "react";
+import { jobsData } from "../../data/jobsData";
 
 /**
- * SearchBar - Responsive search component
- * Adapts to different screen sizes with a collapsible filter section on mobile
+ * SearchBar - Responsive search component with improved filter functionality
+ * Filters expand/collapse on button click and provide dynamic job filtering
  */
-const SearchBar = () => {
-  // State to track if filters are expanded (for mobile view)
+const SearchBar = ({ onSearchResults }) => {
+  // State for search and filters
+  const [searchTerm, setSearchTerm] = useState("");
+  const [jobType, setJobType] = useState("");
+  const [salaryRange, setSalaryRange] = useState("");
   const [filtersExpanded, setFiltersExpanded] = useState(false);
 
-  // Toggle filters visibility on mobile
+  // Toggle filters visibility
   const toggleFilters = () => {
     setFiltersExpanded(!filtersExpanded);
+  };
+
+  // Handle search and filtering
+  const handleSearch = () => {
+    // Detailed filtering logic with multiple conditions
+    const filteredJobs = jobsData.filter((job) => {
+      // Search term check (case-insensitive, across multiple fields)
+      const matchesSearch = searchTerm === "" ||
+        job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        job.postedBy.toLowerCase().includes(searchTerm.toLowerCase());
+
+      // Job type filter with case-insensitive comparison
+      const matchesJobType = jobType === "" ||
+        job.type.toLowerCase() === jobType.toLowerCase();
+
+      // Salary range filter with more robust parsing
+      const matchesSalary = salaryRange === "" ||
+        (salaryRange === "0-2" && parseSalary(job.salary) <= 2000000) ||
+        (salaryRange === "2-5" && parseSalary(job.salary) > 2000000 && parseSalary(job.salary) <= 5000000) ||
+        (salaryRange === "5+" && parseSalary(job.salary) > 5000000);
+
+      // Combine all filter conditions
+      return matchesSearch && matchesJobType && matchesSalary;
+    });
+
+    // Update parent component with filtered results
+    onSearchResults(filteredJobs);
+  };
+
+  // Helper function to parse salary string to number
+  const parseSalary = (salaryString) => {
+    // More robust salary parsing
+    const cleanedSalary = salaryString
+      .replace(/[^\d]/g, '')  // Remove non-numeric characters
+      .replace(/^0+/, '');    // Remove leading zeros
+    return parseInt(cleanedSalary, 10) || 0;
+  };
+
+  // Reset all filters
+  const resetFilters = () => {
+    setSearchTerm("");
+    setJobType("");
+    setSalaryRange("");
+    setFiltersExpanded(false);
+    onSearchResults(jobsData); // Reset to all jobs
   };
 
   return (
     <div className="bg-white rounded-lg shadow overflow-hidden">
       {/* Main search input area */}
       <div className="p-4 flex flex-col md:flex-row md:items-center">
-        {/* Search input with icon - full width on mobile */}
-        <div className="flex-grow flex items-center">
+        {/* Search input with icon */}
+        <div className="flex-grow flex items-center mb-4 md:mb-0">
           <SearchIcon className="text-gray-400 mr-3 flex-shrink-0" />
           <input
             type="text"
-            placeholder="Search by: Job title, Position, Location..."
+            placeholder="Search by: Job title, Company..."
             className="w-full outline-none text-gray-700"
             aria-label="Search jobs"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-        
-        {/* Buttons section - stacked on mobile, inline on desktop */}
-        <div className="flex items-center mt-4 md:mt-0">
-          {/* Filter toggle button - shows/hides filters on mobile */}
-          <button 
-            className="flex items-center px-4 py-2 mr-3 border border-gray-300 rounded-md text-gray-600 hover:text-gray-800 hover:bg-gray-50 transition-colors md:border-r md:border-gray-300 md:rounded-none"
+
+        {/* Buttons section */}
+        <div className="flex items-center space-x-3">
+          {/* Filter toggle button */}
+          <button
             onClick={toggleFilters}
-            aria-expanded={filtersExpanded}
-            aria-controls="filter-panel"
+            className="flex items-center px-4 py-2 border border-gray-300 rounded-md text-gray-600 hover:bg-gray-50"
           >
             <FilterIcon className="mr-2" />
-            <span className="font-medium">Filters</span>
+            <span>Filters</span>
           </button>
-          
-          {/* Find Job button - consistent across breakpoints */}
-          <button className="flex-grow md:flex-grow-0 px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors">
+
+          {/* Find Job button */}
+          <button
+            onClick={handleSearch}
+            className="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+          >
             Find Job
           </button>
         </div>
       </div>
-      
-      {/* Expandable filter panel - shows when toggled on mobile, always visible on desktop */}
-      <div 
-        id="filter-panel"
-        className={`
-          border-t border-gray-200 
-          transition-all duration-300 ease-in-out
-          ${filtersExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 md:max-h-96 md:opacity-100'} 
-          overflow-hidden
-        `}
-      >
-        {/* Filter options - laid out in a responsive grid */}
-        <div className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {/* Job Type Filter */}
-          <div className="space-y-2">
-            <label className="block text-sm font-medium text-gray-700">Job Type</label>
-            <select className="w-full p-2 border border-gray-300 rounded-md">
-              <option value="">All Types</option>
-              <option value="full-time">Full Time</option>
-              <option value="part-time">Part Time</option>
-              <option value="internship">Internship</option>
-            </select>
-          </div>
-          
-          {/* Location Filter */}
-          <div className="space-y-2">
-            <label className="block text-sm font-medium text-gray-700">Location</label>
-            <select className="w-full p-2 border border-gray-300 rounded-md">
-              <option value="">All Locations</option>
-              <option value="lab-fatek">Lab Fatek</option>
-              <option value="remote">Remote</option>
-            </select>
-          </div>
-          
-          {/* Salary Range Filter */}
-          <div className="space-y-2">
-            <label className="block text-sm font-medium text-gray-700">Salary Range</label>
-            <select className="w-full p-2 border border-gray-300 rounded-md">
-              <option value="">Any Range</option>
-              <option value="0-2">0 - 2 Juta</option>
-              <option value="2-5">2 - 5 Juta</option>
-              <option value="5+">5+ Juta</option>
-            </select>
-          </div>
-          
-          {/* Experience Level Filter */}
-          <div className="space-y-2">
-            <label className="block text-sm font-medium text-gray-700">Experience</label>
-            <select className="w-full p-2 border border-gray-300 rounded-md">
-              <option value="">Any Level</option>
-              <option value="entry">Entry Level</option>
-              <option value="mid">Mid Level</option>
-              <option value="senior">Senior Level</option>
-            </select>
+
+      {/* Expandable filter panel */}
+      {filtersExpanded && (
+        <div className="border-t border-gray-200 p-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {/* Job Type Filter */}
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-gray-700">Job Type</label>
+              <select
+                className="w-full p-2 border border-gray-300 rounded-md"
+                value={jobType}
+                onChange={(e) => setJobType(e.target.value)}
+              >
+                <option value="">All Types</option>
+                <option value="Full-Time">Full Time</option>
+                <option value="Part-Time">Part Time</option>
+                <option value="Internship">Internship</option>
+              </select>
+            </div>
+
+            {/* Salary Range Filter */}
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-gray-700">Salary Range</label>
+              <select
+                className="w-full p-2 border border-gray-300 rounded-md"
+                value={salaryRange}
+                onChange={(e) => setSalaryRange(e.target.value)}
+              >
+                <option value="">Any Range</option>
+                <option value="0-2">0 - 2 Juta</option>
+                <option value="2-5">2 - 5 Juta</option>
+                <option value="5+">5+ Juta</option>
+              </select>
+            </div>
+
+            {/* Reset Filters Button */}
+            <div className="flex items-end">
+              <button
+                onClick={resetFilters}
+                className="w-full px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
+              >
+                Reset Filters
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

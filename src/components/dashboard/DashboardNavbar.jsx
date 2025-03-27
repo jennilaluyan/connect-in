@@ -1,74 +1,122 @@
-import { Link } from "react-router-dom";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Default from "../../assets/Anonymous.png"
 
-/**
- * DashboardNavbar - Responsive navigation bar with hamburger menu for mobile views
- * Handles both desktop and mobile navigation options with smooth transitions
- */
 const DashboardNavbar = () => {
-  // State to control mobile menu visibility
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
 
-  // Toggle mobile menu
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const toggleProfileDropdown = () => {
+    setIsProfileDropdownOpen(!isProfileDropdownOpen);
   };
 
   return (
     <header className="bg-white shadow-sm py-3 border-b border-gray-200">
       <div className="container mx-auto px-4">
-        {/* Main navbar content */}
         <div className="flex justify-between items-center">
-          {/* Logo - visible on all screen sizes */}
           <Link to="/" className="text-2xl font-bold text-gray-900">
             Connect IN
           </Link>
-          
-          {/* Desktop Navigation - hidden on mobile */}
+
+          {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-6">
-            {/* Navigation Items */}
             <NavItem icon={<BriefcaseIcon />} isActive={true} label="Pekerjaan" />
             <NavItem icon={<UserGroupIcon />} label="Koneksi Saya" />
             <NavItem icon={<ChatIcon />} label="Pesan" />
             <NavItem icon={<BellIcon />} label="Notifikasi" />
-            
-            {/* User Profile */}
-            <div className="flex items-center ml-6">
-              <img 
-                src={Default} 
-                alt="User" 
-                className="w-8 h-8 rounded-full mr-2 border border-gray-200"
-              />
-              <span className="font-medium">Anna Kendrick</span>
+
+            {/* Profile Dropdown */}
+            <div className="relative">
+              <button
+                onClick={toggleProfileDropdown}
+                className="flex items-center focus:outline-none"
+              >
+                <img
+                  src={Default}
+                  alt="User"
+                  className="w-8 h-8 rounded-full mr-2 border border-gray-200"
+                />
+                <span className="font-medium mr-1">Anna Kendrick</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-4 w-4"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </button>
+
+              {/* Dropdown Menu */}
+              {isProfileDropdownOpen && (
+                <div className="absolute right-0 mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-lg">
+                  <div className="px-4 py-3 border-b border-gray-200 flex items-center">
+                    <img
+                      src={Default}
+                      alt="User"
+                      className="w-12 h-12 rounded-full mr-3 border border-gray-200"
+                    />
+                    <div>
+                      <div className="font-semibold text-gray-800">Anna Kendrick</div>
+                      <div className="text-sm text-gray-500">Frontend Developer</div>
+                      <div className="text-sm text-gray-500">Manado, Sulawesi Utara</div>
+                    </div>
+                  </div>
+                  <div className="py-1">
+                    <Link
+                      to="/profile/edit"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >
+                      Edit Profil
+                    </Link>
+                  </div>
+                  <div className="py-1 border-t border-gray-200">
+                    <div className="block px-4 py-2 text-sm text-gray-700">Kelola</div>
+                    <Link
+                      to="/job/posting"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >
+                      Akun Posting Pekerjaan
+                    </Link>
+                  </div>
+                  <div className="py-1 border-t border-gray-200">
+                    <button
+                      className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
+                    >
+                      Keluar
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
-          
-          {/* Hamburger menu button - visible only on mobile */}
-          <button 
+
+          {/* Rest of the existing navbar code remains the same */}
+          <button
             className="lg:hidden p-2 rounded-md hover:bg-gray-100 focus:outline-none"
             onClick={toggleMenu}
             aria-label="Toggle navigation menu"
           >
             {isMenuOpen ? (
-              // X icon when menu is open
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             ) : (
-              // Hamburger icon when menu is closed
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             )}
           </button>
         </div>
-        
+
         {/* Mobile menu - toggles based on state */}
-        <div 
-          className={`${
-            isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-          } lg:hidden overflow-hidden transition-all duration-300 ease-in-out`}
+        <div
+          className={`${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+            } lg:hidden overflow-hidden transition-all duration-300 ease-in-out`}
         >
           {/* Mobile Navigation Items */}
           <div className="pt-2 pb-3 space-y-1">
@@ -77,7 +125,7 @@ const DashboardNavbar = () => {
             <MobileNavItem icon={<ChatIcon />} label="Pesan" />
             <MobileNavItem icon={<BellIcon />} label="Notifikasi" />
           </div>
-          
+
           {/* Mobile User Profile */}
           <div className="pt-4 pb-3 border-t border-gray-200">
             <div className="flex items-center px-4 py-2">
@@ -85,7 +133,7 @@ const DashboardNavbar = () => {
                 <img className="h-10 w-10 rounded-full" src="/path-to-avatar.jpg" alt="User avatar" />
               </div>
               <div className="ml-3">
-                <div className="text-base font-medium text-gray-800">JHON DOE</div>
+                <div className="text-base font-medium text-gray-800">Anna Kendrick</div>
                 <div className="text-sm font-medium text-gray-500">user@example.com</div>
               </div>
             </div>
@@ -104,11 +152,10 @@ const DashboardNavbar = () => {
  */
 const NavItem = ({ icon, label, isActive = false }) => {
   return (
-    <Link 
-      to="#" 
-      className={`flex items-center px-3 py-1 rounded-md ${
-        isActive ? 'bg-[#D5FD8C] text-black' : 'text-gray-700 hover:bg-gray-100'
-      }`}
+    <Link
+      to="#"
+      className={`flex items-center px-3 py-1 rounded-md ${isActive ? 'bg-[#D5FD8C] text-black' : 'text-gray-700 hover:bg-gray-100'
+        }`}
     >
       <span className="mr-2">{icon}</span>
       <span>{label}</span>
@@ -122,11 +169,10 @@ const NavItem = ({ icon, label, isActive = false }) => {
  */
 const MobileNavItem = ({ icon, label, isActive = false }) => {
   return (
-    <Link 
-      to="#" 
-      className={`flex items-center px-4 py-3 ${
-        isActive ? 'bg-[#D5FD8C] text-black' : 'text-gray-700 hover:bg-gray-100'
-      }`}
+    <Link
+      to="#"
+      className={`flex items-center px-4 py-3 ${isActive ? 'bg-[#D5FD8C] text-black' : 'text-gray-700 hover:bg-gray-100'
+        }`}
     >
       <span className="mr-3">{icon}</span>
       <span className="text-base">{label}</span>
