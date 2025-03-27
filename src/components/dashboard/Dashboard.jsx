@@ -5,12 +5,24 @@ import JobCard from "./JobCard";
 import { jobsData } from "../../data/jobsData"; // Import from your data file - adjust the path as needed
 import Footer from "../landing-page/Footer";
 
+import { useNavContext } from "/src/components/connections-page/NavContext.jsx";
+
+
 /**
  * Dashboard - Main job listing dashboard component
  * Fully responsive layout with appropriate spacing and grid adjustments
  * Now using jobsData imported from external file
  */
 const Dashboard = () => {
+
+  // Get the setActiveNavItem function from context
+    const { setActiveNavItem } = useNavContext();
+  
+    useEffect(() => {
+      // Automatically set the active nav item when this component mounts
+      setActiveNavItem('Pekerjaan');
+    }, []);
+
   // State for pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [jobs, setJobs] = useState([]);

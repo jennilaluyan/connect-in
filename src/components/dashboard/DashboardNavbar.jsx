@@ -1,12 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom'
 import React, { useState } from "react";
 import Default from "../../assets/Anonymous.png"
+import { useNavContext } from "/src/components/connections-page/NavContext.jsx";
 
 /**
  * DashboardNavbar - Responsive navigation bar with hamburger menu for mobile views
  * Handles both desktop and mobile navigation options with smooth transitions
  */
+
+
 const DashboardNavbar = () => {
+
+  const { activeNavItem } = useNavContext();
+
   // State to control mobile menu visibility
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -28,10 +34,32 @@ const DashboardNavbar = () => {
           {/* Desktop Navigation - hidden on mobile */}
           <div className="hidden lg:flex items-center space-x-6">
             {/* Navigation Items */}
-            <NavItem icon={<BriefcaseIcon />} isActive={true} label="Pekerjaan" />
-            <NavItem icon={<UserGroupIcon />} label="Koneksi Saya" />
-            <NavItem icon={<ChatIcon />} label="Pesan" />
-            <NavItem icon={<BellIcon />} label="Notifikasi" />
+            
+            
+      <NavItem 
+        icon={<BriefcaseIcon />} 
+        isActive={activeNavItem === 'Pekerjaan'} 
+        label="Pekerjaan" 
+        to="/dashboard"
+      />
+      <NavItem 
+        icon={<UserGroupIcon />} 
+        isActive={activeNavItem === 'Koneksi Saya'} 
+        label="Koneksi Saya" 
+        to="/src/components/connections-page"
+      />
+      <NavItem 
+        icon={<ChatIcon />} 
+        isActive={activeNavItem === 'Pesan'} 
+        label="Pesan" 
+      />
+      
+      <NavItem 
+        icon={<BellIcon />} 
+        isActive={activeNavItem === 'Notifikasi'} 
+        label="Notifikasi" 
+      />
+    
             
             {/* User Profile */}
             <div className="flex items-center ml-6">
@@ -101,20 +129,23 @@ const DashboardNavbar = () => {
  * @param {Object} icon - SVG icon component
  * @param {String} label - Navigation label text
  * @param {Boolean} isActive - Whether this navigation item is active
+ * @param {URL} to - Location
  */
-const NavItem = ({ icon, label, isActive = false }) => {
+const NavItem = ({ icon, label, isActive = false, to = "/", onClick }) => {
   return (
     <Link 
-      to="#" 
+      to={to} 
       className={`flex items-center px-3 py-1 rounded-md ${
         isActive ? 'bg-[#D5FD8C] text-black' : 'text-gray-700 hover:bg-gray-100'
       }`}
+      onClick={onClick}
     >
       <span className="mr-2">{icon}</span>
       <span>{label}</span>
     </Link>
   );
 };
+
 
 /**
  * MobileNavItem - Mobile navigation item component
@@ -143,9 +174,12 @@ const BriefcaseIcon = () => (
 );
 
 const UserGroupIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+  
+    <Link to="/src/components/connections-page" className="font-semibold text-black">
+<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
     <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
   </svg>
+  </Link>
 );
 
 const ChatIcon = () => (
