@@ -30,19 +30,19 @@ const TestimonialCard = ({ image, name, role, text, imageRight = false, delay = 
   }, [delay]);
 
   return (
-    <div 
-      ref={cardRef} 
+    <div
+      ref={cardRef}
       className="bg-white rounded-lg overflow-hidden shadow-lg opacity-0 transform translate-y-10 transition-all duration-700 hover:shadow-xl"
     >
       {/* Mobile layout - always image on top, text below */}
       <div className="block md:hidden">
         <div className="relative w-full md:h-80 lg:h-64">
-          <img 
-            src={image} 
-            alt={name} 
+          <img
+            src={image}
+            alt={name}
             className="w-full h-full object-cover"
           />
-          <div 
+          <div
             className="absolute bottom-4 left-4 md:left-4 bg-blue-500 text-white px-4 py-2 rounded-lg name-box"
             style={{
               '@media (max-width: 456px)': {
@@ -51,7 +51,7 @@ const TestimonialCard = ({ image, name, role, text, imageRight = false, delay = 
               }
             }}
           >
-            <div 
+            <div
               className="font-medium"
               style={{
                 '@media (max-width: 456px)': {
@@ -59,7 +59,7 @@ const TestimonialCard = ({ image, name, role, text, imageRight = false, delay = 
                 }
               }}
             >{name}</div>
-            <div 
+            <div
               className="text-sm"
               style={{
                 '@media (max-width: 456px)': {
@@ -83,9 +83,9 @@ const TestimonialCard = ({ image, name, role, text, imageRight = false, delay = 
       <div className="hidden md:flex flex-row items-stretch h-64">
         {!imageRight && (
           <div className="w-64 h-full relative flex-shrink-0 overflow-hidden">
-            <img 
-              src={image} 
-              alt={name} 
+            <img
+              src={image}
+              alt={name}
               className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
             />
             <div className="absolute bottom-4 left-4 bg-blue-500 text-white px-4 py-2 rounded-lg transform transition-transform duration-300 hover:translate-y-1">
@@ -94,21 +94,21 @@ const TestimonialCard = ({ image, name, role, text, imageRight = false, delay = 
             </div>
           </div>
         )}
-        
+
         <div className="bg-blue-500 text-white p-6 flex-1 flex flex-col justify-center text-box">
-          <p className="text-lg mb-4 w-3/4">{text}</p>
+          <p className="text-left text-lg mb-4 w-3/4">{text}</p>
           <div className="flex items-center gap-1">
             {Array(5).fill().map((_, i) => (
               <span key={i} className="text-yellow-400 animate-pulse">★</span>
             ))}
           </div>
         </div>
-        
+
         {imageRight && (
           <div className="w-64 h-full relative flex-shrink-0 overflow-hidden">
-            <img 
-              src={image} 
-              alt={name} 
+            <img
+              src={image}
+              alt={name}
               className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
             />
             <div className="absolute bottom-4 left-4 bg-blue-500 text-white px-4 py-2 rounded-lg transform transition-transform duration-300 hover:translate-y-1">

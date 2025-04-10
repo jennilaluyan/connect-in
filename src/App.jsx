@@ -8,18 +8,67 @@ import RegisterPage from './components/register-page/RegisterPage'
 import Dashboard from './components/dashboard/Dashboard'
 import JobDetail from './components/detail-job/JobDetail'
 import ProfileEditPage from './components/profil/ProfileEditPage'
+import NotifikasiPage from './components/notifikasi/NotifikasiPage'
+import Footer from './components/landing-page/Footer'
+
+// Layout component that includes Footer
+const LayoutWithFooter = ({ children }) => (
+  <>
+    {children}
+    <Footer />
+  </>
+)
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        {/* Pages with Footer */}
+        <Route
+          path="/"
+          element={
+            <LayoutWithFooter>
+              <LandingPage />
+            </LayoutWithFooter>
+          }
+        />
+        <Route
+          path="/dashboard"
+          element={
+            <LayoutWithFooter>
+              <Dashboard />
+            </LayoutWithFooter>
+          }
+        />
+        <Route
+          path="/profile/edit"
+          element={
+            <LayoutWithFooter>
+              <ProfileEditPage />
+            </LayoutWithFooter>
+          }
+        />
+        <Route
+          path="/job/:id"
+          element={
+            <LayoutWithFooter>
+              <JobDetail />
+            </LayoutWithFooter>
+          }
+        />
+        <Route
+          path="/notifikasi"
+          element={
+            <LayoutWithFooter>
+              <NotifikasiPage />
+            </LayoutWithFooter>
+          }
+        />
+
+        {/* Pages without Footer */}
         <Route path="src/components/login-page" element={<LoginPage />} />
         <Route path="src/components/register-page" element={<RegisterPage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/profile/edit" element={<ProfileEditPage />} />
-        <Route path="/job/:id" element={<JobDetail />} />
       </Routes>
     </BrowserRouter>
-  </StrictMode>,
+  </StrictMode>
 )

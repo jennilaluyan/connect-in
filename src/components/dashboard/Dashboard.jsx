@@ -3,15 +3,13 @@ import DashboardNavbar from "./DashboardNavbar";
 import SearchBar from "./SearchBar";
 import JobCard from "./JobCard";
 import { jobsData } from "../../data/jobsData";
-import Footer from "../landing-page/Footer";
 
 /**
- * Dashboard - Main job listing dashboard component
- * Fully responsive layout with appropriate spacing and grid adjustments
- * Now using jobsData imported from external file
+ * Dashboard - Main job listing dashboard component with simple search
+ * Mobile responsiveness starts at 768px
  */
 const Dashboard = () => {
-  // State for pagination and job filtering
+  // State for pagination and jobs
   const [currentPage, setCurrentPage] = useState(1);
   const [jobs, setJobs] = useState([]);
   const [filteredJobs, setFilteredJobs] = useState([]);
@@ -31,8 +29,13 @@ const Dashboard = () => {
 
   // Handle search results from SearchBar
   const handleSearchResults = (results) => {
-    setFilteredJobs(results);
-    setCurrentPage(1); // Reset to first page after filtering
+    // Make sure results is an array before updating state
+    if (Array.isArray(results)) {
+      setFilteredJobs(results);
+      setCurrentPage(1); // Reset to first page after searching
+    } else {
+      console.error("Search results is not an array:", results);
+    }
   };
 
   // Calculate current jobs to display
@@ -56,17 +59,20 @@ const Dashboard = () => {
         {/* Navbar component */}
         <DashboardNavbar />
 
-        {/* Main content with responsive padding */}
-        <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
-          {/* Search section */}
-          <div className="mb-6 sm:mb-8">
-            <SearchBar onSearchResults={handleSearchResults} />
+        {/* Main content with responsive padding - changed from sm: to md: */}
+        <div className="container mx-auto px-4 md:px-6 py-6 md:py-8">
+          {/* Search section - changed from sm: to md: */}
+          <div className="mb-6 md:mb-8">
+            <SearchBar
+              onSearchResults={handleSearchResults}
+              allJobs={jobs}
+            />
           </div>
 
-          {/* Job listings grid - responsive with different columns based on screen size */}
+          {/* Job listings grid - changed responsive breakpoints from sm/lg to md/lg */}
           {filteredJobs.length > 0 ? (
             <>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                 {currentJobs.map((job) => (
                   <JobCard
                     key={job.id}
@@ -152,7 +158,6 @@ const Dashboard = () => {
           )}
         </div>
       </div>
-      <Footer />
     </>
   );
 };

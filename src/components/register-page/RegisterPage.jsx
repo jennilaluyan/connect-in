@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 const RegisterPage = () => {
   const navigate = useNavigate();
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     navigate('/dashboard'); // Navigate to dashboard page on form submission
@@ -20,29 +20,9 @@ const RegisterPage = () => {
           Kembali
         </Link>
       </div>
-      
+
       {/* Left Section - Login Form */}
       <div className="w-full md:w-1/3 p-8 mx-4">
-        {/* Toggle for Mahasiswa/Alumni */}
-        <div className="flex justify-center mb-6 space-x-4">
-          <label className="flex items-center">
-            <input
-              type="radio"
-              name="role"
-              className="w-4 h-4 mr-2 border border-gray-400 rounded-full"
-              defaultChecked
-            />
-            <p className="md:text-[12px] text-[11px] whitespace-nowrap">Masuk sebagai mahasiswa</p>
-          </label>
-          <label className="flex items-center">
-            <input
-              type="radio"
-              name="role"
-              className="w-4 h-4 mr-2 border border-gray-400 rounded-full"
-            />
-            <p className="md:text-[12px] text-[11px] whitespace-nowrap">Masuk sebagai alumni</p>
-          </label>
-        </div>
 
         {/* Input Fields */}
         <form onSubmit={handleSubmit}>

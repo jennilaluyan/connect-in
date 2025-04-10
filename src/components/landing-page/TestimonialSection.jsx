@@ -18,14 +18,14 @@ const TestimonialsSection = () => {
             if (headingRef.current) {
               headingRef.current.classList.add("animate-fade-in");
             }
-            
+
             // Then animate description
             setTimeout(() => {
               if (descriptionRef.current) {
                 descriptionRef.current.classList.add("animate-fade-in");
               }
             }, 300);
-            
+
             observer.unobserve(entry.target);
           }
         });
@@ -47,7 +47,7 @@ const TestimonialsSection = () => {
   const testimonials = [
     {
       image: Vito,
-      name: "Vito",
+      name: "Stevanus",
       role: "Mahasiswa Teknik Informatika",
       text: "Sebagai mahasiswa, saya lebih mudah menemukan peluang magang yang sesuai dengan jurusan saya. Terima kasih Connect IN!",
       imageRight: true,
@@ -55,7 +55,7 @@ const TestimonialsSection = () => {
     },
     {
       image: Dortea,
-      name: "Dortea",
+      name: "Ribka",
       role: "HR PT Semangat Skripsi",
       text: "Senang bisa berbagi pengalaman dan membuka peluang bagi mahasiswa UNSRAT yang ingin magang di perusahaan kami!",
       imageRight: false,
@@ -63,7 +63,7 @@ const TestimonialsSection = () => {
     },
     {
       image: Jenni,
-      name: "Jenni",
+      name: "Elisabeth",
       role: "HR PT Skripsi Jaya Jaya",
       text: "Senang bisa berbagi pengalaman dan membuka peluang bagi mahasiswa UNSRAT yang ingin magang di perusahaan kami!",
       imageRight: true,
@@ -72,18 +72,18 @@ const TestimonialsSection = () => {
   ];
 
   return (
-    <section 
-      id="testimonials" 
+    <section
+      id="testimonials"
       ref={sectionRef}
       className="py-12 md:py-24 bg-[#D6E6FF] text-center px-16 md:px-12"
     >
-      <h2 
+      <h2
         ref={headingRef}
         className="text-3xl md:text-4xl font-bold mb-4 opacity-0 transform translate-y-8 transition-all duration-700"
       >
         Apa Kata Mereka?
       </h2>
-      <p 
+      <p
         ref={descriptionRef}
         className="text-gray-600 mb-8 md:mb-12 max-w-2xl mx-auto opacity-0 transform translate-y-8 transition-all duration-700"
       >

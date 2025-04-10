@@ -83,7 +83,9 @@ body {
   .features,
   #dashboard,
   #detail-job,
-  #profil {
+  #profil,
+  #tim-kami,
+  #notifikasi {
     margin-left: -80px;
     margin-right: -80px;
   }

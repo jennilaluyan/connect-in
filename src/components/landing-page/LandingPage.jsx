@@ -2,8 +2,7 @@ import Navbar from "./Navbar";
 import Hero from "./Hero";
 import FeaturesSection from "./FeaturesSection";
 import TestimonialsSection from "./TestimonialSection";
-import BangunKoneksi2 from "./BangunKoneksi2";
-import Footer from "./Footer";
+import TimKami from "./TimKami";
 
 function LandingPage() {
   return (
@@ -12,8 +11,7 @@ function LandingPage() {
       <Hero />
       <FeaturesSection />
       <TestimonialsSection />
-      <BangunKoneksi2 />
-      <Footer />
+      <TimKami />
     </>
   );
 }

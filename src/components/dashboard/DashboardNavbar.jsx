@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import Default from "../../assets/Anonymous.png"
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import Default from "../../assets/Anonymous.png";
 
 const DashboardNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+  const location = useLocation(); // Hook untuk mendapatkan lokasi/route saat ini
+  const navigate = useNavigate(); // Hook untuk navigasi
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -14,20 +16,73 @@ const DashboardNavbar = () => {
     setIsProfileDropdownOpen(!isProfileDropdownOpen);
   };
 
+  // Function untuk mengecek apakah route saat ini aktif
+  const isActive = (path) => {
+    return location.pathname === path;
+  };
+
+  // Function untuk me-refresh dashboard
+  const refreshDashboard = (e) => {
+    e.preventDefault();
+    if (location.pathname === '/dashboard') {
+      // Reload halaman jika sudah di dashboard
+      window.location.reload();
+    } else {
+      // Navigasi ke dashboard jika berada di halaman lain
+      navigate('/dashboard');
+    }
+  };
+
+  // Function untuk logout
+  const handleLogout = () => {
+    // Logika logout dapat ditambahkan di sini
+    // Menutup dropdown profile jika terbuka
+    setIsProfileDropdownOpen(false);
+    // Menutup menu mobile jika terbuka
+    setIsMenuOpen(false);
+    // Navigasi ke landing page
+    navigate('/');
+  };
+
   return (
     <header className="bg-white shadow-sm py-3 border-b border-gray-200">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
-          <Link to="/" className="text-2xl font-bold text-gray-900">
+          {/* Logo yang me-refresh dashboard */}
+          <a
+            href="#"
+            onClick={refreshDashboard}
+            className="text-2xl font-bold text-gray-900"
+          >
             Connect IN
-          </Link>
+          </a>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-6">
-            <NavItem icon={<BriefcaseIcon />} isActive={true} label="Pekerjaan" />
-            <NavItem icon={<UserGroupIcon />} label="Koneksi Saya" />
-            <NavItem icon={<ChatIcon />} label="Pesan" />
-            <NavItem icon={<BellIcon />} label="Notifikasi" />
+            <NavItem
+              icon={<BriefcaseIcon />}
+              isActive={isActive("/dashboard")}
+              label="Pekerjaan"
+              to="/dashboard"
+            />
+            <NavItem
+              icon={<UserGroupIcon />}
+              isActive={isActive("/koneksi")}
+              label="Koneksi Saya"
+              to="/koneksi"
+            />
+            <NavItem
+              icon={<ChatIcon />}
+              isActive={isActive("/pesan")}
+              label="Pesan"
+              to="/pesan"
+            />
+            <NavItem
+              icon={<BellIcon />}
+              isActive={isActive("/notifikasi")}
+              label="Notifikasi"
+              to="/notifikasi"
+            />
 
             {/* Profile Dropdown */}
             <div className="relative">
@@ -53,7 +108,7 @@ const DashboardNavbar = () => {
 
               {/* Dropdown Menu */}
               {isProfileDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-lg">
+                <div className="absolute right-0 mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
                   <div className="px-4 py-3 border-b border-gray-200 flex items-center">
                     <img
                       src={Default}
@@ -70,6 +125,7 @@ const DashboardNavbar = () => {
                     <Link
                       to="/profile/edit"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      onClick={() => setIsProfileDropdownOpen(false)}
                     >
                       Edit Profil
                     </Link>
@@ -79,6 +135,7 @@ const DashboardNavbar = () => {
                     <Link
                       to="/job/posting"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      onClick={() => setIsProfileDropdownOpen(false)}
                     >
                       Akun Posting Pekerjaan
                     </Link>
@@ -86,6 +143,7 @@ const DashboardNavbar = () => {
                   <div className="py-1 border-t border-gray-200">
                     <button
                       className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
+                      onClick={handleLogout}
                     >
                       Keluar
                     </button>
@@ -95,7 +153,7 @@ const DashboardNavbar = () => {
             </div>
           </div>
 
-          {/* Rest of the existing navbar code remains the same */}
+          {/* Mobile Menu Button */}
           <button
             className="lg:hidden p-2 rounded-md hover:bg-gray-100 focus:outline-none"
             onClick={toggleMenu}
@@ -115,27 +173,75 @@ const DashboardNavbar = () => {
 
         {/* Mobile menu - toggles based on state */}
         <div
-          className={`${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-            } lg:hidden overflow-hidden transition-all duration-300 ease-in-out`}
+          className={`${isMenuOpen
+              ? 'max-h-screen opacity-100 overflow-y-auto'
+              : 'max-h-0 opacity-0 overflow-hidden'
+            } lg:hidden transition-all duration-300 ease-in-out`}
         >
           {/* Mobile Navigation Items */}
           <div className="pt-2 pb-3 space-y-1">
-            <MobileNavItem icon={<BriefcaseIcon />} isActive={true} label="Pekerjaan" />
-            <MobileNavItem icon={<UserGroupIcon />} label="Koneksi Saya" />
-            <MobileNavItem icon={<ChatIcon />} label="Pesan" />
-            <MobileNavItem icon={<BellIcon />} label="Notifikasi" />
+            <MobileNavItem
+              icon={<BriefcaseIcon />}
+              isActive={isActive("/dashboard")}
+              label="Pekerjaan"
+              to="/dashboard"
+              onClick={() => setIsMenuOpen(false)}
+            />
+            <MobileNavItem
+              icon={<UserGroupIcon />}
+              isActive={isActive("/koneksi")}
+              label="Koneksi Saya"
+              to="/koneksi"
+              onClick={() => setIsMenuOpen(false)}
+            />
+            <MobileNavItem
+              icon={<ChatIcon />}
+              isActive={isActive("/pesan")}
+              label="Pesan"
+              to="/pesan"
+              onClick={() => setIsMenuOpen(false)}
+            />
+            <MobileNavItem
+              icon={<BellIcon />}
+              isActive={isActive("/notifikasi")}
+              label="Notifikasi"
+              to="/notifikasi"
+              onClick={() => setIsMenuOpen(false)}
+            />
           </div>
 
           {/* Mobile User Profile */}
           <div className="pt-4 pb-3 border-t border-gray-200">
             <div className="flex items-center px-4 py-2">
               <div className="flex-shrink-0">
-                <img className="h-10 w-10 rounded-full" src="/path-to-avatar.jpg" alt="User avatar" />
+                <img className="h-10 w-10 rounded-full" src={Default} alt="User avatar" />
               </div>
               <div className="ml-3">
                 <div className="text-base font-medium text-gray-800">Anna Kendrick</div>
-                <div className="text-sm font-medium text-gray-500">user@example.com</div>
+                <div className="text-sm font-medium text-gray-500">anna@example.com</div>
               </div>
+            </div>
+            <div className="mt-3 space-y-1">
+              <Link
+                to="/profile/edit"
+                className="block px-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-100"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Edit Profil
+              </Link>
+              <Link
+                to="/job/posting"
+                className="block px-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-100"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Akun Posting Pekerjaan
+              </Link>
+              <button
+                className="block w-full text-left px-4 py-2 text-base font-medium text-red-600 hover:bg-gray-100"
+                onClick={handleLogout}
+              >
+                Keluar
+              </button>
             </div>
           </div>
         </div>
@@ -149,12 +255,15 @@ const DashboardNavbar = () => {
  * @param {Object} icon - SVG icon component
  * @param {String} label - Navigation label text
  * @param {Boolean} isActive - Whether this navigation item is active
+ * @param {String} to - Route path
  */
-const NavItem = ({ icon, label, isActive = false }) => {
+const NavItem = ({ icon, label, isActive = false, to }) => {
   return (
     <Link
-      to="#"
-      className={`flex items-center px-3 py-1 rounded-md ${isActive ? 'bg-[#D5FD8C] text-black' : 'text-gray-700 hover:bg-gray-100'
+      to={to}
+      className={`flex items-center px-3 py-1 rounded-md ${isActive
+        ? 'bg-[#D5FD8C] text-black'
+        : 'text-gray-700 hover:bg-gray-100'
         }`}
     >
       <span className="mr-2">{icon}</span>
@@ -167,12 +276,15 @@ const NavItem = ({ icon, label, isActive = false }) => {
  * MobileNavItem - Mobile navigation item component
  * Enhanced for touch targets and mobile display
  */
-const MobileNavItem = ({ icon, label, isActive = false }) => {
+const MobileNavItem = ({ icon, label, isActive = false, to, onClick }) => {
   return (
     <Link
-      to="#"
-      className={`flex items-center px-4 py-3 ${isActive ? 'bg-[#D5FD8C] text-black' : 'text-gray-700 hover:bg-gray-100'
+      to={to}
+      className={`flex items-center px-4 py-3 ${isActive
+        ? 'bg-[#D5FD8C] text-black'
+        : 'text-gray-700 hover:bg-gray-100'
         }`}
+      onClick={onClick}
     >
       <span className="mr-3">{icon}</span>
       <span className="text-base">{label}</span>
