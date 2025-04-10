@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Default from "../../assets/Anonymous.png";
+import { useNavContext } from "/src/components/connections-page/NavContext.jsx";
 
+/**
+ * DashboardNavbar - Responsive navigation bar with hamburger menu for mobile views
+ * Handles both desktop and mobile navigation options with smooth transitions
+ */
 const DashboardNavbar = () => {
+  const { activeNavItem } = useNavContext();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const location = useLocation();
@@ -50,27 +56,28 @@ const DashboardNavbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-6">
+            {/* Navigation Items */}
             <NavItem
               icon={<BriefcaseIcon />}
-              isActive={isActive("/dashboard")}
+              isActive={activeNavItem === 'Pekerjaan'}
               label="Pekerjaan"
               to="/dashboard"
             />
             <NavItem
               icon={<UserGroupIcon />}
-              isActive={isActive("/koneksi")}
+              isActive={activeNavItem === 'Koneksi Saya'}
               label="Koneksi Saya"
-              to="/koneksi"
+              to="/src/components/connections-page"
             />
             <NavItem
               icon={<ChatIcon />}
-              isActive={isActive("/pesan")}
+              isActive={activeNavItem === 'Pesan'}
               label="Pesan"
-              to="/pesan"
+              to="/src/components/messages-page"
             />
             <NavItem
               icon={<BellIcon />}
-              isActive={isActive("/notifikasi")}
+              isActive={activeNavItem === 'Notifikasi'}
               label="Notifikasi"
               to="/notifikasi"
             />
@@ -183,28 +190,28 @@ const DashboardNavbar = () => {
           <div className="pt-2 pb-3 space-y-1">
             <MobileNavItem
               icon={<BriefcaseIcon />}
-              isActive={isActive("/dashboard")}
+              isActive={activeNavItem === 'Pekerjaan'}
               label="Pekerjaan"
               to="/dashboard"
               onClick={() => setIsMenuOpen(false)}
             />
             <MobileNavItem
               icon={<UserGroupIcon />}
-              isActive={isActive("/koneksi")}
+              isActive={activeNavItem === 'Koneksi Saya'}
               label="Koneksi Saya"
-              to="/koneksi"
+              to="/src/components/connections-page"
               onClick={() => setIsMenuOpen(false)}
             />
             <MobileNavItem
               icon={<ChatIcon />}
-              isActive={isActive("/pesan")}
+              isActive={activeNavItem === 'Pesan'}
               label="Pesan"
-              to="/pesan"
+              to="/src/components/messages-page"
               onClick={() => setIsMenuOpen(false)}
             />
             <MobileNavItem
               icon={<BellIcon />}
-              isActive={isActive("/notifikasi")}
+              isActive={activeNavItem === 'Notifikasi'}
               label="Notifikasi"
               to="/notifikasi"
               onClick={() => setIsMenuOpen(false)}
@@ -260,15 +267,18 @@ const DashboardNavbar = () => {
 
 /**
  * NavItem - Desktop navigation item component
+ * @param {Object} icon - SVG icon component
+ * @param {String} label - Navigation label text
+ * @param {Boolean} isActive - Whether this navigation item is active
+ * @param {URL} to - Location
  */
-const NavItem = ({ icon, label, isActive = false, to }) => {
+const NavItem = ({ icon, label, isActive = false, to = "/", onClick }) => {
   return (
     <Link
       to={to}
-      className={`flex items-center px-3 py-1 rounded-md ${isActive
-        ? 'bg-[#D5FD8C] text-black'
-        : 'text-gray-700 hover:bg-gray-100'
+      className={`flex items-center px-3 py-1 rounded-md ${isActive ? 'bg-[#D5FD8C] text-black' : 'text-gray-700 hover:bg-gray-100'
         }`}
+      onClick={onClick}
     >
       <span className="mr-2">{icon}</span>
       <span>{label}</span>
