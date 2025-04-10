@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Default from "../../assets/Anonymous.png";
 import { useNavContext } from "/src/components/connections-page/NavContext.jsx";
@@ -8,11 +8,24 @@ import { useNavContext } from "/src/components/connections-page/NavContext.jsx";
  * Handles both desktop and mobile navigation options with smooth transitions
  */
 const DashboardNavbar = () => {
-  const { activeNavItem } = useNavContext();
+  const { activeNavItem, setActiveNavItem } = useNavContext();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+
+  // Use effect to update the active nav item based on the current path
+  useEffect(() => {
+    if (location.pathname === '/dashboard') {
+      setActiveNavItem('Pekerjaan');
+    } else if (location.pathname.includes('/connections-page')) {
+      setActiveNavItem('Koneksi Saya');
+    } else if (location.pathname.includes('/messages-page')) {
+      setActiveNavItem('Pesan');
+    } else if (location.pathname.includes('/notifikasi')) {
+      setActiveNavItem('Notifikasi');
+    }
+  }, [location.pathname, setActiveNavItem]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);

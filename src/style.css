@@ -86,7 +86,9 @@ body {
   #profil,
   #tim-kami,
   #notifikasi,
-  #pekerjaan-saya {
+  #pekerjaan-saya,
+  #message,
+  #connection {
     margin-left: -80px;
     margin-right: -80px;
   }
