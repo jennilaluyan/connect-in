@@ -36,6 +36,11 @@ const Navbar = () => {
               className="text-gray-900 hover:text-gray-600 transition-all duration-300 hover:-translate-y-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#BCFC4D] after:transition-all after:duration-300 hover:after:w-full">
               Testimoni
             </a>
+            <a
+              href="#tim-kami"
+              className="text-gray-900 hover:text-gray-600 transition-all duration-300 hover:-translate-y-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#BCFC4D] after:transition-all after:duration-300 hover:after:w-full">
+              Tim Kami
+            </a>
           </div>
 
           {/* Buttons for Desktop - with animations - FIXED NESTED BUTTONS */}
@@ -86,9 +91,8 @@ const Navbar = () => {
 
       {/* Mobile Menu with slide down animation */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-          isOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
-        }`}>
+        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
+          }`}>
         <a
           href="/"
           className="block px-6 py-3 text-gray-900 hover:bg-gray-100 transition-all duration-300 hover:pl-8">
@@ -103,6 +107,11 @@ const Navbar = () => {
           href="#testimonials"
           className="block px-6 py-3 text-gray-900 hover:bg-gray-100 transition-all duration-300 hover:pl-8">
           Testimoni
+        </a>
+        <a
+          href="#tim-kami"
+          className="block px-6 py-3 text-gray-900 hover:bg-gray-100 transition-all duration-300 hover:pl-8">
+          Tim Kami
         </a>
         <div className="px-6 py-3 space-y-2">
           <Link to="src/components/login-page">

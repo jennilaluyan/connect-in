@@ -3,12 +3,21 @@ import DashboardNavbar from "./DashboardNavbar";
 import SearchBar from "./SearchBar";
 import JobCard from "./JobCard";
 import { jobsData } from "../../data/jobsData";
+import { useNavContext } from "/src/components/connections-page/NavContext.jsx";
 
 /**
  * Dashboard - Main job listing dashboard component with simple search
  * Mobile responsiveness starts at 768px
  */
 const Dashboard = () => {
+  // Get the setActiveNavItem function from context
+  const { setActiveNavItem } = useNavContext();
+
+  useEffect(() => {
+    // Automatically set the active nav item when this component mounts
+    setActiveNavItem('Pekerjaan');
+  }, []);
+
   // State for pagination and jobs
   const [currentPage, setCurrentPage] = useState(1);
   const [jobs, setJobs] = useState([]);

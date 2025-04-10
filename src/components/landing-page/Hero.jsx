@@ -7,7 +7,7 @@ const Hero = () => {
     const heroContent = document.querySelector('.hero-content');
     const heroImage = document.querySelector('.hero-image');
     const heroButton = document.querySelector('.hero-button');
-    
+
     // Sequentially add animation classes with delays
     setTimeout(() => {
       heroContent?.classList.add('animate-in');
@@ -26,10 +26,10 @@ const Hero = () => {
         {/* Hero Content */}
         <div className="text-center md:text-left w-full md:w-1/2 hero-content opacity-0 translate-y-8 transition-all duration-700">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#BCFC4D] leading-tight">
-            Koneksi Alumni & Mahasiswa UNSRAT
+            Connect IN – Karier & Koneksi Profesional di Sulawesi Utara
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-white mt-4 md:mt-5 leading-relaxed">
-            Bangun jaringan dengan sesama alumni dan mahasiswa Universitas Sam Ratulangi. Temukan koneksi baru dan peluang kerja yang sesuai untuk masa depanmu!
+            Bergabunglah dengan ribuan profesional dan perusahaan di Sulut untuk membangun karier yang lebih baik.
           </p>
 
           {/* Hero Button */}
@@ -40,10 +40,10 @@ const Hero = () => {
 
         {/* Hero Image */}
         <div className="w-full md:w-1/2 mt-8 md:mt-0 hero-image">
-          <img 
-            src={UNSRAT} 
-            alt="Universitas Sam Ratulangi" 
-            className="w-full max-w-[400px] h-auto mx-auto rounded-lg shadow-lg object-contain md:object-cover hover:shadow-2xl transition-shadow duration-300" 
+          <img
+            src={UNSRAT}
+            alt="Universitas Sam Ratulangi"
+            className="w-full max-w-[400px] h-auto mx-auto rounded-lg shadow-lg object-contain md:object-cover hover:shadow-2xl transition-shadow duration-300"
           />
         </div>
       </div>
