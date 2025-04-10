@@ -52,6 +52,7 @@ const DashboardNavbar = () => {
         icon={<ChatIcon />} 
         isActive={activeNavItem === 'Pesan'} 
         label="Pesan" 
+        to="/src/components/messages-page"
       />
       
       <NavItem 

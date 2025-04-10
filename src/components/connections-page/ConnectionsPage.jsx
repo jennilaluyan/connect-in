@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import DashboardNavbar from "/src/components/dashboard/DashboardNavbar";
-import { jobsData } from "../../data/jobsData"; // Import from your data file - adjust the path as needed
 import Footer from "../landing-page/Footer";
 import connectIMAGE from "../../assets/severus.jpg";
 import { useNavContext } from "/src/components/connections-page/NavContext.jsx";
@@ -119,38 +118,12 @@ const ConnectionsPage = () => {
   const [jobs, setJobs] = useState([]);
   const jobsPerPage = 9;
   
-  // Load jobs data on component mount
-  useEffect(() => {
-    // Make sure jobsData is loaded properly
-    if (Array.isArray(jobsData) && jobsData.length > 0) {
-      setJobs(jobsData);
-    } else {
-      console.error("Job data is not available or not an array:", jobsData);
-      // Fallback to empty array if jobsData is invalid
-      setJobs([]);
-    }
-  }, []);
-  
-  // Calculate current jobs to display
-  const indexOfLastJob = currentPage * jobsPerPage;
-  const indexOfFirstJob = indexOfLastJob - jobsPerPage;
-  const currentJobs = jobs.slice(indexOfFirstJob, indexOfLastJob);
+ 
   
   // Calculate total pages
   const totalPages = Math.ceil(jobs.length / jobsPerPage);
 
-  // Handle page changes
-  const changePage = (pageNumber) => {
-    setCurrentPage(pageNumber);
-    // Scroll to top of job listings
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-
-  // For debugging - check if pagination should display
-  console.log("Total jobs:", jobs.length);
-  console.log("Jobs per page:", jobsPerPage);
-  console.log("Total pages:", totalPages);
+  
 
   return (
     <div id="dashboard" className="min-h-screen bg-gray-100">
