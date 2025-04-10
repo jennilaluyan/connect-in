@@ -30,43 +30,23 @@ const TestimonialCard = ({ image, name, role, text, imageRight = false, delay = 
   }, [delay]);
 
   return (
-    <div 
-      ref={cardRef} 
+    <div
+      ref={cardRef}
       className="bg-white rounded-lg overflow-hidden shadow-lg opacity-0 transform translate-y-10 transition-all duration-700 hover:shadow-xl"
     >
       {/* Mobile layout - always image on top, text below */}
       <div className="block md:hidden">
         <div className="relative w-full md:h-80 lg:h-64">
-          <img 
-            src={image} 
-            alt={name} 
+          <img
+            src={image}
+            alt={name}
             className="w-full h-full object-cover"
           />
-          <div 
-            className="absolute bottom-4 left-4 md:left-4 bg-blue-500 text-white px-4 py-2 rounded-lg name-box"
-            style={{
-              '@media (max-width: 456px)': {
-                left: '50%',
-                transform: 'translateX(-50%)'
-              }
-            }}
+          <div
+            className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white px-4 py-3 rounded-lg name-box w-3/4 max-w-xs"
           >
-            <div 
-              className="font-medium"
-              style={{
-                '@media (max-width: 456px)': {
-                  textAlign: 'center'
-                }
-              }}
-            >{name}</div>
-            <div 
-              className="text-sm"
-              style={{
-                '@media (max-width: 456px)': {
-                  textAlign: 'center'
-                }
-              }}
-            >{role}</div>
+            <div className="font-medium text-center">{name}</div>
+            <div className="text-sm text-center">{role}</div>
           </div>
         </div>
         <div className="bg-blue-500 text-white p-6 text-box">
@@ -83,37 +63,37 @@ const TestimonialCard = ({ image, name, role, text, imageRight = false, delay = 
       <div className="hidden md:flex flex-row items-stretch h-64">
         {!imageRight && (
           <div className="w-64 h-full relative flex-shrink-0 overflow-hidden">
-            <img 
-              src={image} 
-              alt={name} 
+            <img
+              src={image}
+              alt={name}
               className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
             />
-            <div className="absolute bottom-4 left-4 bg-blue-500 text-white px-4 py-2 rounded-lg transform transition-transform duration-300 hover:translate-y-1">
-              <div className="font-medium">{name}</div>
-              <div className="text-sm">{role}</div>
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white px-6 py-3 rounded-lg transition-transform duration-300 hover:translate-y-1 w-4/5">
+              <div className="font-medium text-center">{name}</div>
+              <div className="text-sm text-center">{role}</div>
             </div>
           </div>
         )}
-        
+
         <div className="bg-blue-500 text-white p-6 flex-1 flex flex-col justify-center text-box">
-          <p className="text-lg mb-4 w-3/4">{text}</p>
+          <p className="text-left text-lg mb-4 w-3/4">{text}</p>
           <div className="flex items-center gap-1">
             {Array(5).fill().map((_, i) => (
               <span key={i} className="text-yellow-400 animate-pulse">★</span>
             ))}
           </div>
         </div>
-        
+
         {imageRight && (
           <div className="w-64 h-full relative flex-shrink-0 overflow-hidden">
-            <img 
-              src={image} 
-              alt={name} 
+            <img
+              src={image}
+              alt={name}
               className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
             />
-            <div className="absolute bottom-4 left-4 bg-blue-500 text-white px-4 py-2 rounded-lg transform transition-transform duration-300 hover:translate-y-1">
-              <div className="font-medium">{name}</div>
-              <div className="text-sm">{role}</div>
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white px-6 py-3 rounded-lg transition-transform duration-300 hover:translate-y-1 w-4/5">
+              <div className="font-medium text-center">{name}</div>
+              <div className="text-sm text-center">{role}</div>
             </div>
           </div>
         )}
@@ -121,15 +101,6 @@ const TestimonialCard = ({ image, name, role, text, imageRight = false, delay = 
 
       {/* Custom CSS for extra small screens */}
       <style jsx>{`
-        @media (max-width: 456px) {
-          .name-box {
-            left: 50% !important;
-            transform: translateX(-50%) !important;
-          }
-          .name-box div {
-            text-align: center !important;
-          }
-        }
         @media (max-width: 425px) {
           .name-box {
             position: static !important;

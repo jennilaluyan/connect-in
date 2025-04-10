@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import Default from "../../assets/Anonymous.png";
 import { jobsData } from "../../data/jobsData";
 import Footer from "../landing-page/Footer";
+import CVUploadModal from "./CVUploadModal";
 
 /**
  * JobDetail - Detailed job information page
@@ -12,11 +13,12 @@ import Footer from "../landing-page/Footer";
 const JobDetail = () => {
   const { id } = useParams(); // Get job ID from URL
   const navigate = useNavigate();
-  
-  // Find the specific job from jobsData based on the ID
-  // Convert string id from URL params to number for comparison
+
+  // State for controlling modal visibility
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const job = jobsData.find(job => job.id === parseInt(id));
-  
+
   // Handle case where job is not found
   if (!job) {
     return (
@@ -24,31 +26,33 @@ const JobDetail = () => {
         <div className="bg-white p-8 rounded-lg shadow-md text-center">
           <h1 className="text-2xl font-bold text-red-500 mb-4">Job Not Found</h1>
           <p className="text-gray-600 mb-6">The job listing you're looking for doesn't exist or has been removed.</p>
-          <button 
+          <button
             onClick={() => navigate('/')}
             className="px-6 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
           >
             Go Back to Jobs
           </button>
         </div>
-
-        
       </div>
     );
   }
 
   // Handle back button click
   const handleBack = () => {
-    navigate(-1); // Go back to previous page
+    navigate(-1);
   };
-  
-  // Handle apply button click
+
+  // Handle apply button click to open modal
   const handleApply = () => {
-    // You could implement application form functionality here
-    // For now, let's just show an alert
-    alert(`You are applying for the position: ${job.title} at ${job.companyName}`);
-    // In a real app, you might navigate to an application form page:
-    // navigate(`/apply/${job.id}`);
+    setIsModalOpen(true);
+  };
+
+  // Handle CV submission
+  const handleCVSubmit = (file) => {
+    // Implement CV submission logic here
+    console.log('CV Submitted:', file);
+    alert(`CV ${file.name} submitted for ${job.title}`);
+    setIsModalOpen(false);
   };
 
   return (
@@ -57,7 +61,7 @@ const JobDetail = () => {
       <header className="bg-white shadow-sm py-3 border-b border-gray-200">
         <div className="container mx-auto px-4">
           <div className="flex items-center">
-            <button 
+            <button
               onClick={handleBack}
               className="mr-4 p-2 rounded-full hover:bg-gray-100"
               aria-label="Go back"
@@ -89,7 +93,7 @@ const JobDetail = () => {
                   </div>
                 </div>
               </div>
-              <button 
+              <button
                 onClick={handleApply}
                 className="w-full md:w-auto px-6 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
               >
@@ -190,7 +194,7 @@ const JobDetail = () => {
 
           {/* Apply button - bottom sticky on mobile */}
           <div className="md:hidden sticky bottom-0 p-4 bg-white border-t border-gray-200 shadow-lg">
-            <button 
+            <button
               onClick={handleApply}
               className="w-full px-6 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
             >
@@ -199,6 +203,13 @@ const JobDetail = () => {
           </div>
         </div>
       </main>
+
+      {/* CV Upload Modal */}
+      <CVUploadModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSubmit={handleCVSubmit}
+      />
       <Footer />
     </div>
   );

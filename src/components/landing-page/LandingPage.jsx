@@ -1,21 +1,19 @@
-import Navbar from './Navbar';
-import Hero from './Hero';
-import FeaturesSection from './FeaturesSection';
-import TestimonialsSection from './TestimonialSection';
-import BangunKoneksi2 from './BangunKoneksi2';
-import Footer from './Footer';
+import Navbar from "./Navbar";
+import Hero from "./Hero";
+import FeaturesSection from "./FeaturesSection";
+import TestimonialsSection from "./TestimonialSection";
+import TimKami from "./TimKami";
 
 function LandingPage() {
-    return (
-        <>
-            <Navbar />
-            <Hero />
-            <FeaturesSection />
-            <TestimonialsSection />
-            <BangunKoneksi2 /> 
-            <Footer />
-        </>
-    )
+  return (
+    <>
+      <Navbar />
+      <Hero />
+      <FeaturesSection />
+      <TestimonialsSection />
+      <TimKami />
+    </>
+  );
 }
 
 export default LandingPage;

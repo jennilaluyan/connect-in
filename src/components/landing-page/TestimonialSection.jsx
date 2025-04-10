@@ -18,14 +18,14 @@ const TestimonialsSection = () => {
             if (headingRef.current) {
               headingRef.current.classList.add("animate-fade-in");
             }
-            
+
             // Then animate description
             setTimeout(() => {
               if (descriptionRef.current) {
                 descriptionRef.current.classList.add("animate-fade-in");
               }
             }, 300);
-            
+
             observer.unobserve(entry.target);
           }
         });
@@ -47,47 +47,47 @@ const TestimonialsSection = () => {
   const testimonials = [
     {
       image: Vito,
-      name: "Vito",
-      role: "Mahasiswa Teknik Informatika",
-      text: "Sebagai mahasiswa, saya lebih mudah menemukan peluang magang yang sesuai dengan jurusan saya. Terima kasih Connect IN!",
+      name: "Stevanus",
+      role: "AI Engineer",
+      text: "“Dulu susah cari kerja di Manado, tapi lewat Connect IN, saya langsung dapat kesempatan di perusahaan lokal!”",
       imageRight: true,
       delay: 0,
     },
     {
       image: Dortea,
-      name: "Dortea",
-      role: "HR PT Semangat Skripsi",
-      text: "Senang bisa berbagi pengalaman dan membuka peluang bagi mahasiswa UNSRAT yang ingin magang di perusahaan kami!",
+      name: "Ribka",
+      role: "HR PT Nocture",
+      text: "“Sebagai HR, saya merasa terbantu karena bisa menjangkau kandidat potensial lebih cepat dan mudah melalui platform ini.”",
       imageRight: false,
       delay: 200,
     },
     {
       image: Jenni,
-      name: "Jenni",
-      role: "HR PT Skripsi Jaya Jaya",
-      text: "Senang bisa berbagi pengalaman dan membuka peluang bagi mahasiswa UNSRAT yang ingin magang di perusahaan kami!",
+      name: "Elisabeth",
+      role: "Frontend Developer",
+      text: "“Waktu pertama coba Connect IN, langsung suka sama UI-nya—simple, bersih, dan enak dipakai. Semua fitur jalan lancar, dan nyari lowongan kerja di Manado jadi jauh lebih gampang.”",
       imageRight: true,
       delay: 400,
     },
   ];
 
   return (
-    <section 
-      id="testimonials" 
+    <section
+      id="testimonials"
       ref={sectionRef}
       className="py-12 md:py-24 bg-[#D6E6FF] text-center px-16 md:px-12"
     >
-      <h2 
+      <h2
         ref={headingRef}
         className="text-3xl md:text-4xl font-bold mb-4 opacity-0 transform translate-y-8 transition-all duration-700"
       >
         Apa Kata Mereka?
       </h2>
-      <p 
+      <p
         ref={descriptionRef}
         className="text-gray-600 mb-8 md:mb-12 max-w-2xl mx-auto opacity-0 transform translate-y-8 transition-all duration-700"
       >
-        Mahasiswa dan alumni UNSRAT telah merasakan manfaat dari platform ini. Simak pengalaman mereka!
+        Profesional di Sulawesi Utara telah merasakan manfaat dari platform ini. Simak pengalaman mereka!
       </p>
       <div className="flex flex-col gap-6 max-w-4xl mx-auto">
         {testimonials.map((testimonial, index) => (
