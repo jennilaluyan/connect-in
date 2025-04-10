@@ -51,9 +51,9 @@ function TimKami() {
   }, []);
 
   return (
-    <section className="py-16 team-section" id='tim-kami'>
+    <section className="mt-20 py-16 team-section h-screen" id='tim-kami'>
       <div className="container mx-auto px-4">
-        <div className="mb-28 text-center relative">
+        <div className="mb-32 text-center relative">
           <h2 className="text-4xl font-bold mb-2 ">Tim Kami</h2>
         </div>
 

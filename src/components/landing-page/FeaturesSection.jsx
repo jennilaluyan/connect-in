@@ -6,19 +6,22 @@ const FeaturesSection = () => {
   return (
     <section id="feature-section" className="features p-8 text-center my-24">
       <HeadingBangunKoneksi /> {/* Section heading */}
-      <div className="flex flex-col md:flex-row justify-center gap-6 max-w-4xl mx-auto my-28">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto my-28">
         <FeatureCard
-          title="Terhubung dengan Alumni & Mahasiswa"
-          description="Jalin relasi dengan sesama mahasiswa dan alumni untuk memperluas kesempatan profesional."
+          title="Temukan Lowongan Pekerjaan"
+          description="Akses berbagai peluang kerja yang sesuai dengan keahlianmu"
+          animationDelay={0}
         />
         <FeatureCard
-          title="Temukan Peluang Kerja di Sekitar Anda"
-          description="Akses berbagai lowongan kerja yang sesuai dengan bidang dan keahlianmu."
+          title="Bangun Jaringan Profesional"
+          description="Terhubung dengan rekan kerja & bisnis di Sulut"
           isHighlighted
+          animationDelay={200}
         />
         <FeatureCard
           title="Posting Lowongan dengan Mudah"
-          description="Bagikan informasi lowongan kerja dan berkontribusi dalam dunia profesional UNSRAT."
+          description="HRD dapat mempublikasikan lowongan kerja dan mengelola rekrutmen dengan efisien"
+          animationDelay={400}
         />
       </div>
       <CallToAction /> {/* Call to action button */}

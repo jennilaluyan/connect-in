@@ -85,7 +85,8 @@ body {
   #detail-job,
   #profil,
   #tim-kami,
-  #notifikasi {
+  #notifikasi,
+  #pekerjaan-saya {
     margin-left: -80px;
     margin-right: -80px;
   }

@@ -9,6 +9,7 @@ import Dashboard from './components/dashboard/Dashboard'
 import JobDetail from './components/detail-job/JobDetail'
 import ProfileEditPage from './components/profil/ProfileEditPage'
 import NotifikasiPage from './components/notifikasi/NotifikasiPage'
+import PekerjaanSayaPage from './components/pekerjaan-saya/PekerjaanSayaPage'
 import Footer from './components/landing-page/Footer'
 
 // Layout component that includes Footer
@@ -61,6 +62,14 @@ createRoot(document.getElementById('root')).render(
           element={
             <LayoutWithFooter>
               <NotifikasiPage />
+            </LayoutWithFooter>
+          }
+        />
+        <Route
+          path="/pekerjaan-saya"
+          element={
+            <LayoutWithFooter>
+              <PekerjaanSayaPage />
             </LayoutWithFooter>
           }
         />

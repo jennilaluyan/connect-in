@@ -5,8 +5,8 @@ import Default from "../../assets/Anonymous.png";
 const DashboardNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
-  const location = useLocation(); // Hook untuk mendapatkan lokasi/route saat ini
-  const navigate = useNavigate(); // Hook untuk navigasi
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -16,31 +16,22 @@ const DashboardNavbar = () => {
     setIsProfileDropdownOpen(!isProfileDropdownOpen);
   };
 
-  // Function untuk mengecek apakah route saat ini aktif
   const isActive = (path) => {
     return location.pathname === path;
   };
 
-  // Function untuk me-refresh dashboard
   const refreshDashboard = (e) => {
     e.preventDefault();
     if (location.pathname === '/dashboard') {
-      // Reload halaman jika sudah di dashboard
       window.location.reload();
     } else {
-      // Navigasi ke dashboard jika berada di halaman lain
       navigate('/dashboard');
     }
   };
 
-  // Function untuk logout
   const handleLogout = () => {
-    // Logika logout dapat ditambahkan di sini
-    // Menutup dropdown profile jika terbuka
     setIsProfileDropdownOpen(false);
-    // Menutup menu mobile jika terbuka
     setIsMenuOpen(false);
-    // Navigasi ke landing page
     navigate('/');
   };
 
@@ -84,7 +75,7 @@ const DashboardNavbar = () => {
               to="/notifikasi"
             />
 
-            {/* Profile Dropdown */}
+            {/* Profile Dropdown - Updated to match the image design */}
             <div className="relative">
               <button
                 onClick={toggleProfileDropdown}
@@ -106,43 +97,53 @@ const DashboardNavbar = () => {
                 </svg>
               </button>
 
-              {/* Dropdown Menu */}
+              {/* Dropdown Menu - Updated to match the image design */}
               {isProfileDropdownOpen && (
                 <div className="absolute right-0 mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
-                  <div className="px-4 py-3 border-b border-gray-200 flex items-center">
-                    <img
-                      src={Default}
-                      alt="User"
-                      className="w-12 h-12 rounded-full mr-3 border border-gray-200"
-                    />
-                    <div>
-                      <div className="font-semibold text-gray-800">Anna Kendrick</div>
-                      <div className="text-sm text-gray-500">Frontend Developer</div>
-                      <div className="text-sm text-gray-500">Manado, Sulawesi Utara</div>
+                  {/* Profile section - Updated to use flex-row */}
+                  <div className="p-4 border-b border-gray-200">
+                    <div className="flex items-center">
+                      <div className="w-16 h-16 rounded-full overflow-hidden mr-3">
+                        <img
+                          src={Default}
+                          alt="User"
+                          className="w-full h-full object-cover border border-gray-200"
+                        />
+                      </div>
+                      <div>
+                        <div className="text-lg font-bold text-gray-800">Anna Kendrick</div>
+                        <div className="text-sm text-gray-700">UI/UX Designer</div>
+                        <div className="text-xs text-gray-500">Manado, Sulawesi Utara</div>
+                      </div>
                     </div>
-                  </div>
-                  <div className="py-1">
                     <Link
                       to="/profile/edit"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      className="mt-4 block w-full py-2 border border-blue-500 text-blue-500 rounded-full text-center font-medium transition-all duration-300 hover:bg-blue-500 hover:text-white hover:shadow-md"
                       onClick={() => setIsProfileDropdownOpen(false)}
                     >
                       Edit Profil
                     </Link>
                   </div>
-                  <div className="py-1 border-t border-gray-200">
-                    <div className="block px-4 py-2 text-sm text-gray-700">Kelola</div>
+
+                  {/* Management options */}
+                  <div className="py-2">
+                    <div className="px-4 py-2 text-lg font-semibold text-gray-800">Kelola</div>
                     <Link
-                      to="/job/posting"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      to="/pekerjaan-saya"
+                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center"
                       onClick={() => setIsProfileDropdownOpen(false)}
                     >
-                      Akun Posting Pekerjaan
+                      <span className="flex-grow">Pekerjaan Saya</span>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
                     </Link>
                   </div>
-                  <div className="py-1 border-t border-gray-200">
+
+                  {/* Logout option */}
+                  <div className="py-2 border-t border-gray-200">
                     <button
-                      className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
+                      className="block w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100"
                       onClick={handleLogout}
                     >
                       Keluar
@@ -174,8 +175,8 @@ const DashboardNavbar = () => {
         {/* Mobile menu - toggles based on state */}
         <div
           className={`${isMenuOpen
-              ? 'max-h-screen opacity-100 overflow-y-auto'
-              : 'max-h-0 opacity-0 overflow-hidden'
+            ? 'max-h-screen opacity-100 overflow-y-auto'
+            : 'max-h-0 opacity-0 overflow-hidden'
             } lg:hidden transition-all duration-300 ease-in-out`}
         >
           {/* Mobile Navigation Items */}
@@ -210,34 +211,41 @@ const DashboardNavbar = () => {
             />
           </div>
 
-          {/* Mobile User Profile */}
+          {/* Mobile User Profile - Updated to use flex-row as well */}
           <div className="pt-4 pb-3 border-t border-gray-200">
             <div className="flex items-center px-4 py-2">
               <div className="flex-shrink-0">
-                <img className="h-10 w-10 rounded-full" src={Default} alt="User avatar" />
+                <img className="h-12 w-12 rounded-full" src={Default} alt="User avatar" />
               </div>
               <div className="ml-3">
-                <div className="text-base font-medium text-gray-800">Anna Kendrick</div>
-                <div className="text-sm font-medium text-gray-500">anna@example.com</div>
+                <div className="text-base font-bold text-gray-800">Anna Kendrick</div>
+                <div className="text-sm text-gray-700">UI/UX Designer</div>
+                <div className="text-xs text-gray-500">Manado, Sulawesi Utara</div>
               </div>
             </div>
-            <div className="mt-3 space-y-1">
+            <div className="mt-3 px-4">
               <Link
                 to="/profile/edit"
-                className="block px-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-100"
+                className="block w-full py-2 border-1 border-blue-500 text-blue-500 rounded-full text-center font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Edit Profil
               </Link>
+            </div>
+            <div className="mt-3 space-y-1">
+              <div className="block px-4 py-2 text-base font-medium text-gray-800">Kelola</div>
               <Link
-                to="/job/posting"
-                className="block px-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-100"
+                to="/pekerjaan-saya"
+                className="block px-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-100 flex items-center justify-between"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Akun Posting Pekerjaan
+                <span>Pekerjaan Saya</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
               </Link>
               <button
-                className="block w-full text-left px-4 py-2 text-base font-medium text-red-600 hover:bg-gray-100"
+                className="block w-full text-left px-4 py-2 text-base font-medium text-red-600 hover:bg-gray-100 border-t border-gray-200 mt-2 pt-2"
                 onClick={handleLogout}
               >
                 Keluar
@@ -252,10 +260,6 @@ const DashboardNavbar = () => {
 
 /**
  * NavItem - Desktop navigation item component
- * @param {Object} icon - SVG icon component
- * @param {String} label - Navigation label text
- * @param {Boolean} isActive - Whether this navigation item is active
- * @param {String} to - Route path
  */
 const NavItem = ({ icon, label, isActive = false, to }) => {
   return (
@@ -274,7 +278,6 @@ const NavItem = ({ icon, label, isActive = false, to }) => {
 
 /**
  * MobileNavItem - Mobile navigation item component
- * Enhanced for touch targets and mobile display
  */
 const MobileNavItem = ({ icon, label, isActive = false, to, onClick }) => {
   return (
@@ -292,7 +295,7 @@ const MobileNavItem = ({ icon, label, isActive = false, to, onClick }) => {
   );
 };
 
-// Icon components with comments
+// Icon components
 const BriefcaseIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
     <path fillRule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clipRule="evenodd" />

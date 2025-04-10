@@ -31,9 +31,8 @@ const CallToAction = () => {
 
   return (
     <div ref={ctaRef} className="cta text-center opacity-0 transform translate-y-10 transition-all duration-1000">
-      <p className="mt-16 mb-12 text-lg w-full sm:w-3/4 mx-auto">
-        Jadilah bagian dari jaringan profesional Universitas Sam Ratulangi
-        dan dapatkan kesempatan terbaik untuk kariermu.
+      <p className="mt-16 mb-12 text-lg w-full sm:w-1/2 mx-auto">
+        Jadilah bagian dari jaringan profesional dan dapatkan kesempatan terbaik untuk kariermu.
       </p>
       <button className="bg-lime-400 text-black font-bold py-3 px-6 rounded-lg hover:bg-lime-500 hover:scale-105 transition duration-300 transform">
         Bergabung Sekarang
