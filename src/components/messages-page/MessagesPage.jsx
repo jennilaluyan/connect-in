@@ -6,7 +6,6 @@ import connectIMAGE from "../../assets/severus.jpg";
 
 import { useNavContext } from "/src/components/connections-page/NavContext.jsx";
 
-// Dummy messages for each contact
 const dummyChats = {
   "Jhon Doe": [
     { from: "me", text: "Hai Jhon!" },
@@ -33,12 +32,8 @@ const MessagesPage = () => {
     setActiveNavItem('Pesan');
   }, []);
 
-
   return (
-
-
-
-    <div id="connection" className="min-h-screen bg-gray-100">
+    <div id="dashboard" className="min-h-screen bg-gray-100">
       <DashboardNavbar />
 
       <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
@@ -46,9 +41,10 @@ const MessagesPage = () => {
           <MessagesSearchBar setSelectedContact={setSelectedContact} />
         </div>
 
-        <div className="flex h-[70vh] bg-gray-100 space-x-4">
+        {/* Responsive layout */}
+        <div className="flex flex-col md:flex-row md:h-[70vh] bg-gray-100 gap-4">
           {/* Sidebar: Contacts */}
-          <div className="w-1/3 bg-white rounded-xl shadow-md overflow-y-auto">
+          <div className="w-full md:w-1/3 bg-white rounded-xl shadow-md overflow-y-auto">
             <div className="p-4">
               {contacts.map((contact) => (
                 <div
@@ -57,7 +53,11 @@ const MessagesPage = () => {
                   className={`flex items-start space-x-4 mb-4 cursor-pointer hover:bg-blue-100 p-2 rounded-lg transition ${selectedContact === contact.name ? "bg-blue-100" : ""
                     }`}
                 >
-                  <img src={contact.image} alt="Avatar" className="rounded-full w-12 h-12" />
+                  <img
+                    src={contact.image}
+                    alt="Avatar"
+                    className="rounded-full w-12 h-12"
+                  />
                   <div>
                     <p className="font-semibold">{contact.name}</p>
                     <p className="text-sm text-gray-500">
@@ -70,16 +70,23 @@ const MessagesPage = () => {
           </div>
 
           {/* Chat Window */}
-          <div className="w-2/3 bg-white rounded-xl shadow-md p-6 flex flex-col">
+          <div className="w-full md:w-2/3 bg-white rounded-xl shadow-md p-4 sm:p-6 flex flex-col">
             {!selectedContact ? (
-              <div class="bg-white rounded-xl p-6">
-                <h2 class="text-xl font-semibold mb-4" >Buat Pesan Baru</h2>
+              <div className="bg-white rounded-xl">
+                <h2 className="text-xl font-semibold mb-4">Buat Pesan Baru</h2>
 
-                <input type="text" placeholder="Ketik nama"
-                  class="w-full border border-gray-300 rounded-md p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+                <input
+                  type="text"
+                  placeholder="Ketik nama"
+                  className="w-full border border-gray-300 rounded-md p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                />
 
-                <textarea rows="8" placeholder="Masukkan teks disini"
-                  class="w-full border border-gray-300 rounded-md p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none bg-gray-100"></textarea>
+                <textarea
+                  rows="8"
+                  placeholder="Masukkan teks disini"
+                  className="w-full border border-gray-300 rounded-md p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none bg-gray-100"
+                ></textarea>
+
                 <div className="flex justify-end">
                   <button className="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600">
                     Kirim
@@ -104,7 +111,6 @@ const MessagesPage = () => {
                   ))}
                 </div>
 
-                {/* Message input */}
                 <textarea
                   rows="4"
                   placeholder="Masukkan teks disini"
