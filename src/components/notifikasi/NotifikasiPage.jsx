@@ -1,13 +1,23 @@
 import React, { useState, useEffect } from "react";
 import DashboardNavbar from "../dashboard/DashboardNavbar";
+import { useNavContext } from "/src/components/connections-page/NavContext.jsx";
 
 const NotifikasiPage = () => {
     const [filter, setFilter] = useState("Semua");
     const [notifications, setNotifications] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    const { setActiveNavItem } = useNavContext();
+
+    useEffect(() => {
+      setActiveNavItem("Notifikasi");
+    }, []);
+
+
     // Simulasi data notifikasi
     useEffect(() => {
+        
+
         // Simulasi loading
         setLoading(true);
 
