@@ -8,13 +8,19 @@ import RegisterPage from './components/register-page/RegisterPage'
 import Dashboard from './components/dashboard/Dashboard'
 import JobDetail from './components/detail-job/JobDetail'
 import ConnectionsPage from './components/connections-page/ConnectionsPage'
-import MessagesPage from './components/messages-page/MessagesPage'
+// import MessagesPage from './components/messages-page/MessagesPage'
 import { NavProvider } from './components/connections-page/NavContext'
 import ProfileEditPage from './components/profil/ProfileEditPage'
-import NotifikasiPage from './components/notifikasi/NotifikasiPage'
+// import NotifikasiPage from './components/notifikasi/NotifikasiPage'
 import PekerjaanSayaPage from './components/pekerjaan-saya/PekerjaanSayaPage'
 import Footer from './components/landing-page/Footer'
-
+import AdminProfilePage from './components/admin/profile/AdminProfilePage'
+import MessagesAdminPage from './components/admin/pesan/MessagesAdminPage'
+import NotifikasiAdminPage from './components/admin/notifikasi/NotifikasiAdminPage'
+import MessagesUserPage from './components/messages-page/MessagesUserPage'
+import NotifikasiUserPage from './components/notifikasi/NotifikasiUserPage'
+import PostingPekerjaan from './components/admin/posting-pekerjaan/PostingPekerjaan'
+import ProfileUserPage from './components/profil/ProfileUserPage'
 // Layout component that includes Footer
 const LayoutWithFooter = ({ children }) => (
   <>
@@ -46,10 +52,10 @@ createRoot(document.getElementById('root')).render(
             }
           />
           <Route
-            path="/profile/edit"
+            path="/profile"
             element={
               <LayoutWithFooter>
-                <ProfileEditPage />
+                <ProfileUserPage />
               </LayoutWithFooter>
             }
           />
@@ -65,7 +71,7 @@ createRoot(document.getElementById('root')).render(
             path="/notifikasi"
             element={
               <LayoutWithFooter>
-                <NotifikasiPage />
+                <NotifikasiUserPage />
               </LayoutWithFooter>
             }
           />
@@ -77,11 +83,51 @@ createRoot(document.getElementById('root')).render(
               </LayoutWithFooter>
             }
           />
+          <Route
+            path="/admin/profile"
+            element={
+              <LayoutWithFooter>
+                <AdminProfilePage />
+              </LayoutWithFooter>
+            }
+          />
+          <Route
+            path="/admin/pesan"
+            element={
+              <LayoutWithFooter>
+                <MessagesAdminPage />
+              </LayoutWithFooter>
+            }
+          />
+          <Route
+            path="/admin/notifikasi"
+            element={
+              <LayoutWithFooter>
+                <NotifikasiAdminPage />
+              </LayoutWithFooter>
+            }
+          />
+          <Route
+            path="/admin/posting-pekerjaan"
+            element={
+              <LayoutWithFooter>
+                <PostingPekerjaan />
+              </LayoutWithFooter>
+            }
+          />
+          <Route
+            path="/messages"
+            element={
+              <LayoutWithFooter>
+                <MessagesUserPage />
+              </LayoutWithFooter>
+            }
+          />
           {/* Pages without Footer */}
           <Route path="src/components/login-page" element={<LoginPage />} />
           <Route path="src/components/register-page" element={<RegisterPage />} />
           <Route path="src/components/connections-page" element={<ConnectionsPage />} />
-          <Route path="src/components/messages-page" element={<MessagesPage />} />
+          {/* <Route path="messages-page" element={<MessagesPage />} /> */}
         </Routes>
       </BrowserRouter>
     </NavProvider>
