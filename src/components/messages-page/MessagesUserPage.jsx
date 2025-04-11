@@ -92,18 +92,19 @@ const MessagesUserPage = () => {
   };
 
   return (
-    <div id="dashboard" className="min-h-screen bg-gray-100">
+    <>
       <DashboardNavbar />
-
-      <MessagesComponent
-        contacts={contacts}
-        selectedContact={selectedContact}
-        setSelectedContact={setSelectedContact}
-        chats={chats}
-        onSendMessage={handleSendMessage}
-        searchComponent={MessagesSearchBar}
-      />
-    </div>
+      <div className="min-h-screen bg-gray-100">
+        <MessagesComponent
+          contacts={contacts}
+          selectedContact={selectedContact}
+          setSelectedContact={setSelectedContact}
+          chats={chats}
+          onSendMessage={handleSendMessage}
+          searchComponent={MessagesSearchBar}
+        />
+      </div>
+    </>
   );
 };
 

@@ -64,10 +64,8 @@ const Dashboard = () => {
 
   return (
     <>
+      <DashboardNavbar />
       <div id="dashboard" className="min-h-screen bg-gray-100">
-        {/* Navbar component */}
-        <DashboardNavbar />
-
         {/* Main content with responsive padding - changed from sm: to md: */}
         <div className="container mx-auto px-4 md:px-6 py-6 md:py-8">
           {/* Search section - changed from sm: to md: */}

@@ -55,7 +55,7 @@ const DashboardNavbar = () => {
   };
 
   return (
-    <header className="bg-white shadow-sm py-3 border-b border-gray-200">
+    <header className="navbar bg-white shadow-sm py-3 border-b border-gray-200">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
           {/* Logo yang me-refresh dashboard */}

@@ -113,17 +113,19 @@ const NotifikasiUserPage = () => {
   };
 
   return (
-    <div id="notifikasi" className="min-h-screen">
+    <>
       <DashboardNavbar />
-      <NotifikasiComponent
-        filter={filter}
-        setFilter={setFilter}
-        notifications={notifications}
-        loading={loading}
-        filterMapping={filterMapping}
-        renderIcon={renderIcon}
-      />
-    </div>
+      <div id="notifikasi" className="min-h-screen">
+        <NotifikasiComponent
+          filter={filter}
+          setFilter={setFilter}
+          notifications={notifications}
+          loading={loading}
+          filterMapping={filterMapping}
+          renderIcon={renderIcon}
+        />
+      </div>
+    </>
   );
 };
 
