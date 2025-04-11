@@ -36,22 +36,26 @@ const TestimonialCard = ({ image, name, role, text, imageRight = false, delay = 
     >
       {/* Mobile layout - always image on top, text below */}
       <div className="block md:hidden">
-        <div className="relative w-full md:h-80 lg:h-64">
+        <div className="relative w-full h-48">
           <img
             src={image}
             alt={name}
             className="w-full h-full object-cover"
+            onError={(e) => {
+              e.target.src = "/api/placeholder/400/400";
+            }}
           />
-          <div
-            className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white px-4 py-3 rounded-lg name-box w-3/4 max-w-xs"
-          >
-            <div className="font-medium text-center">{name}</div>
-            <div className="text-sm text-center">{role}</div>
-          </div>
         </div>
-        <div className="bg-blue-500 text-white p-6 text-box">
-          <p className="text-lg mb-4">{text}</p>
-          <div className="flex items-center gap-1">
+        
+        {/* Fixed name box for mobile - moved outside the image container */}
+        <div className="bg-blue-500 text-white px-4 py-2 w-full">
+          <div className="font-medium text-center">{name}</div>
+          <div className="text-sm text-center">{role}</div>
+        </div>
+        
+        <div className="bg-blue-500 text-white p-4">
+          <p className="text-base mb-4">{text}</p>
+          <div className="flex items-center justify-center gap-1">
             {Array(5).fill().map((_, i) => (
               <span key={i} className="text-yellow-400 animate-pulse">★</span>
             ))}
@@ -67,6 +71,9 @@ const TestimonialCard = ({ image, name, role, text, imageRight = false, delay = 
               src={image}
               alt={name}
               className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+              onError={(e) => {
+                e.target.src = "/api/placeholder/400/400";
+              }}
             />
             <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white px-6 py-3 rounded-lg transition-transform duration-300 hover:translate-y-1 w-4/5">
               <div className="font-medium text-center">{name}</div>
@@ -75,8 +82,8 @@ const TestimonialCard = ({ image, name, role, text, imageRight = false, delay = 
           </div>
         )}
 
-        <div className="bg-blue-500 text-white p-6 flex-1 flex flex-col justify-center text-box">
-          <p className="text-left text-lg mb-4 w-3/4">{text}</p>
+        <div className="bg-blue-500 text-white p-6 flex-1 flex flex-col justify-center">
+          <p className="text-left text-lg mb-4 md:w-3/4 lg:w-3/4">{text}</p>
           <div className="flex items-center gap-1">
             {Array(5).fill().map((_, i) => (
               <span key={i} className="text-yellow-400 animate-pulse">★</span>
@@ -90,6 +97,9 @@ const TestimonialCard = ({ image, name, role, text, imageRight = false, delay = 
               src={image}
               alt={name}
               className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+              onError={(e) => {
+                e.target.src = "/api/placeholder/400/400";
+              }}
             />
             <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white px-6 py-3 rounded-lg transition-transform duration-300 hover:translate-y-1 w-4/5">
               <div className="font-medium text-center">{name}</div>
@@ -99,27 +109,7 @@ const TestimonialCard = ({ image, name, role, text, imageRight = false, delay = 
         )}
       </div>
 
-      {/* Custom CSS for extra small screens */}
       <style jsx>{`
-        @media (max-width: 425px) {
-          .name-box {
-            position: static !important;
-            margin: 0 !important;
-            border-radius: 0 !important;
-            width: 100% !important;
-            transform: none !important;
-            left: 0 !important;
-          }
-          .name-box div {
-            font-size: smaller !important;
-          }
-          .text-box p {
-            font-size: 0.85rem !important;
-          }
-          .text-box {
-            padding: 1rem !important;
-          }
-        }
         .card-animate {
           opacity: 1;
           transform: translateY(0);

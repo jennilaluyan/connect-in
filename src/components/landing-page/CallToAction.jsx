@@ -1,46 +1,52 @@
 import { useEffect, useRef } from "react";
 
-const CallToAction = () => {
-  const ctaRef = useRef(null); // Create a ref to attach to the CTA element
+const CallToAction = ({ animate = true }) => {
+  const ctaRef = useRef(null);
 
   useEffect(() => {
-    // Create an IntersectionObserver to observe when the CTA element is in view
+    if (!animate) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Add animation class when the element is in view
             entry.target.classList.add("cta-animate");
-            observer.unobserve(entry.target); // Stop observing once the animation is triggered
+            observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.5 } // Trigger when 50% of the element is in view
+      { threshold: 0.5 }
     );
 
     if (ctaRef.current) {
-      observer.observe(ctaRef.current); // Start observing the CTA element
+      observer.observe(ctaRef.current);
     }
 
     return () => {
       if (ctaRef.current) {
-        observer.unobserve(ctaRef.current); // Clean up the observer on component unmount
+        observer.unobserve(ctaRef.current);
       }
     };
-  }, []);
+  }, [animate]);
 
   return (
-    <div ref={ctaRef} className="cta text-center opacity-0 transform translate-y-10 transition-all duration-1000">
-      <p className="mt-16 mb-12 text-lg w-full sm:w-1/2 mx-auto">
+    <div
+      ref={ctaRef}
+      className={`transition-all duration-1000 transform ${
+        animate ? "opacity-0 translate-y-10" : "opacity-100 translate-y-0"
+      }`}
+    >
+      <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-6 max-w-2xl mx-auto px-4">
         Jadilah bagian dari jaringan profesional dan dapatkan kesempatan terbaik untuk kariermu.
       </p>
       <button className="bg-lime-400 text-black font-bold py-3 px-6 rounded-lg hover:bg-lime-500 hover:scale-105 transition duration-300 transform">
         Bergabung Sekarang
       </button>
+
       <style jsx>{`
         .cta-animate {
           opacity: 1;
-          transform: translateY(0); // Animation to make the element visible and move it to its original position
+          transform: translateY(0);
         }
       `}</style>
     </div>

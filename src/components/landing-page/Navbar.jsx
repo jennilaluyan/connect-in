@@ -43,7 +43,7 @@ const Navbar = () => {
             </a>
           </div>
 
-          {/* Buttons for Desktop - with animations - FIXED NESTED BUTTONS */}
+          {/* Buttons for Desktop - with animations */}
           <div className="hidden md:flex space-x-4 md:space-x-2 lg:space-x-4">
             <Link to="src/components/login-page">
               <button className="px-4 py-2 md:px-3 md:py-1 lg:px-4 lg:py-2 border-2 border-[#BCFC4D] bg-[#BCFC4D] text-black font-semibold rounded-md hover:bg-[#95CF32] transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
@@ -89,41 +89,46 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu with slide down animation */}
+      {/* Mobile Menu with slide down animation - FIXED HEIGHT AND PADDING */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
-          }`}>
-        <a
-          href="/"
-          className="block px-6 py-3 text-gray-900 hover:bg-gray-100 transition-all duration-300 hover:pl-8">
-          Beranda
-        </a>
-        <a
-          href="#features"
-          className="block px-6 py-3 text-gray-900 hover:bg-gray-100 transition-all duration-300 hover:pl-8">
-          Fitur
-        </a>
-        <a
-          href="#testimonials"
-          className="block px-6 py-3 text-gray-900 hover:bg-gray-100 transition-all duration-300 hover:pl-8">
-          Testimoni
-        </a>
-        <a
-          href="#tim-kami"
-          className="block px-6 py-3 text-gray-900 hover:bg-gray-100 transition-all duration-300 hover:pl-8">
-          Tim Kami
-        </a>
-        <div className="px-6 py-3 space-y-2">
-          <Link to="src/components/login-page">
-            <button className="w-full py-2 border-2 bg-[#BCFC4D] text-black font-semibold rounded-md hover:bg-[#95CF32] transition-all duration-300 hover:shadow-md">
-              Masuk
-            </button>
-          </Link>
-          <Link to="src/components/register-page">
-            <button className="w-full py-2 border-2 border-[#BCFC4D] text-black font-semibold rounded-md hover:bg-[#BCFC4D] transition-all duration-300 hover:shadow-md">
-              Daftar
-            </button>
-          </Link>
+        className={`md:hidden transition-all duration-300 ease-in-out ${
+          isOpen 
+            ? "max-h-96 opacity-100 pb-4" 
+            : "max-h-0 opacity-0 overflow-hidden"
+        }`}>
+        <div className="flex flex-col">
+          <a
+            href="/"
+            className="block px-6 py-3 text-gray-900 hover:bg-gray-100 transition-all duration-300 hover:pl-8">
+            Beranda
+          </a>
+          <a
+            href="#features"
+            className="block px-6 py-3 text-gray-900 hover:bg-gray-100 transition-all duration-300 hover:pl-8">
+            Fitur
+          </a>
+          <a
+            href="#testimonials"
+            className="block px-6 py-3 text-gray-900 hover:bg-gray-100 transition-all duration-300 hover:pl-8">
+            Testimoni
+          </a>
+          <a
+            href="#tim-kami"
+            className="block px-6 py-3 text-gray-900 hover:bg-gray-100 transition-all duration-300 hover:pl-8">
+            Tim Kami
+          </a>
+          <div className="px-6 py-3 space-y-3">
+            <Link to="src/components/login-page" className="block w-full">
+              <button className="w-full py-2  bg-[#BCFC4D]  text-black font-semibold rounded-md hover:bg-[#95CF32] transition-all duration-300 hover:shadow-md">
+                Masuk
+              </button>
+            </Link>
+            <Link to="src/components/register-page" className="block w-full">
+              <button className="w-full py-2 border-2 border-[#BCFC4D] text-black font-semibold rounded-md hover:bg-[#BCFC4D] transition-all duration-300 hover:shadow-md">
+                Daftar
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </nav>

@@ -20,7 +20,7 @@ const DashboardNavbar = () => {
       setActiveNavItem('Pekerjaan');
     } else if (location.pathname.includes('/connections-page')) {
       setActiveNavItem('Koneksi Saya');
-    } else if (location.pathname.includes('/messages-page')) {
+    } else if (location.pathname.includes('/messages')) {
       setActiveNavItem('Pesan');
     } else if (location.pathname.includes('/notifikasi')) {
       setActiveNavItem('Notifikasi');
@@ -86,7 +86,7 @@ const DashboardNavbar = () => {
               icon={<ChatIcon />}
               isActive={activeNavItem === 'Pesan'}
               label="Pesan"
-              to="/src/components/messages-page"
+              to="/messages"
             />
             <NavItem
               icon={<BellIcon />}
@@ -137,7 +137,7 @@ const DashboardNavbar = () => {
                       </div>
                     </div>
                     <Link
-                      to="/profile/edit"
+                      to="/profile"
                       className="mt-4 block w-full py-2 border border-blue-500 text-blue-500 rounded-full text-center font-medium transition-all duration-300 hover:bg-blue-500 hover:text-white hover:shadow-md"
                       onClick={() => setIsProfileDropdownOpen(false)}
                     >
@@ -219,7 +219,7 @@ const DashboardNavbar = () => {
               icon={<ChatIcon />}
               isActive={activeNavItem === 'Pesan'}
               label="Pesan"
-              to="/src/components/messages-page"
+              to="/messages"
               onClick={() => setIsMenuOpen(false)}
             />
             <MobileNavItem
@@ -245,11 +245,11 @@ const DashboardNavbar = () => {
             </div>
             <div className="mt-3 px-4">
               <Link
-                to="/profile/edit"
+                to="/profile"
                 className="block w-full py-2 border-1 border-blue-500 text-blue-500 rounded-full text-center font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Edit Profil
+                Lihat Profil
               </Link>
             </div>
             <div className="mt-3 space-y-1">
