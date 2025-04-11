@@ -2,6 +2,13 @@ import React, { useState, useEffect } from "react";
 import DashboardNavbar from "../dashboard/DashboardNavbar";
 import { useNavContext } from "/src/components/connections-page/NavContext.jsx";
 import NotifikasiComponent from "./NotifikasiComponents";
+import Bruce from '../../assets/Bruce.jpg';
+import Harry from '../../assets/Harry.jpg';
+import Jay from '../../assets/Jay.jpg';
+import Natasha from '../../assets/Natasha.jpg';
+import Sheldon from '../../assets/Sheldon.jpg';
+import Tony from '../../assets/Tony.jpg';
+
 const NotifikasiUserPage = () => {
   const [filter, setFilter] = useState("Semua");
   const [notifications, setNotifications] = useState([]);
@@ -22,52 +29,57 @@ const NotifikasiUserPage = () => {
         {
           id: 1,
           type: "job",
-          image: "/api/placeholder/40/40",
+          image: Jay,
+          name: "PT Tech Solutions",
           content: "Lamaran berhasil dikirim posisi UI/UX Designer",
-          date: new Date(),
+          date: new Date(2025, 3, 10, 14, 30), // April 10, 2025, 14:30
           read: false
         },
         {
           id: 2,
           type: "connection",
-          image: "/api/placeholder/40/40",
-          content: "Jhon Doe mengirim undangan untuk terhubung",
-          date: new Date(),
+          image: Bruce,
+          name: "Bruce Wayne",
+          content: "Bruce Wayne mengirim undangan untuk terhubung",
+          date: new Date(2025, 3, 10, 10, 15), // April 10, 2025, 10:15
           read: false
         },
         {
           id: 3,
           type: "connection",
-          image: "/api/placeholder/40/40",
-          content: "Undangan untuk terhubung diterima",
-          date: new Date(),
+          image: Natasha,
+          name: "Natasha Romanoff",
+          content: "Undangan untuk terhubung dengan Natasha Romanoff diterima",
+          date: new Date(2025, 3, 9, 16, 45), // April 9, 2025, 16:45
           read: false
         },
         {
-            id: 4,
-            type: "connection",
-            image: "/api/placeholder/40/40",
-            content: "Undangan untuk terhubung diterima",
-            date: new Date(),
-            read: false
-          },
+          id: 4,
+          type: "job",
+          image: Sheldon,
+          name: "Caltech Research",
+          content: "Lamaran Anda untuk posisi Data Scientist sedang diproses",
+          date: new Date(2025, 3, 9, 9, 20), // April 9, 2025, 9:20
+          read: false
+        },
         {
-            id: 4,
-            type: "connection",
-            image: "/api/placeholder/40/40",
-            content: "Undangan untuk terhubung diterima",
-            date: new Date(),
-            read: false
-          },
+          id: 5,
+          type: "connection",
+          image: Harry,
+          name: "Harry Potter",
+          content: "Harry Potter melihat profil Anda",
+          date: new Date(2025, 3, 8, 11, 30), // April 8, 2025, 11:30
+          read: true
+        },
         {
-            id: 4,
-            type: "connection",
-            image: "/api/placeholder/40/40",
-            content: "Undangan untuk terhubung diterima",
-            date: new Date(),
-            read: false
-          }
-        // ... Tambahkan data notifikasi user lainnya
+          id: 6,
+          type: "connection",
+          image: Tony,
+          name: "Tony Stark",
+          content: "Tony Stark mengomentari posting Anda tentang AI",
+          date: new Date(2025, 3, 7, 13, 10), // April 7, 2025, 13:10
+          read: true
+        }
       ];
 
       setNotifications(dummyNotifications);
@@ -85,12 +97,9 @@ const NotifikasiUserPage = () => {
   const renderIcon = (notification) => {
     if (notification.type === "job") {
       return (
-        <svg className="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center">
-          <path
-            d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"
-            fill="currentColor"
-          />
-        </svg>
+        <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center">
+          <span className="font-bold text-xl">f</span>
+        </div>
       );
     } else {
       return (

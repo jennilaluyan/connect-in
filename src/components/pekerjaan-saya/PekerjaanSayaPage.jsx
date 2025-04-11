@@ -11,85 +11,86 @@ const PekerjaanSayaPage = () => {
     const jobListings = [
         {
             id: 1,
-            title: "UI/UX DESIGNER",
-            company: "PT. Sekipi Jaya Jaya",
-            type: "PART-TIME",
-            timeApplied: "Dilamar 1 minggu yang lalu",
+            title: "Front-End Developer",
+            company: "TechNova Solutions",
+            type: "FULL-TIME",
+            timeApplied: "Dilamar 2 hari yang lalu",
             status: "Dilamar"
         },
         {
             id: 2,
-            title: "UI/UX DESIGNER",
-            company: "PT. Sekipi Jaya Jaya",
-            type: "PART-TIME",
+            title: "Back-End Developer",
+            company: "Inova Kreasi Digital",
+            type: "REMOTE",
             timeApplied: "Dilamar 1 minggu yang lalu",
-            status: "Dilamar"
+            status: "Diproses"
         },
         {
             id: 3,
-            title: "UI/UX DESIGNER",
-            company: "PT. Sekipi Jaya Jaya",
+            title: "UI/UX Designer",
+            company: "PT. Pixel Pintar",
             type: "PART-TIME",
-            timeApplied: "Dilamar 1 minggu yang lalu",
-            status: "Dilamar"
+            timeApplied: "Dilamar kemarin",
+            status: "Ditolak"
         },
         {
             id: 4,
-            title: "UI/UX DESIGNER",
-            company: "PT. Sekipi Jaya Jaya",
-            type: "PART-TIME",
-            timeApplied: "Dilamar 1 minggu yang lalu",
-            status: "Dilamar"
+            title: "Mobile Developer (Kotlin)",
+            company: "Ruang Inovasi",
+            type: "FULL-TIME",
+            timeApplied: "Dilamar 3 hari yang lalu",
+            status: "Wawancara"
         },
         {
             id: 5,
-            title: "UI/UX DESIGNER",
-            company: "PT. Sekipi Jaya Jaya",
-            type: "PART-TIME",
-            timeApplied: "Dilamar 1 minggu yang lalu",
+            title: "Project Manager",
+            company: "PT. Strategi Cerdas",
+            type: "REMOTE",
+            timeApplied: "Dilamar 2 minggu yang lalu",
             status: "Dilamar"
         },
         {
             id: 6,
-            title: "UI/UX DESIGNER",
-            company: "PT. Sekipi Jaya Jaya",
-            type: "PART-TIME",
-            timeApplied: "Dilamar 1 minggu yang lalu",
-            status: "Dilamar"
+            title: "DevOps Engineer",
+            company: "CloudTech Asia",
+            type: "FULL-TIME",
+            timeApplied: "Dilamar 4 hari yang lalu",
+            status: "Diproses"
         },
         {
             id: 7,
-            title: "UI/UX DESIGNER",
-            company: "PT. Sekipi Jaya Jaya",
-            type: "PART-TIME",
-            timeApplied: "Dilamar 1 minggu yang lalu",
-            status: "Dilamar"
+            title: "QA Tester",
+            company: "BetaBit Studio",
+            type: "INTERNSHIP",
+            timeApplied: "Dilamar 5 hari yang lalu",
+            status: "Ditolak"
         },
         {
             id: 8,
-            title: "UI/UX DESIGNER",
-            company: "PT. Sekipi Jaya Jaya",
+            title: "Full Stack Developer",
+            company: "NextGen Lab",
             type: "PART-TIME",
-            timeApplied: "Dilamar 1 minggu yang lalu",
-            status: "Dilamar"
+            timeApplied: "Dilamar 3 hari yang lalu",
+            status: "Wawancara"
         },
         {
             id: 9,
-            title: "UI/UX DESIGNER",
-            company: "PT. Sekipi Jaya Jaya",
-            type: "PART-TIME",
+            title: "Technical Writer",
+            company: "DokTech Media",
+            type: "FREELANCE",
             timeApplied: "Dilamar 1 minggu yang lalu",
             status: "Dilamar"
         },
         {
             id: 10,
-            title: "UI/UX DESIGNER",
-            company: "PT. Sekipi Jaya Jaya",
-            type: "PART-TIME",
-            timeApplied: "Dilamar 1 minggu yang lalu",
-            status: "Dilamar"
+            title: "UI Designer",
+            company: "PT. Visual Kreasi",
+            type: "REMOTE",
+            timeApplied: "Dilamar 6 hari yang lalu",
+            status: "Diproses"
         }
     ];
+
 
     // Filter buttons
     const filters = [

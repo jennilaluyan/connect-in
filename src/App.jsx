@@ -8,10 +8,8 @@ import RegisterPage from './components/register-page/RegisterPage'
 import Dashboard from './components/dashboard/Dashboard'
 import JobDetail from './components/detail-job/JobDetail'
 import ConnectionsPage from './components/connections-page/ConnectionsPage'
-// import MessagesPage from './components/messages-page/MessagesPage'
 import { NavProvider } from './components/connections-page/NavContext'
 import ProfileEditPage from './components/profil/ProfileEditPage'
-// import NotifikasiPage from './components/notifikasi/NotifikasiPage'
 import PekerjaanSayaPage from './components/pekerjaan-saya/PekerjaanSayaPage'
 import Footer from './components/landing-page/Footer'
 import AdminProfilePage from './components/admin/profile/AdminProfilePage'
@@ -21,6 +19,7 @@ import MessagesUserPage from './components/messages-page/MessagesUserPage'
 import NotifikasiUserPage from './components/notifikasi/NotifikasiUserPage'
 import PostingPekerjaan from './components/admin/posting-pekerjaan/PostingPekerjaan'
 import ProfileUserPage from './components/profil/ProfileUserPage'
+
 // Layout component that includes Footer
 const LayoutWithFooter = ({ children }) => (
   <>
@@ -38,9 +37,7 @@ createRoot(document.getElementById('root')).render(
           <Route
             path="/"
             element={
-              <LayoutWithFooter>
-                <LandingPage />
-              </LayoutWithFooter>
+              <LandingPage />
             }
           />
           <Route
@@ -56,6 +53,14 @@ createRoot(document.getElementById('root')).render(
             element={
               <LayoutWithFooter>
                 <ProfileUserPage />
+              </LayoutWithFooter>
+            }
+          />
+          <Route
+            path="/profile-edit"
+            element={
+              <LayoutWithFooter>
+                <ProfileEditPage />
               </LayoutWithFooter>
             }
           />
@@ -88,6 +93,14 @@ createRoot(document.getElementById('root')).render(
             element={
               <LayoutWithFooter>
                 <AdminProfilePage />
+              </LayoutWithFooter>
+            }
+          />
+          <Route
+            path="/admin/profile-edit"
+            element={
+              <LayoutWithFooter>
+                <ProfileEditPage />
               </LayoutWithFooter>
             }
           />
@@ -127,7 +140,6 @@ createRoot(document.getElementById('root')).render(
           <Route path="src/components/login-page" element={<LoginPage />} />
           <Route path="src/components/register-page" element={<RegisterPage />} />
           <Route path="src/components/connections-page" element={<ConnectionsPage />} />
-          {/* <Route path="messages-page" element={<MessagesPage />} /> */}
         </Routes>
       </BrowserRouter>
     </NavProvider>

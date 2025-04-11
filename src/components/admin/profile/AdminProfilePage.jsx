@@ -1,11 +1,26 @@
-import NavbarAdmin from "./NavbarAdmin"
-import ProfileCard from "./ProfileCard"
+import React from 'react';
+import NavbarAdmin from "./NavbarAdmin";
+import ProfileCard from "./ProfileCard";
+import Cobie from '../../../assets/Cobie.jpeg';
 
 function AdminProfilePage() {
+  // Admin profile configuration
+  const adminConfig = {
+    name: "Cobie Smulders",
+    location: "Jakarta, DKI Jakarta",
+    role: "HRD PT Shield",
+    imageUrl: Cobie
+  };
+
   return (
     <>
       <NavbarAdmin />
-      <ProfileCard />
+      <ProfileCard
+        name={adminConfig.name}
+        location={adminConfig.location}
+        role={adminConfig.role}
+        imageUrl={adminConfig.imageUrl}
+      />
     </>
   );
 }

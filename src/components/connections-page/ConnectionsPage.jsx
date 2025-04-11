@@ -1,7 +1,19 @@
 import React, { useState, useEffect } from "react";
 import DashboardNavbar from "/src/components/dashboard/DashboardNavbar";
 import Footer from "../landing-page/Footer";
-import connectIMAGE from "../../assets/severus.jpg";
+import Claire from '../../assets/Claire.jpg';
+import Harry from '../../assets/Harry.jpg';
+import Jay from '../../assets/Jay.jpg';
+import Leonard from '../../assets/Leonard.jpg';
+import Marshall from '../../assets/Marshall.jpg';
+import Mitchell from '../../assets/Mitchell.jpg';
+import Natasha from '../../assets/Natasha.jpg';
+import Phil from '../../assets/Phil.jpg';
+import Sheldon from '../../assets/Sheldon.jpg';
+import Sherlock from '../../assets/Sherlock.jpg';
+import Ted from '../../assets/Ted.jpg';
+import Tony from '../../assets/Tony.jpg';
+import Barney from '../../assets/Barney.jpg';
 import { useNavContext } from "/src/components/connections-page/NavContext.jsx";
 
 const ConnectionsPage = () => {
@@ -12,27 +24,27 @@ const ConnectionsPage = () => {
   }, []);
 
   const invitations = [
-    { name: "Harry Potter", role: "Frontend Developer", message: "Sudah mengikuti anda dan mengundang anda untuk terhubung" },
-    { name: "Hermione Granger", role: "Product Manager", message: "Sudah mengikuti anda dan mengundang anda untuk terhubung" },
-    { name: "Ron Weasley", role: "Backend Developer", message: "Sudah mengikuti anda dan mengundang anda untuk terhubung" },
-    { name: "Draco Malfoy", role: "UX Designer", message: "Sudah mengikuti anda dan mengundang anda untuk terhubung" },
-    { name: "Luna Lovegood", role: "Creative Director", message: "Sudah mengikuti anda dan mengundang anda untuk terhubung" }
+    { name: "Claire Dunphy", role: "Frontend Developer", message: "Sudah mengikuti anda dan mengundang anda untuk terhubung", image: Claire },
+    { name: "Harry Potter", role: "Product Manager", message: "Sudah mengikuti anda dan mengundang anda untuk terhubung", image: Harry },
+    { name: "Jay Pritchett", role: "Backend Developer", message: "Sudah mengikuti anda dan mengundang anda untuk terhubung", image: Jay },
+    { name: "Leonard Hofstadter", role: "UX Designer", message: "Sudah mengikuti anda dan mengundang anda untuk terhubung", image: Leonard },
+    { name: "Marshall Eriksen", role: "Creative Director", message: "Sudah mengikuti anda dan mengundang anda untuk terhubung", image: Marshall }
   ];
 
   const connections = [
-    { id: 1, name: "Harry Potter", role: "Frontend Developer", image: connectIMAGE },
-    { id: 2, name: "Hermione Granger", role: "Product Manager", image: connectIMAGE },
-    { id: 3, name: "Ron Weasley", role: "Backend Developer", image: connectIMAGE },
-    { id: 4, name: "Draco Malfoy", role: "UX Designer", image: connectIMAGE }
+    { id: 1, name: "Mitchell Pritchett", role: "Frontend Developer", image: Mitchell },
+    { id: 2, name: "Natasha Romanoff", role: "Product Manager", image: Natasha },
+    { id: 3, name: "Phil Dunphy", role: "Backend Developer", image: Phil },
+    { id: 4, name: "Sheldon Cooper", role: "UX Designer", image: Sheldon }
   ];
 
   const connectionsblock = [
-    { id: 1, name: "Sirius Black", role: "Data Scientist", image: connectIMAGE },
-    { id: 2, name: "Albus Dumbledore", role: "AI Researcher", image: connectIMAGE },
-    { id: 3, name: "Minerva McGonagall", role: "Full Stack Developer", image: connectIMAGE },
-    { id: 4, name: "Lord Voldemort", role: "Cybersecurity Expert", image: connectIMAGE },
-    { id: 5, name: "Rubeus Hagrid", role: "DevOps Engineer", image: connectIMAGE },
-    { id: 6, name: "Neville Longbottom", role: "Software Tester", image: connectIMAGE }
+    { id: 1, name: "Sherlock Holmes", role: "Data Scientist", image: Sherlock },
+    { id: 2, name: "Ted Mosby", role: "AI Researcher", image: Ted },
+    { id: 3, name: "Tony Stark", role: "Full Stack Developer", image: Tony },
+    { id: 5, name: "Jay Pritchett", role: "DevOps Engineer", image: Jay },
+    { id: 6, name: "Leonard Hofstadter", role: "Software Tester", image: Leonard },
+    { id: 6, name: "Barney Stinson", role: "Marketing Manager", image: Barney },
   ];
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -52,7 +64,7 @@ const ConnectionsPage = () => {
             <h2 className="text-lg font-bold mb-4">Undangan</h2>
             {invitations.map((invite, index) => (
               <div key={index} className="flex flex-col sm:flex-row sm:items-center border-b pb-4 mb-4 last:border-none gap-2">
-                <img src={connectIMAGE} alt="Profile" className="w-10 h-10 rounded-full" />
+                <img src={invite.image} alt="Profile" className="w-10 h-10 rounded-full" />
                 <div className="flex-1 text-sm">
                   <h3 className="font-bold">{invite.name}</h3>
                   <p className="text-gray-500">{invite.role}</p>
@@ -71,7 +83,7 @@ const ConnectionsPage = () => {
             <h2 className="text-lg font-bold mb-4">Koneksi Saya</h2>
             {connections.map((connection, index) => (
               <div key={index} className="flex flex-col sm:flex-row items-start sm:items-center border-b pb-4 mb-4 last:border-none gap-4">
-                <img src={connectIMAGE} alt="Profile" className="w-10 h-10 rounded-full" />
+                <img src={connection.image} alt="Profile" className="w-10 h-10 rounded-full" />
                 <div className="flex-1">
                   <h3 className="font-bold">{connection.name}</h3>
                   <p className="text-gray-500 text-sm">{connection.role}</p>
@@ -94,7 +106,7 @@ const ConnectionsPage = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {connectionsblock.map((connection) => (
               <div key={connection.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
-                <img src={connectIMAGE} alt={connection.name} className="w-full h-40 object-cover" />
+                <img src={connection.image} alt={connection.name} className="w-full h-40 object-cover" />
                 <div className="p-4">
                   <h3 className="text-md font-bold">{connection.name}</h3>
                   <p className="text-gray-500">{connection.role}</p>

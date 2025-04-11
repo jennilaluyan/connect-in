@@ -11,30 +11,30 @@ const MessagesAdminPage = () => {
 
   useEffect(() => {
     setActiveNavItem("Pesan Admin");
-    
+
     // Fetch contacts untuk admin (simulated)
     const dummyAdminContacts = [
-      { 
-        id: "user123", 
-        name: "Ahmad Pelamar", 
-        image: "/api/placeholder/48/48", 
-        status: "Pelamar UI/UX Designer" 
+      {
+        id: "user123",
+        name: "Ahmad Pelamar",
+        image: "/api/placeholder/48/48",
+        status: "Pelamar UI/UX Designer"
       },
-      { 
-        id: "user456", 
-        name: "Budi Kandidat", 
-        image: "/api/placeholder/48/48", 
-        status: "Pelamar Frontend Developer" 
+      {
+        id: "user456",
+        name: "Budi Kandidat",
+        image: "/api/placeholder/48/48",
+        status: "Pelamar Frontend Developer"
       },
-      { 
-        id: "user789", 
-        name: "Cindy Profesional", 
-        image: "/api/placeholder/48/48", 
-        status: "Pelamar Project Manager" 
+      {
+        id: "user789",
+        name: "Cindy Profesional",
+        image: "/api/placeholder/48/48",
+        status: "Pelamar Project Manager"
       }
     ];
     setContacts(dummyAdminContacts);
-    
+
     // Fetch chats untuk admin (simulated)
     const dummyAdminChats = {
       "Ahmad Pelamar": [
@@ -60,7 +60,7 @@ const MessagesAdminPage = () => {
       // Implement admin-specific search logic here
       console.log("Searching:", e.target.value);
     };
-    
+
     return (
       <div className="relative">
         <input
@@ -91,16 +91,16 @@ const MessagesAdminPage = () => {
   const handleSendMessage = (message) => {
     const { to, text } = message;
     const now = new Date();
-    const timeString = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-    
+    const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
     // Tambahkan pesan ke chat yang ada
     if (to) {
       const updatedChats = { ...chats };
-      
+
       if (!updatedChats[to]) {
         updatedChats[to] = [];
       }
-      
+
       updatedChats[to] = [
         ...updatedChats[to],
         {
@@ -109,9 +109,9 @@ const MessagesAdminPage = () => {
           time: timeString
         }
       ];
-      
+
       setChats(updatedChats);
-      
+
       // Simulasi respons otomatis (untuk demo)
       setTimeout(() => {
         const autoResponse = { ...updatedChats };
@@ -120,7 +120,7 @@ const MessagesAdminPage = () => {
           {
             from: to,
             text: `Baik, terima kasih atas informasinya.`,
-            time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
           }
         ];
         setChats(autoResponse);
@@ -131,7 +131,7 @@ const MessagesAdminPage = () => {
   return (
     <div id="admin-dashboard" className="min-h-screen bg-gray-100">
       <NavbarAdmin userName="Admin HR PT Jaya Skripsi" />
-      
+
       <MessagesComponent
         contacts={contacts}
         selectedContact={selectedContact}
@@ -140,7 +140,7 @@ const MessagesAdminPage = () => {
         onSendMessage={handleSendMessage}
         searchComponent={AdminSearchBar}
       />
-      
+
     </div>
   );
 };

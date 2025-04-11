@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import Default from "../../assets/Anonymous.png";
+import Anna from "../../assets/Anna.jpeg";
 import { useNavContext } from "/src/components/connections-page/NavContext.jsx";
 
 /**
@@ -102,7 +102,7 @@ const DashboardNavbar = () => {
                 className="flex items-center focus:outline-none"
               >
                 <img
-                  src={Default}
+                  src={Anna}
                   alt="User"
                   className="w-8 h-8 rounded-full mr-2 border border-gray-200"
                 />
@@ -125,7 +125,7 @@ const DashboardNavbar = () => {
                     <div className="flex items-center">
                       <div className="w-16 h-16 rounded-full overflow-hidden mr-3">
                         <img
-                          src={Default}
+                          src={Anna}
                           alt="User"
                           className="w-full h-full object-cover border border-gray-200"
                         />
@@ -141,7 +141,7 @@ const DashboardNavbar = () => {
                       className="mt-4 block w-full py-2 border border-blue-500 text-blue-500 rounded-full text-center font-medium transition-all duration-300 hover:bg-blue-500 hover:text-white hover:shadow-md"
                       onClick={() => setIsProfileDropdownOpen(false)}
                     >
-                      Edit Profil
+                      Lihat Profil
                     </Link>
                   </div>
 
@@ -235,7 +235,7 @@ const DashboardNavbar = () => {
           <div className="pt-4 pb-3 border-t border-gray-200">
             <div className="flex items-center px-4 py-2">
               <div className="flex-shrink-0">
-                <img className="h-12 w-12 rounded-full" src={Default} alt="User avatar" />
+                <img className="h-12 w-12 rounded-full" src={Anna} alt="User avatar" />
               </div>
               <div className="ml-3">
                 <div className="text-base font-bold text-gray-800">Anna Kendrick</div>

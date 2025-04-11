@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import NavbarAdmin from "../profile/NavbarAdmin";
 import { useNavContext } from "/src/components/connections-page/NavContext.jsx";
 import NotifikasiComponent from "../../notifikasi/NotifikasiComponents";
+
 const NotifikasiAdminPage = () => {
   const [filter, setFilter] = useState("Semua");
   const [notifications, setNotifications] = useState([]);
@@ -57,28 +58,28 @@ const NotifikasiAdminPage = () => {
     "Lamar": "apply"
   };
 
-  // Render icon untuk admin (company icon untuk semua)
+  // Render icon Facebook-style
   const renderIcon = () => {
     return (
-      <div className="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center p-2">
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-        </svg>
+      <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center">
+        <span className="font-bold text-xl">f</span>
       </div>
     );
   };
 
   return (
-    <div id="notifikasi-admin" className="min-h-screen">
+    <div className="min-h-screen">
       <NavbarAdmin userName="Admin HR PT Jaya Skripsi" />
-      <NotifikasiComponent
-        filter={filter}
-        setFilter={setFilter}
-        notifications={notifications}
-        loading={loading}
-        filterMapping={filterMapping}
-        renderIcon={renderIcon}
-      />
+      <div id="notifikasiAdmin">
+        <NotifikasiComponent
+          filter={filter}
+          setFilter={setFilter}
+          notifications={notifications}
+          loading={loading}
+          filterMapping={filterMapping}
+          renderIcon={renderIcon}
+        />
+      </div>
     </div>
   );
 };
