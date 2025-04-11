@@ -6,7 +6,7 @@ const RegisterPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate('/dashboard'); // Navigate to dashboard page on form submission
+    navigate('/admin/profile'); // Navigate to dashboard page on form submission
   };
 
   return (
