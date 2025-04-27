@@ -143,8 +143,7 @@ const NavbarAdmin = () => {
                                         </Link>
                                     </div>
 
-                                    {/* Management options */}
-                                    {/* <div className="py-2">
+                                    <div className="py-2">
                                         <div className="px-4 py-2 text-lg font-semibold text-gray-800">Kelola</div>
                                         <Link
                                             to="/admin/akun-posting-pekerjaan"
@@ -154,7 +153,7 @@ const NavbarAdmin = () => {
                                             <span className="flex-grow">Akun Posting Pekerjaan</span>
                                             <ChevronRight size={20} />
                                         </Link>
-                                    </div> */}
+                                    </div>
 
                                     {/* Logout option */}
                                     <div className="py-2 border-t border-gray-200">
@@ -231,7 +230,7 @@ const NavbarAdmin = () => {
                             </Link>
                         </div>
                         <div className="mt-3 space-y-1">
-                            {/* <div className="block px-4 py-2 text-base font-medium text-gray-800">Kelola</div>
+                            <div className="block px-4 py-2 text-base font-medium text-gray-800">Kelola</div>
                             <Link
                                 to="/admin/akun-posting-pekerjaan"
                                 className="block px-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-100 flex items-center justify-between"
@@ -239,7 +238,7 @@ const NavbarAdmin = () => {
                             >
                                 <span>Akun Posting Pekerjaan</span>
                                 <ChevronRight size={20} />
-                            </Link> */}
+                            </Link>
                             <button
                                 className="block w-full text-left px-4 py-2 text-base font-medium text-red-600 hover:bg-gray-100 border-t border-gray-200 mt-2 pt-2"
                                 onClick={handleLogout}
