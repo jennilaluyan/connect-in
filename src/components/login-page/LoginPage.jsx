@@ -1,4 +1,4 @@
-import LOGINIMAGE from "../../assets/035e07ebac53135fad92c0106a31f361.png";
+import MasukIMG from "../../assets/MasukIMG.png";
 import { Link, useNavigate } from 'react-router-dom'
 
 const LoginPage = () => {
@@ -52,7 +52,7 @@ const LoginPage = () => {
                 {/* Register Link */}
                 <p className="mt-4 text-center text-gray-500">
                     Belum punya akun?{" "}
-                    <Link to="/src/components/register-page" className="font-semibold text-black">
+                    <Link to="/daftar" className="font-semibold text-black">
                         Daftar
                     </Link>
                 </p>
@@ -62,7 +62,7 @@ const LoginPage = () => {
             <div className="md:flex w-full md:h-screen h-full md:w-2/3 bg-[#5285e8] rounded-lg justify-center items-center">
                 <div className="my-auto">
                     <img
-                        src={LOGINIMAGE}
+                        src={MasukIMG}
                         alt="Illustration"
                         className="md:w-[70%] w-[50%] mx-auto md:p-auto p-10"
                     />
