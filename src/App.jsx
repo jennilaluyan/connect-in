@@ -127,7 +127,7 @@ createRoot(document.getElementById("root")).render(
             }
           />
           <Route
-            path="/messages"
+            path="/pesan"
             element={
               <LayoutWithFooter>
                 <MessagesUserPage />
@@ -160,9 +160,9 @@ createRoot(document.getElementById("root")).render(
           />
 
           {/* Pages without Footer */}
-          <Route path="src/components/login-page" element={<LoginPage />} />
-          <Route path="src/components/register-page" element={<RegisterPage />} />
-          <Route path="/connections" element={<ConnectionsPage />} />
+          <Route path="/masuk" element={<LoginPage />} />
+          <Route path="/daftar" element={<RegisterPage />} />
+          <Route path="/koneksi" element={<ConnectionsPage />} />
         </Routes>
       </BrowserRouter>
     </NavProvider>

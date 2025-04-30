@@ -1,7 +1,9 @@
 import { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 const CallToAction = ({ animate = true }) => {
   const ctaRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!animate) return;
@@ -30,16 +32,9 @@ const CallToAction = ({ animate = true }) => {
   }, [animate]);
 
   return (
-    <div
-      ref={ctaRef}
-      className={`transition-all duration-1000 transform ${
-        animate ? "opacity-0 translate-y-10" : "opacity-100 translate-y-0"
-      }`}
-    >
-      <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-6 max-w-2xl mx-auto px-4">
-        Jadilah bagian dari jaringan profesional dan dapatkan kesempatan terbaik untuk kariermu.
-      </p>
-      <button className="bg-lime-400 text-black font-bold py-3 px-6 rounded-lg hover:bg-lime-500 hover:scale-105 transition duration-300 transform">
+    <div ref={ctaRef} className={`transition-all duration-1000 transform ${animate ? "opacity-0 translate-y-10" : "opacity-100 translate-y-0"}`}>
+      <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-6 max-w-2xl mx-auto px-4">Jadilah bagian dari jaringan profesional dan dapatkan kesempatan terbaik untuk kariermu.</p>
+      <button onClick={() => navigate("/masuk")} className="bg-lime-400 text-black font-bold py-3 px-6 rounded-lg hover:bg-lime-500 hover:scale-105 transition duration-300 transform">
         Bergabung Sekarang
       </button>
 

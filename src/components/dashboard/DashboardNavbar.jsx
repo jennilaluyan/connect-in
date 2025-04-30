@@ -18,9 +18,9 @@ const DashboardNavbar = () => {
   useEffect(() => {
     if (location.pathname === '/dashboard') {
       setActiveNavItem('Pekerjaan');
-    } else if (location.pathname.includes('/connections-page')) {
+    } else if (location.pathname.includes('/koneksi')) {
       setActiveNavItem('Koneksi Saya');
-    } else if (location.pathname.includes('/messages')) {
+    } else if (location.pathname.includes('/pesan')) {
       setActiveNavItem('Pesan');
     } else if (location.pathname.includes('/notifikasi')) {
       setActiveNavItem('Notifikasi');
@@ -80,13 +80,13 @@ const DashboardNavbar = () => {
               icon={<UserGroupIcon />}
               isActive={activeNavItem === 'Koneksi Saya'}
               label="Koneksi Saya"
-              to="/src/components/connections-page"
+              to="/koneksi"
             />
             <NavItem
               icon={<ChatIcon />}
               isActive={activeNavItem === 'Pesan'}
               label="Pesan"
-              to="/messages"
+              to="/pesan"
             />
             <NavItem
               icon={<BellIcon />}
@@ -212,14 +212,14 @@ const DashboardNavbar = () => {
               icon={<UserGroupIcon />}
               isActive={activeNavItem === 'Koneksi Saya'}
               label="Koneksi Saya"
-              to="/src/components/connections-page"
+              to="/koneksi"
               onClick={() => setIsMenuOpen(false)}
             />
             <MobileNavItem
               icon={<ChatIcon />}
               isActive={activeNavItem === 'Pesan'}
               label="Pesan"
-              to="/messages"
+              to="/pesan"
               onClick={() => setIsMenuOpen(false)}
             />
             <MobileNavItem
