@@ -1,4 +1,4 @@
-import REGISTERIMAGE from "../../assets/9f4ce124bc5a0d9f11e8f17e7006820b.png";
+import DaftarIMG from "../../assets/DaftarIMG.png";
 import { Link, useNavigate } from 'react-router-dom'
 
 const RegisterPage = () => {
@@ -66,7 +66,7 @@ const RegisterPage = () => {
         {/* Login Link */}
         <p className="mt-4 text-center text-gray-500">
           Sudah punya akun?{" "}
-          <Link to="/src/components/login-page" className="font-semibold text-black">
+          <Link to="/masuk" className="font-semibold text-black">
             Masuk
           </Link>
         </p>
@@ -76,7 +76,7 @@ const RegisterPage = () => {
       <div className="sm:w-2/3 md:h-screen bg-[#5285e8] flex justify-center items-center p-6">
         <div className="my-auto text-center">
           <img
-            src={REGISTERIMAGE}
+            src={DaftarIMG}
             alt="Illustration"
             className="w-full max-w-[70%] mx-auto"
           />
