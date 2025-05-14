@@ -4,7 +4,6 @@ import FeaturesSection from "./FeaturesSection";
 import TestimonialsSection from "./TestimonialSection";
 import TimKami from "./TimKami";
 import Footer from "./Footer";
-// import CallToAction from "./CallToAction";
 
 function LandingPage() {
   return (
