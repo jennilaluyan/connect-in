@@ -108,9 +108,9 @@ const PekerjaanSayaPage = () => {
     const filteredJobs = jobListings.filter(job => job.status === activeFilter);
 
     return (
-        <div id="pekerjaan-saya">
+        <div>
             <DashboardNavbar />
-            <div className="flex flex-col md:flex-row min-h-screen p-4 mt-8">
+            <div className="flex flex-col md:flex-row min-h-screen p-4 mt-8" id="pekerjaan-saya">
                 {/* Left Sidebar */}
                 <div className="w-full md:w-64 mb-4 md:mb-0 md:mr-4">
                     <div className="bg-white rounded-lg shadow-sm">

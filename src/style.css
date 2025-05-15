@@ -93,7 +93,9 @@ body {
   #messageAdmin,
   #notifikasiAdmin,
   #messageUser,
-  #postingpekerjaan {
+  #postingpekerjaan,
+  #pekerjaan-diposting,
+  #pelamar {
     margin-left: -80px;
     margin-right: -80px;
   }
