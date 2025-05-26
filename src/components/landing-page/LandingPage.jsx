@@ -1,4 +1,4 @@
-import Navbar from "./Navbar";
+import LandingPageNavbar from "./LandingPageNavbar";
 import Hero from "./Hero";
 import FeaturesSection from "./FeaturesSection";
 import TestimonialsSection from "./TestimonialSection";
@@ -8,7 +8,7 @@ import Footer from "./Footer";
 function LandingPage() {
   return (
     <>
-      <Navbar />
+      <LandingPageNavbar />
       <Hero />
       <FeaturesSection />
       <TestimonialsSection />

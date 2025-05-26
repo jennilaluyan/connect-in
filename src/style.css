@@ -74,11 +74,7 @@ body {
     font-size: 2rem;
   }
 
-  .navbar {
-    margin-left: -80px;
-    margin-right: -80px;
-  }
-
+  nav,
   .hero,
   .features,
   #dashboard,

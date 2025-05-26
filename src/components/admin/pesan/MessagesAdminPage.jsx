@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import NavbarAdmin from "../profile/NavbarAdmin";
 import MessagesComponent from "../../messages-page/MessagesComponents";
 import { useNavContext } from "/src/components/connections-page/NavContext.jsx";
 

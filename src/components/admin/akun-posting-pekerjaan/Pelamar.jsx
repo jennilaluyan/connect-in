@@ -1,7 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import itemIcon from "../../assets/item-icon.png";
-import NavbarAdmin from "../profile/NavbarAdmin";
 
 const Pelamar = () => {
   // Sample applicant data - multiple Jhon Doe UI/UX Designers

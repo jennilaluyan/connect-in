@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import NavbarAdmin from '../profile/NavbarAdmin';
 
 export default function PostingPekerjaan() {
   const [formData, setFormData] = useState({

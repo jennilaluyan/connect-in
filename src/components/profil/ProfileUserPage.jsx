@@ -1,5 +1,4 @@
 import React from 'react';
-import DashboardNavbar from "../dashboard/DashboardNavbar";
 import ProfileCard from "../admin/profile/ProfileCard";
 import Anna from '../../assets/Anna.jpeg';
 
@@ -14,7 +13,6 @@ function ProfileUserPage() {
 
   return (
     <>
-      <DashboardNavbar />
       <ProfileCard
         name={userConfig.name}
         location={userConfig.location}

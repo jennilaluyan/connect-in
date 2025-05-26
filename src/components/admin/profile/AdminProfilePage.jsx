@@ -1,5 +1,4 @@
 import React from 'react';
-import NavbarAdmin from "./NavbarAdmin";
 import ProfileCard from "./ProfileCard";
 import Cobie from '../../../assets/Cobie.jpeg';
 
