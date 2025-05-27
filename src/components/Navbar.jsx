@@ -81,7 +81,7 @@ const Navbar = () => {
             if (currentPath.includes("/superadmin/dashboard")) setActiveNavItem("SA Dashboard");
             else setActiveNavItem("");
         } else if (isApprovedHr()) {
-            if (currentPath.includes("/hr/dashboard") || currentPath.includes("/hr/profile")) setActiveNavItem("HR Profile"); // Gabungkan profile ke dashboard HR
+            if (currentPath.includes("/hr/profile") || currentPath.includes("/hr/profile")) setActiveNavItem("HR Profile"); // Gabungkan profile ke dashboard HR
             else if (currentPath.includes("/hr/pesan")) setActiveNavItem("Pesan HR");
             else if (currentPath.includes("/hr/notifikasi")) setActiveNavItem("Notifikasi HR");
             else if (currentPath.includes("/hr/posting-pekerjaan")) setActiveNavItem("Posting Pekerjaan");
@@ -110,7 +110,7 @@ const Navbar = () => {
         const targetPath = isSuperAdmin()
             ? "/superadmin/dashboard"
             : isApprovedHr()
-                ? "/hr/dashboard" // HR diarahkan ke dashboard/profile mereka
+                ? "/hr/profile" // HR diarahkan ke dashboard/profile mereka
                 : "/dashboard";
         if (location.pathname === targetPath) {
             window.location.reload();
@@ -127,7 +127,7 @@ const Navbar = () => {
 
     const getProfileLink = () => {
         if (isSuperAdmin()) return "/superadmin/dashboard"; // Superadmin mungkin tidak punya halaman profil khusus, atau arahkan ke dashboardnya
-        if (isApprovedHr()) return "/hr/dashboard"; // Halaman profil HR yang juga dashboard
+        if (isApprovedHr()) return "/hr/profile"; // Halaman profil HR yang juga dashboard
         return "/profile"; // Halaman profil user biasa
     };
 
@@ -187,8 +187,8 @@ const Navbar = () => {
                                             to="/hr/posting-pekerjaan"
                                             onClick={closeAllMenus}
                                             className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${activeNavItem === "Posting Pekerjaan"
-                                                    ? `bg-[${activeColor}] text-black` // text-black agar kontras dengan background aktif
-                                                    : `text-black hover:bg-[${hoverColor}] hover:text-black` // text-black untuk item tidak aktif
+                                                ? `bg-[${activeColor}] text-black` // text-black agar kontras dengan background aktif
+                                                : `text-black hover:bg-[${hoverColor}] hover:text-black` // text-black untuk item tidak aktif
                                                 }`}
                                             style={activeNavItem === "Posting Pekerjaan" ? { backgroundColor: activeColor } : {}}
                                         >
@@ -472,8 +472,8 @@ const Navbar = () => {
                                     isActive={activeNavItem === "Posting Pekerjaan"}
                                     activeColor={activeColor}
                                     customClass={`block px-3 py-2 rounded-md text-base font-medium ${activeNavItem === "Posting Pekerjaan"
-                                            ? `bg-[${activeColor}] text-black`
-                                            : "text-black hover:bg-gray-100" // Warna dasar hitam untuk mobile
+                                        ? `bg-[${activeColor}] text-black`
+                                        : "text-black hover:bg-gray-100" // Warna dasar hitam untuk mobile
                                         }`}
                                     styleActive={{ backgroundColor: activeColor }}
                                     onClick={closeAllMenus}
@@ -604,8 +604,8 @@ const NavItem = ({ icon, label, isActive = false, to = "/", onClick, activeColor
         <Link
             to={to}
             className={`flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive
-                    ? `bg-[${activeColor}] text-black` // text-black agar kontras dengan background aktif
-                    : `text-black hover:bg-[${hoverColor}] hover:text-black` // text-black untuk item tidak aktif
+                ? `bg-[${activeColor}] text-black` // text-black agar kontras dengan background aktif
+                : `text-black hover:bg-[${hoverColor}] hover:text-black` // text-black untuk item tidak aktif
                 }`}
             style={isActive ? { backgroundColor: activeColor } : {}}
             onClick={onClick}
@@ -631,8 +631,8 @@ const MobileNavItem = ({ icon, label, isActive = false, to, onClick, customClass
         <Link
             to={to}
             className={`flex items-center px-3 py-2 rounded-md text-base font-medium transition-colors ${isActive
-                    ? `bg-[${activeColor}] text-black` // text-black agar kontras
-                    : "text-black hover:bg-gray-100" // Warna dasar hitam untuk mobile
+                ? `bg-[${activeColor}] text-black` // text-black agar kontras
+                : "text-black hover:bg-gray-100" // Warna dasar hitam untuk mobile
                 }`}
             style={isActive ? { backgroundColor: activeColor } : {}}
             onClick={onClick}

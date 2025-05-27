@@ -2,7 +2,7 @@ import React from 'react';
 import ProfileCard from "./ProfileCard";
 import Cobie from '../../../assets/Cobie.jpeg';
 
-function AdminProfilePage() {
+export default function AdminProfilePage() {
   // Admin profile configuration
   const adminConfig = {
     name: "Cobie Smulders",
@@ -13,7 +13,6 @@ function AdminProfilePage() {
 
   return (
     <>
-      <NavbarAdmin />
       <ProfileCard
         name={adminConfig.name}
         location={adminConfig.location}
@@ -23,5 +22,3 @@ function AdminProfilePage() {
     </>
   );
 }
-
-export default AdminProfilePage;

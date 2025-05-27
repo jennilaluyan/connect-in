@@ -11,8 +11,6 @@ const Pelamar = () => {
 
   return (
     <div className="min-h-screen">
-      <NavbarAdmin title="Connect IN" />
-
       <div className="container mx-auto px-4 py-6 mt-4 md:mt-8">
         <div id="pelamar" className="flex flex-col lg:flex-row gap-6">
           {/* Left Sidebar - Full width on mobile, fixed width on larger screens */}

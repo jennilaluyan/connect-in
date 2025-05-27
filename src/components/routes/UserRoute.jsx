@@ -1,26 +1,42 @@
 // src/components/routes/UserRoute.jsx
 import React from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
-import { isAuthenticated, isPendingHr } from '../../utils/auth';
+import { isAuthenticated, isPendingHr, isRegularUser, isApprovedHr, isSuperAdmin } from '../../utils/auth';
 
 const UserRoute = () => {
     const location = useLocation();
 
     if (!isAuthenticated()) {
-        // Jika tidak login sama sekali, redirect ke login
         return <Navigate to="/masuk" state={{ from: location }} replace />;
     }
 
     if (isPendingHr()) {
-        // Jika HR tapi masih pending, arahkan ke halaman pending
-        // Pengguna HR pending tidak boleh mengakses dashboard user biasa atau HR
+        // HR yang pending diarahkan ke halaman status approval
         return <Navigate to="/pending-approval" replace />;
     }
 
-    // Jika sudah login dan bukan HR pending, izinkan akses
-    // Ini akan mengizinkan user biasa, HR yang sudah diapprove, dan Super Admin
-    // Proteksi lebih spesifik (misalnya hanya untuk role 'user') bisa ditambahkan di sini jika perlu
-    return <Outlet />;
+    // Poin 1: HR yang sudah diapprove tidak boleh akses rute user biasa, arahkan ke profile HR
+    if (isApprovedHr()) {
+        // Jika HR mencoba akses path user, redirect ke profile HR
+        // Kecuali jika path yang sedang diakses adalah path yang memang shared (misal /profile-edit jika componentnya sama)
+        // Untuk simplicity, kita redirect semua path di bawah UserRoute.
+        // Jika ada kebutuhan path bersama, logikanya bisa lebih kompleks.
+        return <Navigate to="/hr/profile" state={{ from: location }} replace />;
+    }
+
+    // Poin 1: Super Admin tidak boleh akses rute user biasa, arahkan ke dashboard SA
+    if (isSuperAdmin()) {
+        return <Navigate to="/superadmin/dashboard" state={{ from: location }} replace />;
+    }
+
+    // Hanya izinkan jika benar-benar regular user
+    if (!isRegularUser()) {
+        // Jika role tidak dikenal setelah semua cek di atas, bisa jadi unauthorized atau error state
+        // Arahkan ke halaman unauthorized atau fallback
+        return <Navigate to="/unauthorized" state={{ from: location }} replace />;
+    }
+
+    return <Outlet />; // Izinkan akses untuk regular user
 };
 
 export default UserRoute;

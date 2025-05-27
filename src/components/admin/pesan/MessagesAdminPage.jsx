@@ -129,8 +129,6 @@ const MessagesAdminPage = () => {
 
   return (
     <div id="admin-dashboard" className="min-h-screen bg-gray-100">
-      <NavbarAdmin userName="Admin HR PT Jaya Skripsi" />
-
       <MessagesComponent
         contacts={contacts}
         selectedContact={selectedContact}

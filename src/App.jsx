@@ -26,13 +26,13 @@ import NotifikasiUserPage from "./components/notifikasi/NotifikasiUserPage";
 import ProfileUserPage from "./components/profil/ProfileUserPage";
 
 // Halaman HR Department (sebelumnya '/admin/...')
-import HrProfilePage from "./components/admin/profile/AdminProfilePage";
-import HrMessagesPage from "./components/admin/pesan/MessagesAdminPage";
-import HrNotifikasiPage from "./components/admin/notifikasi/NotifikasiAdminPage";
-import HrPostingPekerjaan from "./components/admin/posting-pekerjaan/PostingPekerjaan";
-import HrAkunPostingPekerjaan from "./components/admin/akun-posting-pekerjaan/AkunPostingPekerjaan";
-import HrPekerjaanDiposting from "./components/admin/akun-posting-pekerjaan/PekerjaanDiposting";
-import HrPelamar from "./components/admin/akun-posting-pekerjaan/Pelamar";
+import AdminProfilePage from "./components/admin/profile/AdminProfilePage";
+import MessagesAdminPage from "./components/admin/pesan/MessagesAdminPage";
+import NotifikasiAdminPage from "./components/admin/notifikasi/NotifikasiAdminPage";
+import PostingPekerjaan from "./components/admin/posting-pekerjaan/PostingPekerjaan";
+import AkunPostingPekerjaan from "./components/admin/akun-posting-pekerjaan/AkunPostingPekerjaan";
+import PekerjaanDiposting from "./components/admin/akun-posting-pekerjaan/PekerjaanDiposting";
+import Pelamar from "./components/admin/akun-posting-pekerjaan/Pelamar";
 
 // Halaman Super Admin
 import SuperAdminDashboard from "./components/super-admin/SuperAdminDashboard";
@@ -64,7 +64,7 @@ const AuthenticatedRedirect = () => {
 
   const user = getUser(); // Ambil user dari auth.js atau localStorage
   if (isSuperAdmin()) return <Navigate to="/superadmin/dashboard" replace />;
-  if (isApprovedHr()) return <Navigate to="/hr/dashboard" replace />; // Arahkan HR ke dashboard mereka
+  if (isApprovedHr()) return <Navigate to="/hr/profile" replace />; // Arahkan HR ke dashboard mereka
   if (isPendingHr()) return <Navigate to="/pending-approval" replace />;
   // Untuk isRegularUser() atau default user lainnya
   return <Navigate to="/dashboard" replace />;
@@ -97,24 +97,20 @@ createRoot(document.getElementById("root")).render(
           {/* RUTE UNTUK HR DEPARTMENT (Perlu Login sebagai HR yang Approved) */}
           {/* HrApprovedRoute akan spesifik melindungi rute HR */}
           <Route element={<MainLayout><HrApprovedRoute /></MainLayout>}>
-            <Route path="/hr/dashboard" element={<HrProfilePage />} /> {/* Ini adalah halaman profil HR */}
-            {/* ProfileEditPage bisa juga diakses dari sini jika pathnya berbeda untuk HR */}
-            {/* <Route path="/hr/profile-edit" element={<ProfileEditPage />} /> */}
-            <Route path="/hr/pesan" element={<HrMessagesPage />} />
-            <Route path="/hr/notifikasi" element={<HrNotifikasiPage />} />
-            <Route path="/hr/posting-pekerjaan" element={<HrPostingPekerjaan />} />
-            <Route path="/hr/akun-posting-pekerjaan" element={<HrAkunPostingPekerjaan />} />
-            <Route path="/hr/akun-posting-pekerjaan/pekerjaan-diposting" element={<HrPekerjaanDiposting />} />
-            <Route path="/hr/akun-posting-pekerjaan/pelamar" element={<HrPelamar />} />
+            <Route path="/hr/profile" element={<AdminProfilePage />} />
+            <Route path="/hr/profile-edit" element={<ProfileEditPage />} />
+            <Route path="/hr/pesan" element={<MessagesAdminPage />} />
+            <Route path="/hr/notifikasi" element={<NotifikasiAdminPage />} />
+            <Route path="/hr/posting-pekerjaan" element={<PostingPekerjaan />} />
+            <Route path="/hr/akun-posting-pekerjaan" element={<AkunPostingPekerjaan />} />
+            <Route path="/hr/akun-posting-pekerjaan/pekerjaan-diposting" element={<PekerjaanDiposting />} />
+            <Route path="/hr/akun-posting-pekerjaan/pelamar" element={<Pelamar />} />
           </Route>
 
           {/* RUTE UNTUK SUPER ADMIN (Perlu Login sebagai Super Admin) */}
           <Route element={<MainLayout><SuperAdminRoute /></MainLayout>}>
             <Route path="/superadmin/dashboard" element={<SuperAdminDashboard />} />
           </Route>
-
-          {/* Fallback untuk rute tidak ditemukan */}
-          <Route path="*" element={<MainLayout><div><h1>404</h1><p>Halaman Tidak Ditemukan</p><Link to={isAuthenticated() ? (isSuperAdmin() ? "/superadmin/dashboard" : isApprovedHr() ? "/hr/dashboard" : "/dashboard") : "/"}>Kembali</Link></div></MainLayout>} />
         </Routes>
       </BrowserRouter>
     </NavProvider>

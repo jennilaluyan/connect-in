@@ -68,7 +68,6 @@ const NotifikasiAdminPage = () => {
 
   return (
     <div className="min-h-screen">
-      <NavbarAdmin userName="Admin HR PT Jaya Skripsi" />
       <div id="notifikasiAdmin">
         <NotifikasiComponent
           filter={filter}
