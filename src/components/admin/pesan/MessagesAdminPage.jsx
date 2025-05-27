@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import NavbarAdmin from "../profile/NavbarAdmin";
 import MessagesComponent from "../../messages-page/MessagesComponents";
 import { useNavContext } from "/src/components/connections-page/NavContext.jsx";
 
@@ -130,8 +129,6 @@ const MessagesAdminPage = () => {
 
   return (
     <div id="admin-dashboard" className="min-h-screen bg-gray-100">
-      <NavbarAdmin userName="Admin HR PT Jaya Skripsi" />
-
       <MessagesComponent
         contacts={contacts}
         selectedContact={selectedContact}

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import NavbarAdmin from '../profile/NavbarAdmin';
 
 export default function PostingPekerjaan() {
   const [formData, setFormData] = useState({
@@ -37,7 +36,6 @@ export default function PostingPekerjaan() {
 
   return (
     <>
-      <NavbarAdmin />
       <div id='postingPekerjaan' className="max-w-4xl mx-auto p-6">
         <h1 className="text-3xl font-bold text-center mb-8">Posting Pekerjaan</h1>
 

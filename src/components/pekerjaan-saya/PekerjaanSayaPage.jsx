@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import itemIcon from '../../assets/item-icon.png';
-import DashboardNavbar from "../dashboard/DashboardNavbar";
 
 const PekerjaanSayaPage = () => {
     // State for active filter button
@@ -109,7 +108,6 @@ const PekerjaanSayaPage = () => {
 
     return (
         <div>
-            <DashboardNavbar />
             <div className="flex flex-col md:flex-row min-h-screen p-4 mt-8" id="pekerjaan-saya">
                 {/* Left Sidebar */}
                 <div className="w-full md:w-64 mb-4 md:mb-0 md:mr-4">

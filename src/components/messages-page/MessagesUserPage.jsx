@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import DashboardNavbar from "/src/components/dashboard/DashboardNavbar.jsx";
 import MessagesSearchBar from "/src/components/messages-page/MessagesSearchBar.jsx";
 import Footer from "../landing-page/Footer";
 import MessagesComponent from "./MessagesComponents";
@@ -93,7 +92,6 @@ const MessagesUserPage = () => {
 
   return (
     <>
-      <DashboardNavbar />
       <div className="min-h-screen bg-gray-100">
         <MessagesComponent
           contacts={contacts}

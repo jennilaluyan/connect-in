@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import DashboardNavbar from "../dashboard/DashboardNavbar";
 import { useNavContext } from "/src/components/connections-page/NavContext.jsx";
 import NotifikasiComponent from "./NotifikasiComponents";
 import Bruce from '../../assets/Bruce.jpg';
@@ -114,7 +113,6 @@ const NotifikasiUserPage = () => {
 
   return (
     <>
-      <DashboardNavbar />
       <div id="notifikasi" className="min-h-screen">
         <NotifikasiComponent
           filter={filter}

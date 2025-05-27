@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import DashboardNavbar from "/src/components/dashboard/DashboardNavbar";
 import Footer from "../landing-page/Footer";
 import Claire from '../../assets/Claire.jpg';
 import Harry from '../../assets/Harry.jpg';
@@ -55,8 +54,6 @@ const ConnectionsPage = () => {
 
   return (
     <>
-
-      <DashboardNavbar />
       <div id="dashboard" className="min-h-screen bg-gray-100">
 
         <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">

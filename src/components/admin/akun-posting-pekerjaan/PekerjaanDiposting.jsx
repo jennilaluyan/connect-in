@@ -1,7 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import itemIcon from "../../assets/item-icon.png";
-import NavbarAdmin from "../profile/NavbarAdmin";
 
 const PekerjaanDiposting = () => {
   // Sample job data - multiple UI/UX Designer positions from PT. Skripsi Jaya Jaya

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import NavbarAdmin from "../profile/NavbarAdmin";
 import { useNavContext } from "/src/components/connections-page/NavContext.jsx";
 import NotifikasiComponent from "../../notifikasi/NotifikasiComponents";
 
@@ -69,7 +68,6 @@ const NotifikasiAdminPage = () => {
 
   return (
     <div className="min-h-screen">
-      <NavbarAdmin userName="Admin HR PT Jaya Skripsi" />
       <div id="notifikasiAdmin">
         <NotifikasiComponent
           filter={filter}
