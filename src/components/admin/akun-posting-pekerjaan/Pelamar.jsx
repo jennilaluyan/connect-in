@@ -30,7 +30,7 @@ const Pelamar = () => {
               {/* Navigation Links */}
               <div className="py-2">
                 <Link
-                  to="/admin/akun-posting-pekerjaan/pekerjaan-diposting"
+                  to="/hr/pekerjaan-diposting"
                   className="block py-3 px-4 text-gray-700 hover:bg-gray-50 transition-colors"
                 >
                   Pekerjaan yang diposting

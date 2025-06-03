@@ -103,8 +103,8 @@ createRoot(document.getElementById("root")).render(
             <Route path="/hr/notifikasi" element={<NotifikasiAdminPage />} />
             <Route path="/hr/posting-pekerjaan" element={<PostingPekerjaan />} />
             <Route path="/hr/akun-posting-pekerjaan" element={<AkunPostingPekerjaan />} />
-            <Route path="/hr/akun-posting-pekerjaan/pekerjaan-diposting" element={<PekerjaanDiposting />} />
-            <Route path="/hr/akun-posting-pekerjaan/pelamar" element={<Pelamar />} />
+            <Route path="/hr/pekerjaan-diposting" element={<PekerjaanDiposting />} />
+            <Route path="/hr/pelamar" element={<Pelamar />} />
           </Route>
 
           {/* RUTE UNTUK SUPER ADMIN (Perlu Login sebagai Super Admin) */}

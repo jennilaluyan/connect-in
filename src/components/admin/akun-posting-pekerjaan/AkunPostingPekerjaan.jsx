@@ -7,7 +7,7 @@ const AkunPostingPekerjaan = () => {
     <div className="p-4">
       {/* Navbar / sidebar navigasi */}
       <nav className="mb-4">
-        <Link to="pekerjaan-diposting" className="mr-4">
+        <Link to="/hr/pekerjaan-diposting" className="mr-4">
           Pekerjaan Diposting
         </Link>
         <Link to="pelamar">Pelamar</Link>
@@ -16,10 +16,10 @@ const AkunPostingPekerjaan = () => {
       {/* Area konten yang berubah */}
       <Routes>
         {/* Kalau path kosong, langsung redirect ke pekerjaan-diposting */}
-        <Route index element={<Navigate to="pekerjaan-diposting" replace />} />
+        <Route index element={<Navigate to="/hr/pekerjaan-diposting" replace />} />
 
-        <Route path="pekerjaan-diposting" element={<PekerjaanDiposting />} />
-        <Route path="pelamar" element={<Pelamar />} />
+        <Route path="/hr/pekerjaan-diposting" element={<PekerjaanDiposting />} />
+        <Route path="/hr/pelamar" element={<Pelamar />} />
       </Routes>
     </div>
   );

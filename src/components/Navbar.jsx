@@ -22,7 +22,7 @@ import {
     MessageCircle, // Ganti ChatIcon jika tidak didefinisikan
     ChevronRight as ChevronRightIconLucide, // Menggunakan alias agar tidak bentrok
 } from "lucide-react";
-import DefaultProfilePic from "../assets/Anna.jpeg"; // Pastikan path ini benar
+import DefaultProfilePic from "../assets/Default.jpg"; // Pastikan path ini benar
 
 // Komponen ikon kustom (jika masih diperlukan dan tidak ada di lucide-react)
 // Jika UserGroupIcon dan ChatIcon sudah ada di lucide-react (seperti Users dan MessageCircle), lebih baik gunakan dari sana.
@@ -134,7 +134,7 @@ const Navbar = () => {
 
     return (
         // Navbar utama: no background, text black, no shadow
-        <nav className="bg-transparent text-black sticky top-0 z-50 py-3"> {/* py-3 untuk sedikit padding */}
+        <nav className="bg-transparent text-black top-0 z-50 py-3"> {/* py-3 untuk sedikit padding */}
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
                     {/* Logo */}
