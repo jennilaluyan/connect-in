@@ -10,33 +10,49 @@ export const getUser = () => {
         return userString ? JSON.parse(userString) : null;
     } catch (error) {
         console.error("Error parsing user data from localStorage:", error);
-        // Hapus data user yang korup dari localStorage
         localStorage.removeItem('user');
-        localStorage.removeItem('token'); // Sebaiknya token juga dihapus jika data user korup
+        localStorage.removeItem('token');
         return null;
     }
 };
+
+// Fungsi untuk menyimpan atau memperbarui data user di localStorage
+export const setUser = (userData) => {
+    if (userData) {
+        // Pastikan semua field yang mungkin ada di-handle
+        const userToStore = {
+            id: userData.id,
+            name: userData.name,
+            email: userData.email,
+            role: userData.role,
+            role_name: userData.role_name || (userData.role === 'hr' ? 'HR Department' : userData.role === 'user' ? 'User' : 'Super Admin'), // Fallback role_name
+            is_hr_approved_by_sa: userData.is_hr_approved_by_sa,
+            avatar_img: userData.avatar_img, // path asli dari backend
+            avatar_img_url: userData.avatar_img_url, // URL lengkap dari backend
+            company_name: userData.company_name,
+            headline: userData.headline,
+            city: userData.city,
+            province: userData.province,
+            // tambahkan field lain jika ada
+        };
+        localStorage.setItem('user', JSON.stringify(userToStore));
+    } else {
+        localStorage.removeItem('user');
+    }
+};
+
 
 // Mengecek apakah pengguna sudah terautentikasi (ada token)
 export const isAuthenticated = () => !!getToken();
 
 // Fungsi Logout
 export const logout = (navigate) => {
-    // Opsional: Panggil API logout backend di sini jika perlu untuk invalidasi token di server
-    // const token = getToken();
-    // if (token) {
-    //     axios.post('http://127.0.0.1:8000/api/logout', {}, {
-    //         headers: { Authorization: `Bearer ${token}` }
-    //     }).catch(error => console.error("Error calling backend logout:", error));
-    // }
-
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     if (navigate) {
-        navigate('/'); // Arahkan ke halaman login setelah logout
+        navigate('/');
     } else {
-        // Jika navigate tidak tersedia, mungkin reload halaman untuk membersihkan state
-        window.location.reload();
+        window.location.href = '/'; // Fallback jika navigate tidak tersedia
     }
 };
 
