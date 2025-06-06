@@ -7,8 +7,8 @@ const Pelamar = () => {
   const [applications, setApplications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [actionLoading, setActionLoading] = useState({}); // Untuk loading per tombol aksi { [appId]: true/false }
-  const [actionMessage, setActionMessage] = useState({}); // Pesan per aplikasi { [appId]: 'pesan...' }
+  const [actionLoading, setActionLoading] = useState({});
+  const [actionMessage, setActionMessage] = useState({});
 
   const backendBaseUrl = 'http://127.0.0.1:8000';
 
@@ -65,7 +65,7 @@ const Pelamar = () => {
     } finally {
       setLoading(false);
     }
-  }, []); // Dependency array kosong karena tidak ada props/state eksternal yang berubah
+  }, []);
 
   useEffect(() => {
     fetchApplicants(currentPage);
@@ -86,10 +86,7 @@ const Pelamar = () => {
       alert("Autentikasi dibutuhkan. Silakan login kembali.");
       return;
     }
-    console.log(`[Pelamar] Memulai unduh CV untuk Aplikasi ID: ${applicationId}`);
-    // Anda bisa tambahkan state loading spesifik untuk tombol download ini jika mau
-    // setLoadingCvForApp(applicationId, true); 
-
+    
     try {
       const response = await fetch(`${backendBaseUrl}/api/hr/applicants/${applicationId}/download-cv`, {
         method: 'GET',
@@ -98,16 +95,16 @@ const Pelamar = () => {
       if (!response.ok) {
         let errorMessage = `Gagal mengunduh CV (Status: ${response.status}).`;
         try {
-            const errorData = await response.json(); // Coba parse jika errornya JSON
+            const errorData = await response.json();
             errorMessage = errorData.message || errorMessage;
         } catch (e) {
-            const errorText = await response.text(); // Jika bukan JSON, baca sebagai teks
+            const errorText = await response.text();
             errorMessage = `Gagal mengunduh CV: ${response.statusText || response.status}. Server: ${errorText.substring(0,100)}...`;
         }
         alert(errorMessage); return;
       }
       const disposition = response.headers.get('content-disposition');
-      let filename = `CV_${applicantName.replace(/[^a-zA-Z0-9_.-]/g, '_')}_${jobTitle.replace(/[^a-zA-Z0-9_.-]/g, '_')}.pdf`; // Default filename
+      let filename = `CV_${applicantName.replace(/[^a-zA-Z0-9_.-]/g, '_')}_${jobTitle.replace(/[^a-zA-Z0-9_.-]/g, '_')}.pdf`;
       if (disposition && disposition.indexOf('attachment') !== -1) {
         const filenameRegex = /filename\*?=['"]?(?:UTF-\d['"]*)?([^;\r\n"']*)['"]?;?/i;
         const matches = filenameRegex.exec(disposition);
@@ -125,24 +122,18 @@ const Pelamar = () => {
     } catch (err) {
       console.error("[Pelamar] Error saat proses unduh CV:", err);
       alert("Terjadi kesalahan saat mencoba mengunduh CV.");
-    } finally {
-      // setLoadingCvForApp(applicationId, false);
     }
   };
 
-  // --- FUNGSI BARU UNTUK UPDATE STATUS LAMARAN ---
   const handleUpdateStatus = async (applicationId, action) => {
-    // newStatus tidak perlu dikirim ke backend jika endpoint sudah spesifik (accept/reject)
-    // Backend akan menentukan status baru berdasarkan action 'accept' atau 'reject'
     const token = localStorage.getItem("token");
-
     if (!token) {
       alert("Autentikasi gagal. Silakan login kembali.");
       return;
     }
 
     setActionLoading(prev => ({ ...prev, [applicationId]: true }));
-    setActionMessage(prev => ({ ...prev, [applicationId]: '' })); // Reset pesan sebelumnya
+    setActionMessage(prev => ({ ...prev, [applicationId]: '' }));
 
     try {
       const response = await fetch(`${backendBaseUrl}/api/hr/applicants/${applicationId}/${action}`, {
@@ -150,47 +141,33 @@ const Pelamar = () => {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Accept': 'application/json',
-          'Content-Type': 'application/json', // Diperlukan jika Anda mengirim body JSON, meski kosong
+          'Content-Type': 'application/json',
         },
-        // body: JSON.stringify({}) // Kirim body JSON kosong jika diperlukan oleh backend Anda untuk POST
       });
 
-      const responseText = await response.text();
-      let responseData;
-      try {
-        responseData = JSON.parse(responseText);
-      } catch(e) {
-        console.error(`[Pelamar] Gagal parse JSON respons update status (${action}):`, e, "Response Text:", responseText);
-        setActionMessage(prev => ({ ...prev, [applicationId]: `Respons server tidak valid: ${responseText.substring(0,100)}...` }));
-        setActionLoading(prev => ({ ...prev, [applicationId]: false }));
-        return;
-      }
+      const responseData = await response.json();
 
       if (!response.ok) {
         setActionMessage(prev => ({ ...prev, [applicationId]: `Gagal: ${responseData.message || response.statusText || `Error ${response.status}`}` }));
-        // throw new Error(responseData.message || `HTTP error! status: ${response.status}`); // Tidak perlu throw jika sudah ditangani
-        setActionLoading(prev => ({ ...prev, [applicationId]: false }));
-        return;
+        throw new Error(responseData.message || `HTTP error! status: ${response.status}`);
       }
 
       setActionMessage(prev => ({ ...prev, [applicationId]: responseData.message || `Lamaran berhasil diproses!`}));
       
-      setApplications(prevApplications =>
-        prevApplications.map(app =>
+      setApplications(prev =>
+        prev.map(app =>
           app.id === applicationId ? { ...app, status: responseData.data.status } : app 
         )
       );
       setTimeout(() => setActionMessage(prev => ({ ...prev, [applicationId]: '' })), 4000);
-
     } catch (err) {
       console.error(`Error saat ${action} lamaran:`, err);
-      setActionMessage(prev => ({ ...prev, [applicationId]: err.message || `Terjadi kesalahan saat memproses aksi.`}));
+      setActionMessage(prev => ({ ...prev, [applicationId]: err.message || `Terjadi kesalahan.`}));
     } finally {
       setActionLoading(prev => ({ ...prev, [applicationId]: false }));
     }
   };
 
-  // JSX untuk loading dan error (tidak berubah)
   if (loading) return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-blue-500"></div>
@@ -274,10 +251,7 @@ const Pelamar = () => {
               ) : (
                 <div className="divide-y divide-gray-200">
                   {applications.map((application) => (
-                    <div
-                      key={application.id}
-                      className="px-5 sm:px-7 py-5 hover:bg-slate-50 transition-colors duration-150"
-                    >
+                    <div key={application.id} className="px-5 sm:px-7 py-5 hover:bg-slate-50 transition-colors duration-150">
                       <div className="flex flex-col sm:flex-row items-start sm:items-center gap-x-5 gap-y-3">
                         <div className="flex items-center flex-grow min-w-0">
                           <div className="w-14 h-14 rounded-full bg-slate-200 mr-4 overflow-hidden flex-shrink-0 border border-slate-300">
@@ -289,72 +263,57 @@ const Pelamar = () => {
                             />
                           </div>
                           <div className="min-w-0">
-                            <h3 className="text-md font-semibold text-blue-600 hover:text-blue-700 truncate">
-                              {application.applicant?.name || "Nama Tidak Tersedia"}
-                            </h3>
-                            <p className="text-sm text-gray-700 truncate">
-                              Melamar untuk: <span className="font-medium text-gray-800">{application.job_posting?.title || "N/A"}</span>
-                            </p>
-                            <p className="text-xs text-gray-500 truncate">
-                              {application.job_posting?.company_name || "N/A"}
-                            </p>
-                            <p className="text-xs text-gray-500 mt-0.5">
-                              Email: {application.applicant?.email || "N/A"}
-                            </p>
+                            <h3 className="text-md font-semibold text-blue-600 hover:text-blue-700 truncate">{application.applicant?.name || "Nama Tidak Tersedia"}</h3>
+                            <p className="text-sm text-gray-700 truncate">Melamar untuk: <span className="font-medium text-gray-800">{application.job_posting?.title || "N/A"}</span></p>
+                            <p className="text-xs text-gray-500 truncate">{application.job_posting?.company_name || "N/A"}</p>
+                            <p className="text-xs text-gray-500 mt-0.5">Email: {application.applicant?.email || "N/A"}</p>
                           </div>
                         </div>
                         <div className="flex flex-col sm:items-end sm:text-right mt-2 sm:mt-0 flex-shrink-0 w-full sm:w-auto">
-                          <p className="text-xs text-gray-500 mb-1.5">
-                            Melamar pada: {formatDate(application.created_at)}
-                          </p>
+                          <p className="text-xs text-gray-500 mb-1.5">Melamar pada: {formatDate(application.created_at)}</p>
                           
-                          {/* --- AWAL TAMPILAN STATUS DAN TOMBOL AKSI --- */}
-                          {actionMessage[application.id] && (
-                            <p className={`text-xs mb-1.5 font-medium ${actionMessage[application.id].toLowerCase().includes('gagal') ? 'text-red-600' : 'text-green-600'}`}>
-                                {actionMessage[application.id]}
-                            </p>
-                          )}
+                          {/* --- TAMPILAN STATUS DAN TOMBOL AKSI --- */}
+                          <div className="h-10 flex items-center"> {/* Memberi tinggi tetap agar UI tidak 'melompat' */}
+                            {actionMessage[application.id] && (
+                                <p className={`text-xs font-medium ${actionMessage[application.id].toLowerCase().includes('gagal') ? 'text-red-600' : 'text-green-600'}`}>
+                                    {actionMessage[application.id]}
+                                </p>
+                            )}
 
-                          {/* Tombol aksi hanya jika status masih bisa diubah */}
-                          { (application.status === 'pending' || application.status === 'reviewed') && !actionMessage[application.id] ? (
-                            <div className="flex gap-2 mt-1 items-center">
-                              <button
-                                onClick={() => handleUpdateStatus(application.id, 'reject')}
-                                disabled={actionLoading[application.id]}
-                                className="px-3 py-1.5 bg-red-100 text-red-600 text-xs font-medium rounded-md hover:bg-red-200 transition-colors focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-50 disabled:opacity-60"
-                              >
-                                {actionLoading[application.id] ? 'Memproses...' : 'Tolak'}
-                              </button>
-                              <button
-                                onClick={() => handleUpdateStatus(application.id, 'accept')}
-                                disabled={actionLoading[application.id]}
-                                className="px-3 py-1.5 bg-green-100 text-green-700 text-xs font-medium rounded-md hover:bg-green-200 transition-colors focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 disabled:opacity-60"
-                              >
-                                {actionLoading[application.id] ? 'Memproses...' : 'Terima'}
-                              </button>
-                            </div>
-                          ) : ( // Tampilkan status jika sudah final atau setelah aksi
-                            <span className={`capitalize text-xs font-semibold px-2.5 py-1 rounded-full ${
-                              application.status === 'shortlisted' ? 'bg-green-100 text-green-800 ring-1 ring-green-300' :
-                              application.status === 'rejected' ? 'bg-red-100 text-red-800 ring-1 ring-red-300' :
-                              application.status === 'hired' ? 'bg-emerald-100 text-emerald-800 ring-1 ring-emerald-300' :
-                              application.status === 'pending' ? 'bg-yellow-100 text-yellow-800 ring-1 ring-yellow-300' :
-                              application.status === 'reviewed' ? 'bg-blue-100 text-blue-800 ring-1 ring-blue-300' :
-                              'bg-gray-100 text-gray-800 ring-1 ring-gray-300'
-                            }`}>
-                              {application.status ? application.status.replace('_', ' ') : 'N/A'}
-                            </span>
-                          )}
-                          {/* --- AKHIR TAMPILAN STATUS DAN TOMBOL AKSI --- */}
+                            {/* Tombol aksi hanya jika status masih bisa diubah */}
+                            { (application.status === 'pending' || application.status === 'reviewed') && !actionMessage[application.id] ? (
+                                <div className="flex gap-2 items-center">
+                                    <button onClick={() => handleUpdateStatus(application.id, 'reject')} disabled={actionLoading[application.id]} className="px-3 py-1.5 bg-red-100 text-red-600 text-xs font-medium rounded-md hover:bg-red-200 transition-colors focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-50 disabled:opacity-60 disabled:cursor-not-allowed">
+                                        {actionLoading[application.id] ? 'Memproses...' : 'Tolak'}
+                                    </button>
+                                    <button onClick={() => handleUpdateStatus(application.id, 'accept')} disabled={actionLoading[application.id]} className="px-3 py-1.5 bg-green-100 text-green-700 text-xs font-medium rounded-md hover:bg-green-200 transition-colors focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 disabled:opacity-60 disabled:cursor-not-allowed">
+                                        {actionLoading[application.id] ? 'Memproses...' : 'Terima'}
+                                    </button>
+                                </div>
+                            ) : application.status === 'shortlisted' && !actionMessage[application.id] ? (
+                                <div className="flex gap-2 items-center">
+                                    <button onClick={() => handleUpdateStatus(application.id, 'reject')} disabled={actionLoading[application.id]} className="px-3 py-1.5 bg-red-100 text-red-600 text-xs font-medium rounded-md hover:bg-red-200 transition-colors disabled:opacity-60 disabled:cursor-not-allowed">
+                                        {actionLoading[application.id] ? 'Memproses...' : 'Tolak'}
+                                    </button>
+                                    <button onClick={() => handleUpdateStatus(application.id, 'hire')} disabled={actionLoading[application.id]} className="px-3 py-1.5 bg-emerald-500 text-white text-xs font-medium rounded-md hover:bg-emerald-600 transition-colors disabled:opacity-60 disabled:cursor-not-allowed">
+                                        {actionLoading[application.id] ? 'Memproses...' : 'Hire'}
+                                    </button>
+                                </div>
+                            ) : ( // Tampilkan status jika sudah final atau setelah aksi
+                                <span className={`capitalize text-xs font-semibold px-2.5 py-1 rounded-full ${
+                                    application.status === 'shortlisted' ? 'bg-green-100 text-green-800 ring-1 ring-green-300' :
+                                    application.status === 'rejected' ? 'bg-red-100 text-red-800 ring-1 ring-red-300' :
+                                    application.status === 'hired' ? 'bg-emerald-100 text-emerald-800 ring-1 ring-emerald-300' :
+                                    'bg-gray-100 text-gray-800 ring-1 ring-gray-300' // Fallback untuk pending/reviewed jika ada actionMessage
+                                }`}>
+                                    {application.status ? application.status.replace('_', ' ') : 'N/A'}
+                                </span>
+                            )}
+                          </div>
                           
                           <div className="mt-3">
-                            <button
-                              onClick={() => handleDownloadCV(application.id, application.applicant?.name, application.job_posting?.title)}
-                              className="px-4 py-2 bg-sky-500 text-white text-xs font-medium rounded-md hover:bg-sky-600 transition-colors focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-opacity-50 inline-flex items-center"
-                            >
-                               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                              </svg>
+                            <button onClick={() => handleDownloadCV(application.id, application.applicant?.name, application.job_posting?.title)} className="px-4 py-2 bg-sky-500 text-white text-xs font-medium rounded-md hover:bg-sky-600 transition-colors focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-opacity-50 inline-flex items-center">
+                               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
                               Unduh CV
                             </button>
                           </div>
@@ -368,21 +327,9 @@ const Pelamar = () => {
               {totalPages > 1 && (
                 <div className="px-6 py-4 border-t border-gray-200 flex justify-center">
                   <nav className="flex items-center space-x-1">
-                    <button 
-                      onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))} 
-                      disabled={currentPage === 1 || loading}
-                      className="px-3 py-1.5 rounded text-sm text-gray-600 hover:bg-gray-100 disabled:opacity-50"
-                    >
-                      &laquo; Sebelumnya
-                    </button>
+                    <button onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))} disabled={currentPage === 1 || loading} className="px-3 py-1.5 rounded text-sm text-gray-600 hover:bg-gray-100 disabled:opacity-50">&laquo; Sebelumnya</button>
                     <span className="px-3 py-1.5 text-sm">Halaman {currentPage} dari {totalPages}</span>
-                    <button 
-                      onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))} 
-                      disabled={currentPage === totalPages || loading}
-                      className="px-3 py-1.5 rounded text-sm text-gray-600 hover:bg-gray-100 disabled:opacity-50"
-                    >
-                      Berikutnya &raquo;
-                    </button>
+                    <button onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))} disabled={currentPage === totalPages || loading} className="px-3 py-1.5 rounded text-sm text-gray-600 hover:bg-gray-100 disabled:opacity-50">Berikutnya &raquo;</button>
                   </nav>
                 </div>
               )}
