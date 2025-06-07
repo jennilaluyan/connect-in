@@ -188,12 +188,6 @@ const SuperAdminDashboard = () => {
                         <h1 className="text-3xl font-bold text-gray-800">Super Admin Dashboard</h1>
                         <p className="text-gray-600 mt-1">Selamat datang, <span className="font-semibold">{superAdminUser?.name || 'Super Admin'}</span>!</p>
                     </div>
-                    <button
-                        onClick={handleUserLogout}
-                        className="mt-4 sm:mt-0 bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-5 rounded-lg shadow-md hover:shadow-lg transition duration-150 ease-in-out flex items-center"
-                    >
-                        <LogOut size={18} className="mr-2" /> Logout
-                    </button>
                 </div>
             </header>
 

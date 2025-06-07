@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import MessagesComponent from "../../messages-page/MessagesComponents";
 import { useNavContext } from "/src/components/connections-page/NavContext.jsx";
+import Cobie from '../../../assets/Cobie.jpeg';
+import Phil from '../../../assets/Phil.jpg';
+import Barney from '../../../assets/Barney.jpg';
 
 const MessagesAdminPage = () => {
   const { setActiveNavItem } = useNavContext();
@@ -15,20 +18,20 @@ const MessagesAdminPage = () => {
     const dummyAdminContacts = [
       {
         id: "user123",
-        name: "Ahmad Pelamar",
-        image: "/api/placeholder/48/48",
+        name: "Cobie Smulders",
+        image: Cobie,
         status: "Pelamar UI/UX Designer"
       },
       {
         id: "user456",
-        name: "Budi Kandidat",
-        image: "/api/placeholder/48/48",
+        name: "Phil Coulson",
+        image: Phil,
         status: "Pelamar Frontend Developer"
       },
       {
         id: "user789",
-        name: "Cindy Profesional",
-        image: "/api/placeholder/48/48",
+        name: "Barney Stinson",
+        image: Barney,
         status: "Pelamar Project Manager"
       }
     ];
@@ -36,18 +39,18 @@ const MessagesAdminPage = () => {
 
     // Fetch chats untuk admin (simulated)
     const dummyAdminChats = {
-      "Ahmad Pelamar": [
-        { from: "Ahmad Pelamar", text: "Selamat siang, saya tertarik dengan posisi UI/UX Designer yang dibuka", time: "13:45" },
-        { from: "me", text: "Halo Ahmad, terima kasih atas ketertarikannya", time: "14:00" },
+      "Cobie Smulders": [
+        { from: "Cobie Smulders", text: "Selamat siang, saya tertarik dengan posisi UI/UX Designer yang dibuka", time: "13:45" },
+        { from: "me", text: "Halo Cobie, terima kasih atas ketertarikannya", time: "14:00" },
         { from: "me", text: "Bisa share portfolio Anda?", time: "14:01" }
       ],
-      "Budi Kandidat": [
-        { from: "Budi Kandidat", text: "Halo, apakah saya bisa tahu lebih detail mengenai posisi Frontend Developer?", time: "09:30" },
-        { from: "me", text: "Tentu Budi, posisi ini membutuhkan pengalaman minimal 2 tahun dengan React dan TypeScript", time: "10:15" }
+      "Phil Coulson": [
+        { from: "Phil Coulson", text: "Halo, apakah saya bisa tahu lebih detail mengenai posisi Frontend Developer?", time: "09:30" },
+        { from: "me", text: "Tentu Phil, posisi ini membutuhkan pengalaman minimal 2 tahun dengan React dan TypeScript", time: "10:15" }
       ],
-      "Cindy Profesional": [
-        { from: "me", text: "Halo Cindy, kami telah review CV Anda dan tertarik untuk interview lebih lanjut", time: "15:20" },
-        { from: "Cindy Profesional", text: "Terima kasih! Saya sangat antusias. Kapan bisa dilakukan interviewnya?", time: "15:30" }
+      "Barney Stinson": [
+        { from: "me", text: "Halo Barney, kami telah review CV Anda dan tertarik untuk interview lebih lanjut", time: "15:20" },
+        { from: "Barney Stinson", text: "Terima kasih! Saya sangat antusias. Kapan bisa dilakukan interviewnya?", time: "15:30" }
       ]
     };
     setChats(dummyAdminChats);
