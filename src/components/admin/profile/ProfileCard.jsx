@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import DefaultProfilePic from '../../../assets/Default.jpg';
 
 // Modified ProfileCard to accept props and use Link for the edit button
 const ProfileCard = ({ name, location, role, imageUrl, isAdmin = false }) => {
   // Determine the edit profile path based on user type
-  const editProfilePath = isAdmin ? "/admin/profile-edit" : "/profile-edit";
+  const editProfilePath = isAdmin ? "/hr/profile-edit" : "/profile-edit";
 
   return (
     <div id='profil'>
@@ -23,7 +24,7 @@ const ProfileCard = ({ name, location, role, imageUrl, isAdmin = false }) => {
             {/* Foto profil di tengah */}
             <div className="absolute inset-x-0 top-16 flex justify-center">
               <img
-                src={imageUrl || "https://randomuser.me/api/portraits/men/32.jpg"}
+                src={imageUrl || DefaultProfilePic}
                 alt="Profile"
                 className="w-40 h-40 rounded-full border-6 border-white object-cover shadow-md"
               />
