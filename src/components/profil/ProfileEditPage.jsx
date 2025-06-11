@@ -125,7 +125,7 @@ const ProfileEditPage = () => {
 
 
         try {
-            const apiUrl = `${viteApiBaseUrlForSave}/api/profile`;
+            const apiUrl = `${viteApiBaseUrlForSave}api/profile`;
             const response = await axios.post(apiUrl, dataToSubmit, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
