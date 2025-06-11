@@ -47,9 +47,9 @@ const getCleanAvatarUrl = (avatarUrlInput) => {
         return DefaultProfilePic;
     }
 
-    if (cleanedUrl.startsWith('/storage')) {
+    if (cleanedUrl.startsWith('storage')) {
         // Pastikan VITE_API_BASE_URL ada dan benar
-        const baseUrl = import.meta.env.VITE_API_BASE_URL;
+        const baseUrl = "https://connect-in-backend-production.up.railway.app/";
         if (baseUrl) {
             // console.log("Navbar getCleanAvatarUrl: Constructing absolute URL from relative path:", `${baseUrl}${cleanedUrl}`);
             return `${baseUrl}${cleanedUrl}`;

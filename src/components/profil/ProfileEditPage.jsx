@@ -60,7 +60,7 @@ const ProfileEditPage = () => {
                     cleanedInitialUrl = cleanedInitialUrl.replace(/\u200B/g, '').trim().replace(/^"|"$/g, '');
                 }
                 // Pastikan URL absolut
-                if (typeof cleanedInitialUrl === 'string' && cleanedInitialUrl.startsWith('/storage')) {
+                if (typeof cleanedInitialUrl === 'string' && cleanedInitialUrl.startsWith('storage')) {
                     initialDisplayUrl = `${import.meta.env.VITE_API_BASE_URL}${cleanedInitialUrl}`;
                 } else if (typeof cleanedInitialUrl === 'string' && cleanedInitialUrl.startsWith('http')) {
                     initialDisplayUrl = cleanedInitialUrl;
@@ -152,7 +152,7 @@ const ProfileEditPage = () => {
                         console.log("FE DEBUG: URL segment setelah sanitasi ZWSP & kutip:", JSON.stringify(cleanedUrlSegment));
                     }
 
-                    if (typeof cleanedUrlSegment === 'string' && cleanedUrlSegment.startsWith('/storage')) {
+                    if (typeof cleanedUrlSegment === 'string' && cleanedUrlSegment.startsWith('storage')) {
                         finalImageUrl = `${viteApiBaseUrlForSave}${cleanedUrlSegment}`;
                         console.log("FE DEBUG: Mengkonstruksi URL absolut dari path relatif (setelah sanitasi):", finalImageUrl);
                     } else if (typeof cleanedUrlSegment === 'string' && cleanedUrlSegment.startsWith('http')) {

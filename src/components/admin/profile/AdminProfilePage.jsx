@@ -41,7 +41,7 @@ export default function AdminProfilePage() {
         if (typeof cleanedUrl === 'string') {
           cleanedUrl = cleanedUrl.replace(/\u200B/g, '').trim().replace(/^"|"$/g, ''); // Sanitasi
         }
-        if (typeof cleanedUrl === 'string' && cleanedUrl.startsWith('/storage')) {
+        if (typeof cleanedUrl === 'string' && cleanedUrl.startsWith('storage')) {
           imageUrl = `${import.meta.env.VITE_API_BASE_URL}${cleanedUrl}`;
         } else if (typeof cleanedUrl === 'string' && cleanedUrl.startsWith('http')) {
           imageUrl = cleanedUrl;
