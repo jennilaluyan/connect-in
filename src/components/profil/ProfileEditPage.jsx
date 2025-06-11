@@ -53,17 +53,14 @@ const ProfileEditPage = () => {
             });
 
             let initialDisplayUrl = DefaultAvatar;
-            if (currentUser.avatar_img_url) {
-                // Bersihkan URL dari localStorage jika ada ZWSP atau kutip
-                let cleanedInitialUrl = currentUser.avatar_img_url;
-                if (typeof cleanedInitialUrl === 'string') {
-                    cleanedInitialUrl = cleanedInitialUrl.replace(/\u200B/g, '').trim().replace(/^"|"$/g, '');
-                }
-                // Pastikan URL absolut
-                if (typeof cleanedInitialUrl === 'string' && cleanedInitialUrl.startsWith('storage')) {
-                    initialDisplayUrl = `${import.meta.env.VITE_API_BASE_URL}${cleanedInitialUrl}`;
-                } else if (typeof cleanedInitialUrl === 'string' && cleanedInitialUrl.startsWith('http')) {
-                    initialDisplayUrl = cleanedInitialUrl;
+            if (currentUser.avatar_img_url && typeof currentUser.avatar_img_url === 'string') {
+                const pathDariBackend = currentUser.avatar_img_url.trim();
+                if (pathDariBackend.includes('storage/')) {
+                    const baseUrl = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/$/, '');
+                    const relativePath = pathDariBackend.startsWith('/') ? pathDariBackend.substring(1) : pathDariBackend;
+                    initialDisplayUrl = `${baseUrl}/${relativePath}`;
+                } else if (pathDariBackend.startsWith('http')) {
+                    initialDisplayUrl = pathDariBackend;
                 }
             }
             setProfileImageDisplay(initialDisplayUrl);
