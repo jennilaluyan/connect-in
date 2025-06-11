@@ -32,29 +32,42 @@ const ChevronRight = ({ size = 16 }) => <ChevronRightIconLucide size={size} stro
 
 // Fungsi helper untuk membersihkan dan memvalidasi URL avatar
 const getCleanAvatarUrl = (avatarUrlInput) => {
-    if (!avatarUrlInput || typeof avatarUrlInput !== 'string') {
+    if (!avatarUrlInput) {
+        // console.log("Navbar getCleanAvatarUrl: No input URL, returning DefaultProfilePic");
         return DefaultProfilePic;
     }
 
-    const pathDariBackend = avatarUrlInput.replace(/\u200B/g, '').trim().replace(/^"|"$/g, '');
-
-    // Cek apakah ini path relatif ke storage
-    if (pathDariBackend.includes('storage/')) {
-        const baseUrl = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/$/, ''); // Ambil base URL dan hapus trailing slash
-        const relativePath = pathDariBackend.startsWith('/') ? pathDariBackend.substring(1) : pathDariBackend; // Hapus leading slash dari path
-        return `${baseUrl}/${relativePath}`; // Gabungkan dengan benar
-    }
-    // Cek apakah ini URL absolut yang valid
-    else if (pathDariBackend.startsWith('http')) {
-        return pathDariBackend;
-    }
-    // Cek apakah ini data URI dari preview gambar
-    else if (pathDariBackend.startsWith('data:image')) {
-        return pathDariBackend;
+    let cleanedUrl = avatarUrlInput;
+    if (typeof cleanedUrl === 'string') {
+        // Hapus ZWSP dan kutip, lalu trim
+        cleanedUrl = cleanedUrl.replace(/\u200B/g, '').trim().replace(/^"|"$/g, '');
+    } else {
+        // Jika bukan string (misalnya objek File dari preview base64 yang mungkin tidak sengaja masuk)
+        // console.log("Navbar getCleanAvatarUrl: Input URL is not a string, returning DefaultProfilePic", avatarUrlInput);
+        return DefaultProfilePic;
     }
 
-    // Jika tidak ada yang cocok, gunakan gambar default
-    return DefaultProfilePic;
+    if (cleanedUrl.startsWith('storage')) {
+        // Pastikan VITE_API_BASE_URL ada dan benar
+        const baseUrl = import.meta.env.VITE_API_BASE_URL;
+        if (baseUrl) {
+            // console.log("Navbar getCleanAvatarUrl: Constructing absolute URL from relative path:", `${baseUrl}${cleanedUrl}`);
+            return `${baseUrl}${cleanedUrl}`;
+        } else {
+            // console.warn("Navbar getCleanAvatarUrl: VITE_API_BASE_URL is not defined, cannot construct absolute URL for:", cleanedUrl);
+            return DefaultProfilePic; // Fallback jika base URL tidak ada
+        }
+    } else if (cleanedUrl.startsWith('http')) {
+        // console.log("Navbar getCleanAvatarUrl: Using absolute URL:", cleanedUrl);
+        return cleanedUrl; // Sudah URL absolut
+    } else if (cleanedUrl === DefaultProfilePic || cleanedUrl.startsWith('data:image')) {
+        // Jika sudah DefaultProfilePic atau data URI (base64 dari preview)
+        // console.log("Navbar getCleanAvatarUrl: Input is DefaultProfilePic or data URI, returning as is:", cleanedUrl);
+        return cleanedUrl;
+    }
+
+    // console.log("Navbar getCleanAvatarUrl: URL format not recognized or invalid, returning DefaultProfilePic. Input was:", avatarUrlInput);
+    return DefaultProfilePic; // Fallback jika format tidak dikenali
 };
 
 

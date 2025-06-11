@@ -3,10 +3,10 @@ import React, { useEffect, useState } from 'react';
 import ProfileCard from "../admin/profile/ProfileCard";
 import { getUser } from '../../utils/auth';
 import DefaultProfilePic from '../../assets/Default.jpg';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom'; // 1. IMPORT useLocation
 
 function ProfileUserPage() {
-  const location = useLocation();
+  const location = useLocation(); // 2. DAPATKAN objek location
   const [userConfig, setUserConfig] = useState({
     name: "Loading...",
     location: "Loading...",
@@ -16,10 +16,12 @@ function ProfileUserPage() {
   });
 
   useEffect(() => {
+    console.log('ProfileUserPage: useEffect berjalan, path:', location.pathname);
     const currentUser = getUser();
+    console.log('ProfileUserPage: currentUser dari getUser():', currentUser);
 
     if (currentUser) {
-      let roleDisplay = currentUser.headline || currentUser.role_name || 'Pengguna Terdaftar';
+      let roleDisplay = currentUser.headline || currentUser.role_name || (currentUser.role === 'user' ? 'Pengguna Terdaftar' : 'Peran Belum Diatur');
 
       let locationDisplay = 'Lokasi Belum Diatur';
       if (currentUser.city && currentUser.province) {
@@ -30,32 +32,33 @@ function ProfileUserPage() {
         locationDisplay = currentUser.province;
       }
 
-      // --- LOGIKA PERBAIKAN URL DIMULAI ---
       let imageUrl = DefaultProfilePic;
-      if (currentUser.avatar_img_url && typeof currentUser.avatar_img_url === 'string') {
-        const pathDariBackend = currentUser.avatar_img_url.trim();
-
-        if (pathDariBackend.includes('storage/')) {
-          const baseUrl = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/$/, '');
-          const relativePath = pathDariBackend.startsWith('/') ? pathDariBackend.substring(1) : pathDariBackend;
-          imageUrl = `${baseUrl}/${relativePath}`;
-        } else if (pathDariBackend.startsWith('http')) {
-          imageUrl = pathDariBackend;
+      if (currentUser.avatar_img_url) {
+        let cleanedUrl = currentUser.avatar_img_url;
+        if (typeof cleanedUrl === 'string') {
+          cleanedUrl = cleanedUrl.replace(/\u200B/g, '').trim().replace(/^"|"$/g, ''); // Sanitasi
         }
+        if (typeof cleanedUrl === 'string' && cleanedUrl.startsWith('storage')) {
+          imageUrl = `${import.meta.env.VITE_API_BASE_URL}${cleanedUrl}`;
+        } else if (typeof cleanedUrl === 'string' && cleanedUrl.startsWith('http')) {
+          imageUrl = cleanedUrl;
+        }
+        console.log("ProfileUserPage: Final imageUrl for display:", imageUrl);
       }
-      // --- LOGIKA PERBAIKAN URL SELESAI ---
+
 
       setUserConfig({
         name: currentUser.name || "Nama Pengguna Belum Diatur",
         location: locationDisplay,
         role: roleDisplay,
-        imageUrl: imageUrl, // Gunakan URL yang sudah diperbaiki
+        imageUrl: imageUrl, // Gunakan URL yang sudah diproses
         isAdmin: false,
       });
     } else {
+      console.log("ProfileUserPage: Tidak ada currentUser, mungkin perlu redirect ke login.");
       // navigate('/masuk'); // Jika diperlukan
     }
-  }, [location]);
+  }, [location]); // 3. TAMBAHKAN location sebagai dependency
 
   return (
     <>
