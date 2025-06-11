@@ -10,7 +10,7 @@ const Pelamar = () => {
   const [actionLoading, setActionLoading] = useState({});
   const [actionMessage, setActionMessage] = useState({});
 
-  const backendBaseUrl = 'https://connect-in-backend-production.up.railway.app';
+  const backendBaseUrl = 'http://connect-in-backend-production-6073.up.railway.app';
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -301,9 +301,9 @@ const Pelamar = () => {
                               </div>
                             ) : ( // Tampilkan status jika sudah final atau setelah aksi
                               <span className={`capitalize text-xs font-semibold px-2.5 py-1 rounded-full ${application.status === 'shortlisted' ? 'bg-green-100 text-green-800 ring-1 ring-green-300' :
-                                  application.status === 'rejected' ? 'bg-red-100 text-red-800 ring-1 ring-red-300' :
-                                    application.status === 'hired' ? 'bg-emerald-100 text-emerald-800 ring-1 ring-emerald-300' :
-                                      'bg-gray-100 text-gray-800 ring-1 ring-gray-300' // Fallback untuk pending/reviewed jika ada actionMessage
+                                application.status === 'rejected' ? 'bg-red-100 text-red-800 ring-1 ring-red-300' :
+                                  application.status === 'hired' ? 'bg-emerald-100 text-emerald-800 ring-1 ring-emerald-300' :
+                                    'bg-gray-100 text-gray-800 ring-1 ring-gray-300' // Fallback untuk pending/reviewed jika ada actionMessage
                                 }`}>
                                 {application.status ? application.status.replace('_', ' ') : 'N/A'}
                               </span>

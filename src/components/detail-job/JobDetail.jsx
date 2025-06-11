@@ -53,7 +53,7 @@ const JobDetail = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
 
-  const backendBaseUrl = 'https://connect-in-backend-production.up.railway.app';
+  const backendBaseUrl = 'http://connect-in-backend-production-6073.up.railway.app';
 
   const fetchJobDetail = useCallback(async () => {
     setLoading(true);

@@ -8,7 +8,7 @@ const NotifikasiUserPage = () => {
   const [notifications, setNotifications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const backendBaseUrl = 'https://connect-in-backend-production.up.railway.app';
+  const backendBaseUrl = 'http://connect-in-backend-production-6073.up.railway.app';
 
   // Fungsi untuk mengambil semua notifikasi dari API
   const fetchAllNotifications = useCallback(async () => {

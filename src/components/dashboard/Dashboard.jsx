@@ -38,7 +38,7 @@ const Dashboard = () => {
   const [totalPages, setTotalPages] = useState(1);
   // const [totalJobs, setTotalJobs] = useState(0); // Jika diperlukan untuk tampilan
 
-  const backendBaseUrl = 'https://connect-in-backend-production.up.railway.app';
+  const backendBaseUrl = 'http://connect-in-backend-production-6073.up.railway.app';
   const jobsPerPage = 9; // Sesuaikan jika API Anda mengembalikan jumlah item per halaman yang berbeda atau jika Anda ingin client-side pagination setelah fetch semua (tidak direkomendasikan untuk data besar)
 
   useEffect(() => {

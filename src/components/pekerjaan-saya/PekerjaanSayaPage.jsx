@@ -12,7 +12,7 @@ const PekerjaanSayaPage = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [activeFilter, setActiveFilter] = useState("Dilamar"); // Filter default
-    const backendBaseUrl = 'https://connect-in-backend-production.up.railway.app';
+    const backendBaseUrl = 'http://connect-in-backend-production-6073.up.railway.app';
 
     // --- 1. MENGAMBIL SEMUA DATA LAMARAN DARI API ---
     const fetchMyApplications = useCallback(async () => {
@@ -146,8 +146,8 @@ const PekerjaanSayaPage = () => {
                                 <button
                                     key={filterName}
                                     className={`px-6 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${activeFilter === filterName
-                                            ? "bg-blue-600 text-white shadow-md"
-                                            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                                        ? "bg-blue-600 text-white shadow-md"
+                                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                                         }`}
                                     onClick={() => setActiveFilter(filterName)}
                                 >

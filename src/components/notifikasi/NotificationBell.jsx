@@ -8,7 +8,7 @@ const NotificationBell = () => {
     const [unreadCount, setUnreadCount] = useState(0);
     const [isOpen, setIsOpen] = useState(false);
     const [loading, setLoading] = useState(false);
-    const backendBaseUrl = 'https://connect-in-backend-production.up.railway.app'; // Pastikan URL benar
+    const backendBaseUrl = 'http://connect-in-backend-production-6073.up.railway.app'; // Pastikan URL benar
     const dropdownRef = useRef(null);
 
     // Fungsi untuk mengambil notifikasi dari backend
