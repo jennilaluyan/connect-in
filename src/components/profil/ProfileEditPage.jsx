@@ -10,7 +10,7 @@ import axios from 'axios';
 console.log('FE DEBUG Initial: VITE_API_BASE_URL value:', import.meta.env.VITE_API_BASE_URL);
 if (typeof import.meta.env.VITE_API_BASE_URL === 'string') {
     for (let i = 0; i < import.meta.env.VITE_API_BASE_URL.length; i++) {
-        console.log(`FE DEBUG Initial: VITE_API_BASE_URL Char at ${i}: '${import.meta.env.VITE_API_BASE_URL[i]}' Code: ${import.meta.env.VITE_API_BASE_URL.charCodeAt(i)}`);
+        console.log(`FE DEBUG Initial: VITE_API_BASE_URL Char at ${i}: '${import.meta.env.VITE_API_BASE_URL[i]}' Code: https://connect-in-backend-production.up.railway.app`);
     }
 }
 
