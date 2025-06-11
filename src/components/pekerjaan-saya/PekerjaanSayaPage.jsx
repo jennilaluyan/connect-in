@@ -12,7 +12,7 @@ const PekerjaanSayaPage = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [activeFilter, setActiveFilter] = useState("Dilamar"); // Filter default
-    const backendBaseUrl = 'http://connect-in-backend-production-6073.up.railway.app';
+    const backendBaseUrl = 'https://connect-in-backend-production-6073.up.railway.app';
 
     // --- 1. MENGAMBIL SEMUA DATA LAMARAN DARI API ---
     const fetchMyApplications = useCallback(async () => {

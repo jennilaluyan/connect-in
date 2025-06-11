@@ -19,7 +19,7 @@ const LoginPage = () => {
     setErrors({});
 
     try {
-      const response = await axios.post("http://connect-in-backend-production-6073.up.railway.app/api/login", {
+      const response = await axios.post("https://connect-in-backend-production-6073.up.railway.app/api/login", {
         email,
         password,
       });

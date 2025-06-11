@@ -32,7 +32,7 @@ const RegisterPage = () => {
 
     try {
       const response = await axios.post(
-        "http://connect-in-backend-production-6073.up.railway.app/api/register",
+        "https://connect-in-backend-production-6073.up.railway.app/api/register",
         {
           name,
           email,

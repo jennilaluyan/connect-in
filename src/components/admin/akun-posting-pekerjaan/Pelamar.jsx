@@ -10,7 +10,7 @@ const Pelamar = () => {
   const [actionLoading, setActionLoading] = useState({});
   const [actionMessage, setActionMessage] = useState({});
 
-  const backendBaseUrl = 'http://connect-in-backend-production-6073.up.railway.app';
+  const backendBaseUrl = 'https://connect-in-backend-production-6073.up.railway.app';
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
