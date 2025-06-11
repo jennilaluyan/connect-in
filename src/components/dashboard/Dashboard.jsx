@@ -38,7 +38,7 @@ const Dashboard = () => {
   const [totalPages, setTotalPages] = useState(1);
   // const [totalJobs, setTotalJobs] = useState(0); // Jika diperlukan untuk tampilan
 
-  const backendBaseUrl = 'http://127.0.0.1:8000';
+  const backendBaseUrl = 'https://connect-in-backend-production.up.railway.app';
   const jobsPerPage = 9; // Sesuaikan jika API Anda mengembalikan jumlah item per halaman yang berbeda atau jika Anda ingin client-side pagination setelah fetch semua (tidak direkomendasikan untuk data besar)
 
   useEffect(() => {
@@ -190,8 +190,8 @@ const Dashboard = () => {
                       onClick={() => changePage(Math.max(1, currentPage - 1))}
                       disabled={currentPage === 1}
                       className={`px-3 py-1 rounded-l-md border border-gray-300 text-sm font-medium ${currentPage === 1
-                          ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                          : 'bg-white text-gray-700 hover:bg-gray-50'
+                        ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                        : 'bg-white text-gray-700 hover:bg-gray-50'
                         }`}
                     >
                       Previous
@@ -219,8 +219,8 @@ const Dashboard = () => {
                           key={pageNum}
                           onClick={() => changePage(pageNum)}
                           className={`px-3 py-1 border border-gray-300 text-sm font-medium ${currentPage === pageNum
-                              ? 'bg-blue-500 text-white border-blue-500 z-10'
-                              : 'bg-white text-gray-700 hover:bg-gray-50'
+                            ? 'bg-blue-500 text-white border-blue-500 z-10'
+                            : 'bg-white text-gray-700 hover:bg-gray-50'
                             }`}
                         >
                           {pageNum}
@@ -231,8 +231,8 @@ const Dashboard = () => {
                       onClick={() => changePage(Math.min(totalPages, currentPage + 1))}
                       disabled={currentPage === totalPages}
                       className={`px-3 py-1 rounded-r-md border border-gray-300 text-sm font-medium ${currentPage === totalPages
-                          ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                          : 'bg-white text-gray-700 hover:bg-gray-50'
+                        ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                        : 'bg-white text-gray-700 hover:bg-gray-50'
                         }`}
                     >
                       Next

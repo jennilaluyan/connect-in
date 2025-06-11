@@ -12,7 +12,7 @@ const PekerjaanSayaPage = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [activeFilter, setActiveFilter] = useState("Dilamar"); // Filter default
-    const backendBaseUrl = 'http://127.0.0.1:8000';
+    const backendBaseUrl = 'https://connect-in-backend-production.up.railway.app';
 
     // --- 1. MENGAMBIL SEMUA DATA LAMARAN DARI API ---
     const fetchMyApplications = useCallback(async () => {
@@ -34,7 +34,7 @@ const PekerjaanSayaPage = () => {
             });
             const data = await response.json();
             if (!response.ok) throw new Error(data.message || 'Gagal mengambil data riwayat lamaran.');
-            
+
             setAllApplications(data.data || []);
         } catch (err) {
             setError(err.message);
@@ -81,7 +81,7 @@ const PekerjaanSayaPage = () => {
                 return <span className="px-2.5 py-1 bg-gray-100 text-gray-800 text-xs font-medium rounded-full">N/A</span>;
         }
     };
-    
+
     if (loading) {
         return (
             <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -95,19 +95,19 @@ const PekerjaanSayaPage = () => {
         return (
             <div className="container mx-auto px-4 py-10 text-center">
                 <div className="p-6 bg-red-50 border border-red-200 rounded-lg shadow-md">
-                  <h2 className="text-xl font-bold text-red-600 mb-3">Terjadi Kesalahan</h2>
-                  <p className="text-red-700 mb-5">{error}</p>
-                  <button 
-                    onClick={fetchMyApplications} 
-                    className="px-5 py-2.5 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors"
-                  >
-                    Coba Lagi
-                  </button>
+                    <h2 className="text-xl font-bold text-red-600 mb-3">Terjadi Kesalahan</h2>
+                    <p className="text-red-700 mb-5">{error}</p>
+                    <button
+                        onClick={fetchMyApplications}
+                        className="px-5 py-2.5 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors"
+                    >
+                        Coba Lagi
+                    </button>
                 </div>
             </div>
         );
     }
-    
+
     return (
         <div>
             <div className="flex flex-col md:flex-row min-h-screen p-4 mt-8" id="pekerjaan-saya">
@@ -145,11 +145,10 @@ const PekerjaanSayaPage = () => {
                             {filters.map(filterName => (
                                 <button
                                     key={filterName}
-                                    className={`px-6 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
-                                    activeFilter === filterName
-                                        ? "bg-blue-600 text-white shadow-md"
-                                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                                    }`}
+                                    className={`px-6 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${activeFilter === filterName
+                                            ? "bg-blue-600 text-white shadow-md"
+                                            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                                        }`}
                                     onClick={() => setActiveFilter(filterName)}
                                 >
                                     {filterName}

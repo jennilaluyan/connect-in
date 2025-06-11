@@ -32,7 +32,7 @@ const RegisterPage = () => {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/register",
+        "https://connect-in-backend-production.up.railway.app/api/register",
         {
           name,
           email,
@@ -113,10 +113,10 @@ const RegisterPage = () => {
         {message && (
           <p
             className={`mb-4 p-3 rounded ${Object.keys(errors).length > 0 ||
-                message.toLowerCase().includes("gagal") ||
-                message.toLowerCase().includes("kesalahan")
-                ? "bg-red-100 text-red-700"
-                : "bg-green-100 text-green-700"
+              message.toLowerCase().includes("gagal") ||
+              message.toLowerCase().includes("kesalahan")
+              ? "bg-red-100 text-red-700"
+              : "bg-green-100 text-green-700"
               }`}
           >
             {message}

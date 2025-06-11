@@ -10,7 +10,7 @@ const Pelamar = () => {
   const [actionLoading, setActionLoading] = useState({});
   const [actionMessage, setActionMessage] = useState({});
 
-  const backendBaseUrl = 'http://127.0.0.1:8000';
+  const backendBaseUrl = 'https://connect-in-backend-production.up.railway.app';
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -41,7 +41,7 @@ const Pelamar = () => {
         data = JSON.parse(responseText);
       } catch (e) {
         console.error("[Pelamar] Gagal parse JSON:", e, "Response Text:", responseText);
-        setError(`Format respons tidak valid dari server: ${responseText.substring(0,100)}...`);
+        setError(`Format respons tidak valid dari server: ${responseText.substring(0, 100)}...`);
         setLoading(false);
         return;
       }
@@ -49,7 +49,7 @@ const Pelamar = () => {
       if (!response.ok) {
         setError(data.message || `Gagal mengambil data pelamar (Status: ${response.status})`);
         if (response.status === 401) {
-            setError("Sesi Anda mungkin telah berakhir atau token tidak valid. Silakan login kembali.");
+          setError("Sesi Anda mungkin telah berakhir atau token tidak valid. Silakan login kembali.");
         }
         setLoading(false);
         return;
@@ -61,7 +61,7 @@ const Pelamar = () => {
 
     } catch (err) {
       console.error("Error fetching applicants:", err);
-      if(!error) setError(err.message || "Terjadi kesalahan saat mengambil data pelamar.");
+      if (!error) setError(err.message || "Terjadi kesalahan saat mengambil data pelamar.");
     } finally {
       setLoading(false);
     }
@@ -79,14 +79,14 @@ const Pelamar = () => {
       });
     } catch (e) { return "Format tidak valid"; }
   };
-  
+
   const handleDownloadCV = async (applicationId, applicantName = 'Pelamar', jobTitle = 'Pekerjaan') => {
     const token = localStorage.getItem("token");
     if (!token) {
       alert("Autentikasi dibutuhkan. Silakan login kembali.");
       return;
     }
-    
+
     try {
       const response = await fetch(`${backendBaseUrl}/api/hr/applicants/${applicationId}/download-cv`, {
         method: 'GET',
@@ -95,11 +95,11 @@ const Pelamar = () => {
       if (!response.ok) {
         let errorMessage = `Gagal mengunduh CV (Status: ${response.status}).`;
         try {
-            const errorData = await response.json();
-            errorMessage = errorData.message || errorMessage;
+          const errorData = await response.json();
+          errorMessage = errorData.message || errorMessage;
         } catch (e) {
-            const errorText = await response.text();
-            errorMessage = `Gagal mengunduh CV: ${response.statusText || response.status}. Server: ${errorText.substring(0,100)}...`;
+          const errorText = await response.text();
+          errorMessage = `Gagal mengunduh CV: ${response.statusText || response.status}. Server: ${errorText.substring(0, 100)}...`;
         }
         alert(errorMessage); return;
       }
@@ -152,17 +152,17 @@ const Pelamar = () => {
         throw new Error(responseData.message || `HTTP error! status: ${response.status}`);
       }
 
-      setActionMessage(prev => ({ ...prev, [applicationId]: responseData.message || `Lamaran berhasil diproses!`}));
-      
+      setActionMessage(prev => ({ ...prev, [applicationId]: responseData.message || `Lamaran berhasil diproses!` }));
+
       setApplications(prev =>
         prev.map(app =>
-          app.id === applicationId ? { ...app, status: responseData.data.status } : app 
+          app.id === applicationId ? { ...app, status: responseData.data.status } : app
         )
       );
       setTimeout(() => setActionMessage(prev => ({ ...prev, [applicationId]: '' })), 4000);
     } catch (err) {
       console.error(`Error saat ${action} lamaran:`, err);
-      setActionMessage(prev => ({ ...prev, [applicationId]: err.message || `Terjadi kesalahan.`}));
+      setActionMessage(prev => ({ ...prev, [applicationId]: err.message || `Terjadi kesalahan.` }));
     } finally {
       setActionLoading(prev => ({ ...prev, [applicationId]: false }));
     }
@@ -170,19 +170,19 @@ const Pelamar = () => {
 
   if (loading) return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-blue-500"></div>
-        <p className="ml-4 text-lg text-gray-700">Memuat data pelamar...</p>
+      <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-blue-500"></div>
+      <p className="ml-4 text-lg text-gray-700">Memuat data pelamar...</p>
     </div>
   );
-  
+
   if (error) {
     return (
       <div className="container mx-auto px-4 py-10 text-center">
         <div className="p-6 bg-red-50 border border-red-200 rounded-lg shadow-md">
           <h2 className="text-xl font-bold text-red-600 mb-3">Terjadi Kesalahan</h2>
           <p className="text-red-700 mb-5">{error}</p>
-          <button 
-            onClick={() => fetchApplicants(1)} 
+          <button
+            onClick={() => fetchApplicants(1)}
             className="px-5 py-2.5 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-50"
           >
             Coba Lagi
@@ -221,7 +221,7 @@ const Pelamar = () => {
                   to="/hr/pelamar"
                   className="flex items-center py-3.5 px-6 text-blue-600 bg-blue-100 border-l-4 border-blue-500 font-semibold text-sm"
                 >
-                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                   </svg>
                   Pelamar
@@ -259,7 +259,7 @@ const Pelamar = () => {
                               src={application.applicant?.avatar_img_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(application.applicant?.name || 'P')}&background=random&color=fff&size=64`}
                               alt={application.applicant?.name || "Foto Pelamar"}
                               className="w-full h-full object-cover"
-                              onError={(e) => { e.target.onerror = null; e.target.src=`https://ui-avatars.com/api/?name=${encodeURIComponent(application.applicant?.name || 'P')}&background=random&color=fff&size=64`; }}
+                              onError={(e) => { e.target.onerror = null; e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(application.applicant?.name || 'P')}&background=random&color=fff&size=64`; }}
                             />
                           </div>
                           <div className="min-w-0">
@@ -271,49 +271,48 @@ const Pelamar = () => {
                         </div>
                         <div className="flex flex-col sm:items-end sm:text-right mt-2 sm:mt-0 flex-shrink-0 w-full sm:w-auto">
                           <p className="text-xs text-gray-500 mb-1.5">Melamar pada: {formatDate(application.created_at)}</p>
-                          
+
                           {/* --- TAMPILAN STATUS DAN TOMBOL AKSI --- */}
                           <div className="h-10 flex items-center"> {/* Memberi tinggi tetap agar UI tidak 'melompat' */}
                             {actionMessage[application.id] && (
-                                <p className={`text-xs font-medium ${actionMessage[application.id].toLowerCase().includes('gagal') ? 'text-red-600' : 'text-green-600'}`}>
-                                    {actionMessage[application.id]}
-                                </p>
+                              <p className={`text-xs font-medium ${actionMessage[application.id].toLowerCase().includes('gagal') ? 'text-red-600' : 'text-green-600'}`}>
+                                {actionMessage[application.id]}
+                              </p>
                             )}
 
                             {/* Tombol aksi hanya jika status masih bisa diubah */}
-                            { (application.status === 'pending' || application.status === 'reviewed') && !actionMessage[application.id] ? (
-                                <div className="flex gap-2 items-center">
-                                    <button onClick={() => handleUpdateStatus(application.id, 'reject')} disabled={actionLoading[application.id]} className="px-3 py-1.5 bg-red-100 text-red-600 text-xs font-medium rounded-md hover:bg-red-200 transition-colors focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-50 disabled:opacity-60 disabled:cursor-not-allowed">
-                                        {actionLoading[application.id] ? 'Memproses...' : 'Tolak'}
-                                    </button>
-                                    <button onClick={() => handleUpdateStatus(application.id, 'accept')} disabled={actionLoading[application.id]} className="px-3 py-1.5 bg-green-100 text-green-700 text-xs font-medium rounded-md hover:bg-green-200 transition-colors focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 disabled:opacity-60 disabled:cursor-not-allowed">
-                                        {actionLoading[application.id] ? 'Memproses...' : 'Terima'}
-                                    </button>
-                                </div>
+                            {(application.status === 'pending' || application.status === 'reviewed') && !actionMessage[application.id] ? (
+                              <div className="flex gap-2 items-center">
+                                <button onClick={() => handleUpdateStatus(application.id, 'reject')} disabled={actionLoading[application.id]} className="px-3 py-1.5 bg-red-100 text-red-600 text-xs font-medium rounded-md hover:bg-red-200 transition-colors focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-50 disabled:opacity-60 disabled:cursor-not-allowed">
+                                  {actionLoading[application.id] ? 'Memproses...' : 'Tolak'}
+                                </button>
+                                <button onClick={() => handleUpdateStatus(application.id, 'accept')} disabled={actionLoading[application.id]} className="px-3 py-1.5 bg-green-100 text-green-700 text-xs font-medium rounded-md hover:bg-green-200 transition-colors focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 disabled:opacity-60 disabled:cursor-not-allowed">
+                                  {actionLoading[application.id] ? 'Memproses...' : 'Terima'}
+                                </button>
+                              </div>
                             ) : application.status === 'shortlisted' && !actionMessage[application.id] ? (
-                                <div className="flex gap-2 items-center">
-                                    <button onClick={() => handleUpdateStatus(application.id, 'reject')} disabled={actionLoading[application.id]} className="px-3 py-1.5 bg-red-100 text-red-600 text-xs font-medium rounded-md hover:bg-red-200 transition-colors disabled:opacity-60 disabled:cursor-not-allowed">
-                                        {actionLoading[application.id] ? 'Memproses...' : 'Tolak'}
-                                    </button>
-                                    <button onClick={() => handleUpdateStatus(application.id, 'hire')} disabled={actionLoading[application.id]} className="px-3 py-1.5 bg-emerald-500 text-white text-xs font-medium rounded-md hover:bg-emerald-600 transition-colors disabled:opacity-60 disabled:cursor-not-allowed">
-                                        {actionLoading[application.id] ? 'Memproses...' : 'Hire'}
-                                    </button>
-                                </div>
+                              <div className="flex gap-2 items-center">
+                                <button onClick={() => handleUpdateStatus(application.id, 'reject')} disabled={actionLoading[application.id]} className="px-3 py-1.5 bg-red-100 text-red-600 text-xs font-medium rounded-md hover:bg-red-200 transition-colors disabled:opacity-60 disabled:cursor-not-allowed">
+                                  {actionLoading[application.id] ? 'Memproses...' : 'Tolak'}
+                                </button>
+                                <button onClick={() => handleUpdateStatus(application.id, 'hire')} disabled={actionLoading[application.id]} className="px-3 py-1.5 bg-emerald-500 text-white text-xs font-medium rounded-md hover:bg-emerald-600 transition-colors disabled:opacity-60 disabled:cursor-not-allowed">
+                                  {actionLoading[application.id] ? 'Memproses...' : 'Hire'}
+                                </button>
+                              </div>
                             ) : ( // Tampilkan status jika sudah final atau setelah aksi
-                                <span className={`capitalize text-xs font-semibold px-2.5 py-1 rounded-full ${
-                                    application.status === 'shortlisted' ? 'bg-green-100 text-green-800 ring-1 ring-green-300' :
-                                    application.status === 'rejected' ? 'bg-red-100 text-red-800 ring-1 ring-red-300' :
+                              <span className={`capitalize text-xs font-semibold px-2.5 py-1 rounded-full ${application.status === 'shortlisted' ? 'bg-green-100 text-green-800 ring-1 ring-green-300' :
+                                  application.status === 'rejected' ? 'bg-red-100 text-red-800 ring-1 ring-red-300' :
                                     application.status === 'hired' ? 'bg-emerald-100 text-emerald-800 ring-1 ring-emerald-300' :
-                                    'bg-gray-100 text-gray-800 ring-1 ring-gray-300' // Fallback untuk pending/reviewed jika ada actionMessage
+                                      'bg-gray-100 text-gray-800 ring-1 ring-gray-300' // Fallback untuk pending/reviewed jika ada actionMessage
                                 }`}>
-                                    {application.status ? application.status.replace('_', ' ') : 'N/A'}
-                                </span>
+                                {application.status ? application.status.replace('_', ' ') : 'N/A'}
+                              </span>
                             )}
                           </div>
-                          
+
                           <div className="mt-3">
                             <button onClick={() => handleDownloadCV(application.id, application.applicant?.name, application.job_posting?.title)} className="px-4 py-2 bg-sky-500 text-white text-xs font-medium rounded-md hover:bg-sky-600 transition-colors focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-opacity-50 inline-flex items-center">
-                               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
                               Unduh CV
                             </button>
                           </div>

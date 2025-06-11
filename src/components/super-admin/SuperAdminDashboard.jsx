@@ -4,7 +4,7 @@ import { getToken, logout, getUser } from '../../utils/auth';
 import { useNavigate } from 'react-router-dom';
 import { ShieldCheck, UserX, Trash2, CheckCircle, XCircle, AlertTriangle, Info, LogOut } from 'lucide-react'; // LogOut ditambahkan di sini
 
-const API_BASE_URL = 'http://127.0.0.1:8000/api/superadmin';
+const API_BASE_URL = 'https://connect-in-backend-production.up.railway.app/api/superadmin';
 
 // Komponen Modal Konfirmasi Sederhana
 const ConfirmationModal = ({ isOpen, onClose, onConfirm, title, message, confirmText = "Konfirmasi", cancelText = "Batal" }) => {

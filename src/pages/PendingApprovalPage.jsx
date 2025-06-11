@@ -21,7 +21,7 @@ const PendingApprovalPage = () => {
         // import axios from 'axios';
         // const token = getToken();
         // if (token) {
-        //     axios.post('http://127.0.0.1:8000/api/logout', {}, {
+        //     axios.post('https://connect-in-backend-production.up.railway.app/api/logout', {}, {
         //         headers: { Authorization: `Bearer ${token}` }
         //     }).catch(error => console.error("Error calling backend logout:", error));
         // }

@@ -43,7 +43,7 @@ const PekerjaanDiposting = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [totalJobs, setTotalJobs] = useState(0);
 
-  const backendBaseUrl = 'http://127.0.0.1:8000';
+  const backendBaseUrl = 'https://connect-in-backend-production.up.railway.app';
 
   const fetchHrJobs = useCallback(async (page = 1) => {
     setLoading(true);

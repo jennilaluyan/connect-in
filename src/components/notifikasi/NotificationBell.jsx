@@ -8,7 +8,7 @@ const NotificationBell = () => {
     const [unreadCount, setUnreadCount] = useState(0);
     const [isOpen, setIsOpen] = useState(false);
     const [loading, setLoading] = useState(false);
-    const backendBaseUrl = 'http://127.0.0.1:8000'; // Pastikan URL benar
+    const backendBaseUrl = 'https://connect-in-backend-production.up.railway.app'; // Pastikan URL benar
     const dropdownRef = useRef(null);
 
     // Fungsi untuk mengambil notifikasi dari backend
@@ -81,8 +81,8 @@ const NotificationBell = () => {
 
     return (
         <div className="relative" ref={dropdownRef}>
-            <button 
-                onClick={() => setIsOpen(!isOpen)} 
+            <button
+                onClick={() => setIsOpen(!isOpen)}
                 className="relative text-gray-600 hover:text-blue-500 focus:outline-none"
                 aria-label="Notifications"
             >

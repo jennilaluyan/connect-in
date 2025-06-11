@@ -23,7 +23,7 @@ export default function PostingPekerjaan({ jobToEdit = null, onFormSubmit, onCan
   const [generalError, setGeneralError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
-  const backendBaseUrl = 'http://127.0.0.1:8000';
+  const backendBaseUrl = 'https://connect-in-backend-production.up.railway.app';
 
   useEffect(() => {
     if (jobToEdit) {
