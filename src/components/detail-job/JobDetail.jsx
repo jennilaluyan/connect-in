@@ -1,7 +1,7 @@
 // src/components/detail-job/JobDetail.jsx
 import React, { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import Default from "../../assets/Anonymous.png"; // Pastikan path ini benar
+import Default from "../../assets/Default.jpg"; // Pastikan path ini benar
 import Footer from "../landing-page/Footer"; // Pastikan path ini benar
 import CVUploadModal from "./CVUploadModal"; // Pastikan path ini benar
 

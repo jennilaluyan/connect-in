@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Default from "../../assets/Anonymous.png";
+import Default from "../../assets/Default.jpg"
 
 /**
  * JobCard - Responsive card component for displaying job listings
